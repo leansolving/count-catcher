@@ -1,0 +1,20 @@
+count_models valid_empty: 8 models over Fin 3, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models valid_v0: 1 models over Fin 0, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models valid_empty_dimacs: 8 models over Fin 3, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models valid_v0_dimacs: 1 models over Fin 0, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models valid_taut: 4 models over Fin 2, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models valid_taut_stream: 4 models over Fin 2, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+count_models nohint: 196 models over Fin 8, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+valid_empty : Fintype.card { a // Std.Sat.CNF.eval (ext a) Std.Sat.CNF.empty = true } = 8
+valid_v0 : Fintype.card { a // Std.Sat.CNF.eval (ext a) Std.Sat.CNF.empty = true } = 1
+valid_empty_dimacs : Fintype.card { a // Std.Sat.CNF.eval (ext a) (LRATCatcher.parseDimacs "p cnf 3 0\n") = true } = 8
+valid_v0_dimacs : Fintype.card { a // Std.Sat.CNF.eval (ext a) (LRATCatcher.parseDimacs "p cnf 0 0\n") = true } = 1
+nohint : Fintype.card
+    { a // Std.Sat.CNF.eval (ext a) (LRATCatcher.parseDimacs "p cnf 8 3\n-3 7 4 -5 0\n-2 1 -3 0\n8 1 -2 0\n") = true } =
+  196
+'valid_empty' depends on axioms: [propext, Classical.choice, Quot.sound, valid_empty._native.native_decide.ax_1]
+'valid_taut_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ valid_taut_stream._native.native_decide.ax_4,
+ valid_taut_stream.fwd._native.native_decide.ax_1]

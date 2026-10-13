@@ -1,0 +1,110 @@
+diff --git a/LeanSAT/Data/PPA.lean b/LeanSAT/Data/PPA.lean
+index 583346d..9ac4e19 100644
+--- a/LeanSAT/Data/PPA.lean
++++ b/LeanSAT/Data/PPA.lean
+@@ -39,6 +39,65 @@ instance : ToString PPA where
+ 
+ /-! ## Reading values from the PPA -/
+ 
++/-! Sorry-free replacements for the two sorried ToStd lemmas. -/
++namespace CpogFix
++
++theorem setF_data_of_ge {α : Type _} (A : Array α) {i : Nat} (hi : A.size ≤ i) (v d : α) :
++    (A.setF i v d).data = A.data ++ (List.replicate (i - A.size) d ++ [v]) := by
++  rw [Array.setF_eq_of_ge A hi]
++  simp [List.append_assoc]
++
++/-- Every read of `A.setF i v d`: the new value at `i`, the old value below `A.size`,
++the padding value `d` at new positions strictly between `A.size` and `i`, nothing beyond `i`. -/
++theorem getElem?_setF_eq {α : Type _} (A : Array α) (i j : Nat) (v d : α) :
++    (A.setF i v d)[j]? =
++      if i = j then some v else if j < A.size then A[j]? else if j < i then some d else none := by
++  by_cases hi : i < A.size
++  · rw [Array.setF_eq_set hi, Array.get?_set]
++    by_cases hij : i = j
++    · subst hij; simp
++    · by_cases hjs : j < A.size
++      · simp [hij, hjs]
++      · have hji : ¬ j < i := fun h => hjs (Nat.lt_trans h hi)
++        simp [hij, hjs, hji, Array.get?_len_le A j (Nat.le_of_not_lt hjs)]
++  · have hi' : A.size ≤ i := Nat.le_of_not_lt hi
++    rw [Array.getElem?_eq_data_get?, setF_data_of_ge A hi' v d]
++    by_cases hjs : j < A.size
++    · have hij : ¬ i = j := fun h => hi (h ▸ hjs)
++      rw [List.get?_append (l₁ := A.data) (n := j) hjs, ← Array.getElem?_eq_data_get?]
++      simp [hij, hjs]
++    · have hsj : A.size ≤ j := Nat.le_of_not_lt hjs
++      rw [List.get?_append_right (l₁ := A.data) (n := j) hsj]
++      simp only [Array.data_length]
++      by_cases hji : j < i
++      · have hij : ¬ i = j := fun h => Nat.lt_irrefl j (h ▸ hji)
++        have hlt : j - A.size < i - A.size := tsub_lt_tsub_right_of_le hsj hji
++        have hlt' : j - A.size < (List.replicate (i - A.size) d).length := by
++          rw [List.length_replicate]; exact hlt
++        rw [List.get?_append (l₁ := List.replicate (i - A.size) d) (n := j - A.size) hlt',
++          List.get?_eq_get (l := List.replicate (i - A.size) d) (n := j - A.size) hlt',
++          List.get_replicate]
++        simp [hij, hjs, hji]
++      · by_cases hij : i = j
++        · subst hij
++          have hle : (List.replicate (i - A.size) d).length ≤ i - A.size := by
++            rw [List.length_replicate]
++          rw [List.get?_append_right (l₁ := List.replicate (i - A.size) d) (n := i - A.size) hle]
++          simp
++        · have hij' : i < j := Nat.lt_of_le_of_ne (Nat.le_of_not_lt hji) hij
++          have hlt : i - A.size < j - A.size := tsub_lt_tsub_right_of_le hi' hij'
++          have hle : (List.replicate (i - A.size) d ++ [v]).length ≤ j - A.size := by
++            rw [List.length_append, List.length_replicate, List.length_singleton]; exact hlt
++          rw [List.get?_len_le (l := List.replicate (i - A.size) d ++ [v]) (n := j - A.size) hle]
++          simp [hij, hjs, hji]
++
++/-- The statement of the sorried `Array.getElem?_setF` holds. -/
++theorem getElem?_setF_self {α : Type _} (A : Array α) (i : Nat) (v default : α) :
++    (A.setF i v default)[i]? = some v := by
++  simp [getElem?_setF_eq]
++
++end CpogFix
++
+ namespace PPA
+ open LitVar PropFun
+ 
+@@ -357,21 +416,35 @@ namespace PPA
+   @[simp]
+   theorem varValue?_setVar (τ : PPA) (x : IVar) (b : Bool) : (τ.setVar x b).varValue? x = some b := by
+     unfold varValue? setVar
+-    cases b <;> simp [Array.getElem?_setF, τ.generation.property]
++    cases b <;> simp [CpogFix.getElem?_setF_self, τ.generation.property]
+ 
+   @[simp]
+   theorem varValue?_setVar_of_ne (τ : PPA) {x x' : IVar} (b : Bool) :
+       x ≠ x' → (τ.setVar x b).varValue? x' = τ.varValue? x' := by
+-    unfold varValue? setVar
+     intro hNe
+-    have : x.val - 1 ≠ x'.val - 1 := by
++    have hij : x.val - 1 ≠ x'.val - 1 := by
+       intro h
+       have hx : 1 ≤ x.val := by cases x; assumption
+       have hx' : 1 ≤ x'.val := by cases x'; assumption
+       have : x.val - 1 + 1 = x'.val - 1 + 1 := by simp_rw [h]
+       rw [Nat.sub_add_cancel hx, Nat.sub_add_cancel hx'] at this
+       exact hNe (PNat.coe_inj.mp this)
+-    simp [Array.getElem?_setF' _ _ _ this]
++    have hg := τ.generation.property
++    have hA : (τ.setVar x b).assignment =
++        τ.assignment.setF (x.val - 1) (if b then (τ.generation.val : Int) else -(τ.generation.val : Int)) 0 :=
++      rfl
++    have hG : (τ.setVar x b).generation = τ.generation := rfl
++    unfold PPA.varValue?
++    rw [hA, hG]
++    simp only [Array.get?_eq_getElem?]
++    rw [CpogFix.getElem?_setF_eq, if_neg hij]
++    by_cases hs : x'.val - 1 < τ.assignment.size
++    · rw [if_pos hs]
++    · rw [if_neg hs, Array.get?_len_le _ _ (Nat.le_of_not_lt hs)]
++      by_cases hlt : x'.val - 1 < x.val - 1
++      · rw [if_pos hlt]
++        simp [Nat.pos_iff_ne_zero.mp hg]
++      · rw [if_neg hlt]
+ 
+   @[simp]
+   theorem varValue?_setLit (τ : PPA) (l : ILit) : (τ.setLit l).varValue? (toVar l) = some (polarity l) := by

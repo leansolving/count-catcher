@@ -1,0 +1,45 @@
+count-catcher: Lean theorems from model counting certificates
+Copyright 2026 Johannes K. Fichte and Stefan Szeider
+
+Licensed under the Apache License, Version 2.0; see LICENSE.
+
+Third-party software that count-catcher builds on or that this distribution fetches,
+builds or ships. Each stays under its own license; the license files are in the respective
+source trees (tools/ of the prebuilt tarball in the archived release, or the repositories
+that artifact/install.sh fetches).
+
+Lean side
+- Lean 4, v4.30.0. Apache-2.0. https://github.com/leanprover/lean4
+- Mathlib, commit c5ea003. Apache-2.0. https://github.com/leanprover-community/mathlib4
+  With its dependencies batteries, aesop, Qq, ProofWidgets4, import-graph,
+  LeanSearchClient, plausible (Apache-2.0) and lean4-cli (MIT).
+- lrat-catcher, commit b2e8d59. MIT. https://github.com/leansolving/lrat-catcher
+- elan (the Lean toolchain manager, shipped in .elan/ of the prebuilt tarball). Apache-2.0 or
+  MIT. https://github.com/leanprover/elan
+
+Model counter and certificate tools (built from source by artifact/install.sh)
+- d4, commit 333370c. LGPL-3.0. https://github.com/crillab/d4
+  The d4 repository bundles the PaToH 3.2 hypergraph partitioning library (Copyright
+  Umit V. Catalyurek), whose binary distribution is "available free of charge for
+  non-commercial, research use"; commercial use needs a license from its author.
+- GMP 6.3.0. LGPL-3.0 (or GPL-2.0). https://gmplib.org
+  Linked statically into d4; its source is shipped alongside the prebuilt binary.
+- cpog (cpog-gen, cpog-check), commit a97ed85. MIT, Copyright (c) 2023 Randal E. Bryant,
+  Wojciech Nawrocki, and Jeremy Avigad. https://github.com/rebryant/cpog
+  The two patches in tools-src/ (cpog-gen-noreverse.patch, cpog-gen-fwd.patch) are derived
+  works of cpog-gen and carry the same MIT terms. The repository's VerifiedChecker
+  (cpog-lean-check), used only for the comparison rows, is Apache-2.0.
+- CaDiCaL 3.0.1. MIT, Armin Biere. https://github.com/arminbiere/cadical
+- drat-trim, commit 2e3b2dc. MIT, Marijn J. H. Heule and Nathan Wetzler.
+  https://github.com/marijnheule/drat-trim
+- Boost (headers, build time only). Boost Software License 1.0.
+- uv 0.12.23 (runs the Python scripts; installed by artifact/install.sh, shipped as bin/uv in
+  the prebuilt tarball). Apache-2.0 or MIT. https://github.com/astral-sh/uv
+
+Data
+- The competition formulas in inputs/mc2022_subset come from "Model Counting Competition 2022:
+  Competition Instances" (Johannes K. Fichte and Markus Hecher, Zenodo,
+  https://doi.org/10.5281/zenodo.10012860, CC BY 4.0) and are redistributed unchanged.
+
+Not shipped, named in the logs and in artifact/xcheck/counters.tsv only: ganak and SharpSAT-TD
+(MIT), used as independent cross-checks of counts.

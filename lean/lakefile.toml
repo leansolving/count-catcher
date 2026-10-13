@@ -1,0 +1,40 @@
+name = "CountCatcher"
+defaultTargets = ["CountCatcherChecker", "CountCatcherMath", "CountCatcher"]
+
+[[require]]
+name = "LRATCatcher"
+git = "https://github.com/leansolving/lrat-catcher.git"
+rev = "b2e8d59fb16203e76bad4e34e9c1e4711a61a328"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.30.0"
+
+# Executable checker: Mathlib-free by import discipline. Precompiled, so that
+# `native_decide` runs parts A and C as native code instead of in the IR interpreter.
+[[lean_lib]]
+name = "CountCatcherChecker"
+precompileModules = true
+
+# Counting, composition and family proofs (may import Mathlib).
+[[lean_lib]]
+name = "CountCatcherMath"
+
+# User front end: `count_models`, `#export_cnf` and all families (`import CountCatcher`).
+[[lean_lib]]
+name = "CountCatcher"
+
+[[lean_exe]]
+name = "count-catcher-pog"
+root = "PogMain"
+
+# Unverified direct counters for the baseline comparison.
+[[lean_exe]]
+name = "count-catcher-baselines"
+root = "Baselines"
+
+# Part C methods: verdicts and times (table reuse and the comparison of part C methods).
+[[lean_exe]]
+name = "count-catcher-partc"
+root = "PartcMain"

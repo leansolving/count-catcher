@@ -1,0 +1,11 @@
+'queens8_orbits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8._native.native_decide.ax_1_1,
+ queens8_fix_r2._native.native_decide.ax_1_1,
+ queens8_unsat_r1._native.native_decide.ax_1_1,
+ queens8_unsat_r3._native.native_decide.ax_1_1,
+ queens8_unsat_s0._native.native_decide.ax_1_1,
+ queens8_unsat_s1._native.native_decide.ax_1_1,
+ queens8_unsat_s2._native.native_decide.ax_1_1,
+ queens8_unsat_s3._native.native_decide.ax_1_1]

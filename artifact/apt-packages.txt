@@ -1,0 +1,6 @@
+# Ubuntu packages that artifact/install.sh needs beyond the TACAS AE VM's preinstalled set
+# (build-essential, git, curl, cmake, clang, python3-full, python3-pip, default-jdk, mono, ruby).
+# install.sh installs the missing ones with sudo apt-get (skip with --no-apt).
+m4            # GMP's configure (GMP is built from source, static, with runtime CPU dispatch)
+libboost-dev  # D4 includes Boost headers
+zlib1g-dev    # D4 includes zlib.h and links -lz (already on the VM through python3-full)

@@ -1,0 +1,45 @@
+c o This output describes a result of a run from
+c o a model counter.
+c o 
+c o Parsed 81 vars, 81 clauses, and 0 weights.
+c o Init PP 81 81 1.6577e-05
+c o PP: F 81 81 0 0.000142442
+c o PP: P 81 81 0 0.000279858
+c o SAT
+c o PP: V 81 81 0 0.001640135
+c o PP: S 81 81 0 0.002271677
+c o PP: E 81 81 0 0.003127761
+c o PP: G 81 81 0 0.02393881
+c o SAT
+c o PP: V 81 81 0 0.025237328
+c o Preprocessed. 0.025405119s Vars: 81 Clauses: 81 Free vars: 0
+c o Primal edges 324
+c o CMD: timeout 1.000000s ./flow_cutter_pace17 </home/tacas/count-catcher/artifact/out/xcheck/sstd.7Mu28R/instance1791750765545576_82_324_1.tmp >/home/tacas/count-catcher/artifact/out/xcheck/sstd.7Mu28R/instance1791750765545577_82_324_2.tmp 2>/dev/null
+c o tw finish ok
+c o width 25
+c o Now solving. 1.034338033
+c o SharpSAT loaded
+c o variables (all/used/free): 	81/81/0
+c o clauses (all/long/binary/unit): 81/81/0/0
+c o COEF: 31.52311326833522 Width: 25
+c o Maximum cache size:	3500 MB
+c o ts 2097152 2097151
+c o coll 94891
+c o decisions 				1522683
+c o conflicts 				0
+c o conflict clauses (all/bin/unit) 	0/0/0
+c o bytes cache size     	146255760	
+c o bytes cache (overall) 	146255760
+c o bytes cache (infra / comps) 24428704/121827056	
+c o bytes pure comp data (curr)    0
+c o bytes pure comp data (overall) 0
+c o bytes cache with sysoverh (curr)    194915888
+c o bytes cache with sysoverh (overall) 194915888
+c o cache (stores / hits) 			1522684/2495671
+c o cache miss rate 37.89320204242832%
+c o avg. variable count (stores / hits) 	29.13494855137376/15.96968270256777
+c o Solved in 8.575852488000001 seconds.
+s SATISFIABLE
+c s type mc
+c s log10-estimate 22.8614820615631
+c s exact arb int 72691237364024529045028

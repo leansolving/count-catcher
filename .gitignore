@@ -1,0 +1,15 @@
+# Lean build output and the Mathlib cache
+lean/.lake/
+# External tools built from source by artifact/install.sh, the wrapper it writes, its logs
+tools/
+bin/
+artifact/logs/
+.elan/
+# Rust build output of the native translator
+tools-src/cpog2lrat/target/
+# Outputs of the driver and of the reproduction scripts
+count-catcher-out/
+artifact/out/
+__pycache__/
+.ruff_cache/
+.DS_Store

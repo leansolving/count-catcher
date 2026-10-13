@@ -1,0 +1,30 @@
+count_models latin5c_c0_fibre: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5c_c1_0000: 0 models (LRAT refutation, embedded, N ms)
+count_models latin5c_c1_0001: 2 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5c_c1_0002: 0 models (LRAT refutation, embedded, N ms)
+count_models latin5c_c1_0003: 0 models (LRAT refutation, embedded, N ms)
+count_models latin5c_c1_0004: 1 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5c_c1_0005: 1 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5c_c1_0006: 2 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+'latin5c_reduced' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ latin5c_c0_fibre._native.native_decide.ax_1,
+ latin5c_c1_0000._native.native_decide.ax_1,
+ latin5c_c1_0001._native.native_decide.ax_1,
+ latin5c_c1_0002._native.native_decide.ax_1,
+ latin5c_c1_0003._native.native_decide.ax_1,
+ latin5c_c1_0004._native.native_decide.ax_1,
+ latin5c_c1_0005._native.native_decide.ax_1,
+ latin5c_c1_0006._native.native_decide.ax_1]
+'latin5c_all' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ latin5c_c0_fibre._native.native_decide.ax_1,
+ latin5c_c1_0000._native.native_decide.ax_1,
+ latin5c_c1_0001._native.native_decide.ax_1,
+ latin5c_c1_0002._native.native_decide.ax_1,
+ latin5c_c1_0003._native.native_decide.ax_1,
+ latin5c_c1_0004._native.native_decide.ax_1,
+ latin5c_c1_0005._native.native_decide.ax_1,
+ latin5c_c1_0006._native.native_decide.ax_1]

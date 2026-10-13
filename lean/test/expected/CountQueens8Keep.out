@@ -1,0 +1,13 @@
+count_models queens8_keep: 92 models over Fin 64, streamed; count by part A N ms, verified check part B (keep file) N ms, parts A and C N ms
+count_models queens8_keep_models: 92 models over Fin 64, streamed; count from the hint, verified check part B (keep file) N ms, parts A and C N ms
+'queens8_keep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_keep._native.native_decide.ax_6,
+ queens8_keep.fwd._native.native_decide.ax_1]
+'queens8_keep_models' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_keep_models._native.native_decide.ax_6,
+ queens8_keep_models.fwd._native.native_decide.ax_1]
+count_models queens8_keep_retry: 92 models over Fin 64, streamed; count by part A N ms, verified check part B (keep file) N ms, parts A and C N ms

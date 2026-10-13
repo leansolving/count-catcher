@@ -1,0 +1,23 @@
+Adversarial and honest mini-certificates for acceptance conditions C1-C8.
+DIMACS numbering. "wrong count" is what a checker lacking the condition would accept.
+Verified with scripts/cpog_ref.py (all conditions on, then only the targeted one off) and
+with cpog-check a97ed85 (patched verbosity), 2026-09-29.
+
+name                  expected            targeted  wrong count  true  cpog-check
+h1_unused             accept count 2      C1/C8     -            2     accept 2
+h2_or                 accept count 3      C8 (unequal sum supports)  3  accept 3
+h3_nand               accept count 6      C8 (negative internal edge, unused var)  6  accept 6
+a4_prod_overlap       reject              C3        1            0     reject (overlap)
+a14_prod_self         reject (policy)     C3        1 (right)    1     reject (overlap)
+a5_sum_input_hint     reject              C4        0            1     reject (hint not defining)
+a5b_sum_derived_hint  reject              C4        0            1     reject (hint not defining)
+a6_self_delete        reject              C6 mask   2            1     reject (masked)
+a7_delete_def         reject (policy)     C6 defs   -            1     reject later (final state); cpog-check allows RUP-justified deletion of defining clauses, which is sound
+a8_leftover_derived   reject              C7        2            1     reject (final state)
+a9_ext_collision      reject (policy)     C2        2 (right)    2     reject (invalid id)
+a10_reused_id         reject              C5        2            1     reject (id in use)
+
+Reverse by evaluation (cpog_ref.py --reverse=eval, deletions ignored): accepts h1-h3 with the
+same counts; rejects a6, a8, a10 at the per-clause evaluation or earlier; accepts a7 with the
+correct count 1 (deletions are ignored in that mode).
+Not covered here: edited snapshots (chunk driver).

@@ -1,0 +1,17 @@
+count_models ramsey33_5_fix_5: 2 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models ramsey33_5_fix_4: 0 models (LRAT refutation, embedded, N ms)
+count_models ramsey33_5_fix_3_2: 0 models (LRAT refutation, embedded, N ms)
+count_models ramsey33_5_fix_3: 0 models (LRAT refutation, embedded, N ms)
+count_models ramsey33_5_fix_2_2: 4 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models ramsey33_5_fix_2: 0 models (LRAT refutation, embedded, N ms)
+count_models ramsey33_5: 12 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+'ramsey33_5_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ ramsey33_5._native.native_decide.ax_1,
+ ramsey33_5_fix_2._native.native_decide.ax_1,
+ ramsey33_5_fix_2_2._native.native_decide.ax_1,
+ ramsey33_5_fix_3._native.native_decide.ax_1,
+ ramsey33_5_fix_3_2._native.native_decide.ax_1,
+ ramsey33_5_fix_4._native.native_decide.ax_1,
+ ramsey33_5_fix_5._native.native_decide.ax_1]

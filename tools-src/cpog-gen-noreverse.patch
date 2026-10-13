@@ -1,0 +1,109 @@
+diff --git a/src/clausal.cpp b/src/clausal.cpp
+index 03d9a2f..d7c1583 100644
+--- a/src/clausal.cpp
++++ b/src/clausal.cpp
+@@ -810,6 +810,7 @@ Cnf_reasoner::Cnf_reasoner(FILE *infile) : Cnf(infile) {
+     multi_literal = true;
+     use_lemmas = true;
+     delete_files = true;
++    forward_only = false;
+     drat_threshold = 1000;
+     clause_limit = INT_MAX;
+     bcp_limit = 1;
+@@ -872,6 +873,8 @@ int Cnf_reasoner::start_assertion(Clause *clp) {
+     int cid = add_proof_clause(clp);
+     pwriter->start_assertion(cid);
+     clp->write(pwriter);
++    if (forward_only)
++	return cid;
+     std::vector<int> *dvp = new std::vector<int>();
+     dvp->push_back(cid);
+     asserting = true;   
+diff --git a/src/clausal.hh b/src/clausal.hh
+index dc6855f..5dcbb7d 100644
+--- a/src/clausal.hh
++++ b/src/clausal.hh
+@@ -340,6 +340,8 @@ public:
+     bool use_lemmas;
+     // Delete intermediate files.  Default true.
+     bool delete_files;
++    // Forward implication only: record no hints for deleting asserted clauses.  Default false.
++    bool forward_only;
+     // Use drat-trim when SAT problem has at least specified number of clauses
+     int drat_threshold;
+     // Limit on number of clauses before aborting (not implemented)
+diff --git a/src/cpog-gen.cpp b/src/cpog-gen.cpp
+index 4087d20..e7256ed 100644
+--- a/src/cpog-gen.cpp
++++ b/src/cpog-gen.cpp
+@@ -39,19 +39,21 @@ static bool delete_files  =  true;
+ static bool early_quit = false;
+ static bool one_sided = false;
+ static bool monolithic = false;
++static bool forward_only = false;
+ static int drat_threshold = 1000;
+ static int bcp_limit = 1;
+ static int clause_limit = INT_MAX;
+ 
+ 
+ void usage(const char *name) {
+-    lprintf("Usage: %s [-h] [-v VLEVEL] [-L LOG] [-p] [-1] [-m] [-C CLIM] [-b BLIM] [-t] [-s] [-e] [-k] FORMULA.cnf GRAPH.d4nnf [POG.cpog]\n", name);
++    lprintf("Usage: %s [-h] [-v VLEVEL] [-L LOG] [-p] [-1] [-m] [-F] [-C CLIM] [-b BLIM] [-t] [-s] [-e] [-k] FORMULA.cnf GRAPH.d4nnf [POG.cpog]\n", name);
+     lprintf("  -h        Print this information\n");
+     lprintf("  -v VLEVEL Set verbosity level\n");
+     lprintf("  -L LOG    Record all results to file LOG\n");
+     lprintf("  -p        Quit after determining POG size\n");
+     lprintf("  -1        Generate a one-sided proof (only input clause deletions justified)\n");
+     lprintf("  -m        Monolithic mode: Do validation with single call to SAT solver\n");
++    lprintf("  -F        Forward implication only: omit all clause deletions (reverse implication left to the checker)\n");
+     lprintf("  -C CLIM   Limit total number of clauses in input + proof (default = %d)\n", clause_limit);
+     lprintf("  -b BLIM   Limit depth of Boolean constraint propagation for contradiction proofs (default = %d)\n", bcp_limit);
+     lprintf("  -t THRESH Use drat-trim on proofs when SAT problems are above THRESH clauses (default = %d)\n", drat_threshold);
+@@ -212,6 +214,7 @@ static int run(FILE *cnf_file, FILE *nnf_file, Pog_writer *pwriter) {
+     cnf.multi_literal = multi_literal;
+     cnf.use_lemmas = use_lemmas;
+     cnf.delete_files = delete_files;
++    cnf.forward_only = forward_only;
+     cnf.drat_threshold = drat_threshold;
+     cnf.clause_limit = clause_limit;
+     cnf.bcp_limit = bcp_limit;
+@@ -247,6 +250,12 @@ static int run(FILE *cnf_file, FILE *nnf_file, Pog_writer *pwriter) {
+ 	// Undercount
+ 	return 10;
+     }
++    if (forward_only) {
++	elapsed = get_elapsed();
++	lprintf("%s Time = %.2f.  Forward implication only: no deletions\n", prefix, elapsed);
++	pwriter->finish_file();
++	return 0;
++    }
+     // For one-sided, may need to delete clauses added by initial BCP
+     cnf.delete_assertions();
+     elapsed = get_elapsed();
+@@ -276,7 +285,7 @@ int main(int argc, char *const argv[]) {
+     verblevel = 1;
+     int c;
+     set_panic(panic);
+-    while ((c = getopt(argc, argv, "hp1mv:L:C:b:t:sek")) != -1) {
++    while ((c = getopt(argc, argv, "hp1mFv:L:C:b:t:sek")) != -1) {
+ 	switch (c) {
+ 	case 'h':
+ 	    usage(argv[0]);
+@@ -290,6 +299,9 @@ int main(int argc, char *const argv[]) {
+ 	case 'm':
+ 	    monolithic = true;
+ 	    break;
++	case 'F':
++	    forward_only = true;
++	    break;
+ 	case 'v':
+ 	    verblevel = atoi(optarg);
+ 	    break;
+@@ -358,6 +370,7 @@ int main(int argc, char *const argv[]) {
+ 	lprintf("%s   Delete files:    %s\n", prefix, delete_files ? "yes" : "no");
+ 	lprintf("%s   One-sided:       %s\n", prefix, one_sided ? "yes" : "no");
+ 	lprintf("%s   Monolithic mode: %s\n", prefix, monolithic ? "yes" : "no");
++	lprintf("%s   Forward only:    %s\n", prefix, forward_only ? "yes" : "no");
+ 	lprintf("%s   DRAT threshold:  %d\n", prefix, drat_threshold);
+ 	lprintf("%s   Clause limit:    %d\n", prefix, clause_limit);
+ 	lprintf("%s   BCP limit:       %d\n", prefix, bcp_limit);

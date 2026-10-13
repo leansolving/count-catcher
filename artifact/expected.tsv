@@ -1,0 +1,192 @@
+stage	item	expected	check	ref	source
+tests	Adversarial	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Adversarial.out
+tests	CliqueCnf	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CliqueCnf.out
+tests	CountCorrupt	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountCorrupt.out
+tests	CountDimacs	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountDimacs.out
+tests	CountDomino8	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountDomino8.out
+tests	CountHint	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountHint.out
+tests	CountNewFamily	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountNewFamily.out
+tests	CountQueens8	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountQueens8.out
+tests	CountQueens8Keep	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountQueens8Keep.out
+tests	CountUnsat	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountUnsat.out
+tests	CountValid	PASS	exact	37 end-to-end tests (README)	lean/test/expected/CountValid.out
+tests	Dedekind5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Dedekind5.out
+tests	Dedekind5Corner	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Dedekind5Corner.out
+tests	Dom08	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Dom08.out
+tests	Dom08Taut	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Dom08Taut.out
+tests	Domino8	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Domino8.out
+tests	EdgeCnf	PASS	exact	37 end-to-end tests (README)	lean/test/expected/EdgeCnf.out
+tests	GraphOrbits5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/GraphOrbits5.out
+tests	GraphTree5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/GraphTree5.out
+tests	Hypercube5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Hypercube5.out
+tests	Ind08	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Ind08.out
+tests	Jean	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Jean.out
+tests	Kreweras5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Kreweras5.out
+tests	Latin5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Latin5.out
+tests	Latin5Cycle	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Latin5Cycle.out
+tests	PogParse	PASS	exact	37 end-to-end tests (README)	lean/test/expected/PogParse.out
+tests	Queens8	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Queens8.out
+tests	Queens8Inline	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Queens8Inline.out
+tests	Queens8Stream	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Queens8Stream.out
+tests	Queens8StreamMask	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Queens8StreamMask.out
+tests	Queens8Trim	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Queens8Trim.out
+tests	QueensSym8	PASS	exact	37 end-to-end tests (README)	lean/test/expected/QueensSym8.out
+tests	QueensSymExport	PASS	exact	37 end-to-end tests (README)	lean/test/expected/QueensSymExport.out
+tests	RamseyC5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/RamseyC5.out
+tests	SideConditions	PASS	exact	37 end-to-end tests (README)	lean/test/expected/SideConditions.out
+tests	Sperner5	PASS	exact	37 end-to-end tests (README)	lean/test/expected/Sperner5.out
+tests	TotalDom4	PASS	exact	37 end-to-end tests (README)	lean/test/expected/TotalDom4.out
+axioms	Axioms.lean	exit 0	exact	Listing 5	artifact/Axioms.lean
+axioms	CountCatcher.checkPog_sound	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.fwd_of_unsat	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.checkRevKillFast_sound	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.card_models_eq_countRoot	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.checkAll_sound	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.checkAllAC_sound	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.fwdCnfOf_unsat_of_sel	propext,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	LRATCatcher.checkStreamCnf_sound	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+axioms	CountCatcher.Family.card_of_checkAC	propext,Classical.choice,Quot.sound	exact	Listing 5 (three standard axioms only)	research/eval-2026-10-07/difftest_rerun.md, Axioms
+handsuite	contract_cases	41	int	Table 11, constructed column (41 records through the audit driver)	research/eval-2026-10-07/contract_audit/contract_lean_2026-10-11.txt (41 records)
+handsuite	audit verdicts	41 of 41 identical	exact	Table 11, constructed column	research/eval-2026-10-07/contract_audit/contract_lean_2026-10-11.txt
+handsuite	audit summary	instances=41 accepted=22 controls=0 flagged=1	exact	Table 11, accepted row of the constructed column (flag: c24 STREAMDIFF, known)	research/eval-2026-10-07/contract_audit/contract_lean_2026-10-11.txt; research/eval-2026-10-07/difftest_rerun.md, Hand suite
+handsuite	constructed column	1 1 2 3 1 3 1 4 4 1 3; accepted 22; total 46	exact	Table 11, constructed column (rows in the table order, then accepted and total): the 41 records plus the 5 Lean-format cases	PAPER/tables/app_adversarial.tex (scripts/paper_numbers.py from research/eval-2026-10-07/contract_audit/contract_lean_2026-10-11.txt)
+handsuite	Adversarial.lean	PASS	exact	Table 11, constructed column (Lean-format cases)	lean/test/expected/Adversarial.out
+showcases	tri10	12172	int	Table 3, \scTriTenCount	PAPER/numbers.tex; r1_r2_results.tgz showcases/tri10/result.txt
+showcases	tri10 labelled	19213627145	int	\scTriTenLabelled	PAPER/numbers.tex
+showcases	lat7	16942080	int	Listings 1 and 2, \scLatinSevenReduced	PAPER/numbers.tex; showcases/lat7/assemble.txt
+showcases	lat7 all	61479419904000	int	Table 3 and Listing 2, \scLatinSevenCount	PAPER/numbers.tex
+showcases	lat7 axioms	native=8 sorry=0	exact	Table 6 and Listings 1 and 2 (8 native evaluations)	showcases/lat7/assemble.txt
+showcases	lat7 file	latin7_fibre0 latin7_fibre1 latin7_fibre2 latin7_fibre3 with keep mask, paths c0 c1 c2 c3; theorems latin7_reduced latin7_all	exact	Listings 1 and 2: one file, count_models latin7_fibre0 ... "c0/fwd.pog" "c0/fwd.lrat" (keep := "c0/fwd.keep"), latin7_reduced, latin7_all	PAPER/fig/latin.tex, PAPER/fig/latin_full.tex
+showcases	lat8asm	108776032459082956800	int	Table 3 (order 8), \scLatinEightCount: latin8_all from the 737 leaf counts as hypotheses	research/latin8-2026-10-04/T.lean, assemble.txt
+showcases	lat8asm axioms	propext,Classical.choice,Quot.sound	exact	latin8_all with the leaf counts as hypotheses: no native evaluation (the 1,474 of Table 6 are in the leaves)	artifact/latin8_all.lean
+showcases	lat8asm hypotheses	7 hypotheses over 737 leaf counts	exact	Table 3 and Section A.2: 737 certificates, one hypothesis per fiber class	research/latin8-2026-10-04/plan.json, res/*.txt
+showcases	lat8asm file	identical to artifact/latin8_all.lean	exact	the shipped theorem file is the one this run writes	artifact/latin8_all.lean
+showcases	lat8leaf	1003520	int	order 8, leaf 653 (c6_0025) of the 737, rerun end to end	research/latin8-2026-10-04/res/c6_0025.txt (count_lean)
+showcases	lat8leaf theorem	latin8_c6_0025 proved, as in research/latin8-2026-10-04/res (count 1003520)	exact	the leaf theorem, an entry of the hypothesis of latin8_all for the fiber of 12345670	research/latin8-2026-10-04/res/c6_0025.txt, c6_0025.lean.out
+showcases	ded7	2414682040998	int	Table 3, \scDedekindSevenCount	PAPER/numbers.tex; showcases/ded7/result.txt
+showcases	krew6	206103695057137712	int	Table 3 and Listing 4, \scKrewerasSixCount	PAPER/numbers.tex; showcases/krew6/result.txt
+showcases	td9	72691237364024529045028	int	Table 3, \scTotDomNineCount	PAPER/numbers.tex; showcases/td9/result.txt
+showcases	td10	16751614615998096965673730489	int	Table 3, \scTotDomTenCount	PAPER/numbers.tex; showcases/td10/result.txt
+showcases	r35_13	1	int	Table 3, \scRamseyThirteenCount	PAPER/numbers.tex; showcases/r35_13/result.txt
+showcases	r35_13 unique	proved	exact	Table 3, ramsey35_13_unique	showcases/r35_13/lean.out
+validation	graph inputs	cub100:7f9e615cd9b61eb4 cub120:6caee42a4480dc8a games120:07247832339962da homer:d332267966e0b952	exact	inputs of Table 7 (sha256 prefix of the edge list)	research/t5/cnf/*.edges of the paper's runs (not in the public tree)
+validation	dom12	53060477521960000	int	Table 7	r1_r2_results.tgz families/dom12/e2e_stream.txt
+validation	q12	14200	int	Table 7	r1_r2_results.tgz families/q12/e2e_stream.txt
+validation	q13	73712	int	Table 7	r1_r2_results.tgz families/q13/e2e_stream.txt
+validation	ind14	338752110195939290445247645371206783	int	Table 7	r1_r2_results.tgz families/ind14/e2e_stream.txt
+validation	hq6	19768832143	int	Table 7	r1_r2_results.tgz families/hq6/e2e_stream.txt
+validation	cub100	8281581627129350099	int	Table 7	r1_r2_results.tgz families/cub100/e2e_stream.txt
+validation	cub120	50037826758434291658793	int	Table 7	r1_r2_results.tgz families/cub120/e2e_stream.txt
+validation	games120	30467298966717	int	Table 7	r1_r2_results.tgz families/games120/e2e_stream.txt
+validation	homer	4990279720487638784402415134793666363321484439419783396315037955127460372623831147937096773412337132142531994684416327680000	int	Table 7	r1_r2_results.tgz families/homer/e2e_stream.txt
+competition	sha256	44 of 44 match	exact	\funProvedSmall	inputs/mc2022_subset.sha256
+competition	mc2022_track1_005	2	int	Table 10	r3_results.tgz funnel/mc2022_track1_005/e2e_stream.txt
+competition	mc2022_track1_007	3321888768	int	Table 10	r3_results.tgz funnel/mc2022_track1_007/e2e_stream.txt
+competition	mc2022_track1_009	274877906944	int	Table 10	r3_results.tgz funnel/mc2022_track1_009/e2e_stream.txt
+competition	mc2022_track1_011	2399034408960	int	Table 10	r3_results.tgz funnel/mc2022_track1_011/e2e_stream.txt
+competition	mc2022_track1_013	70368744177664	int	Table 10	r3_results.tgz funnel/mc2022_track1_013/e2e_stream.txt
+competition	mc2022_track1_015	28311552	int	Table 10	r3_results.tgz funnel/mc2022_track1_015/e2e_stream.txt
+competition	mc2022_track1_017	154742504910672534362390528	int	Table 10	r3_results.tgz funnel/mc2022_track1_017/e2e_stream.txt
+competition	mc2022_track1_021	784637825987894704862177297051569632016580688841015296000	int	Table 10	r3_results.tgz funnel/mc2022_track1_021/e2e_stream.txt
+competition	mc2022_track1_023	27	int	Table 10	r3_results.tgz funnel/mc2022_track1_023/e2e_stream.txt
+competition	mc2022_track1_025	995353648043325277633470371179901552767596542902694690949393806712545504789889138240157620657590241028863880769128775400	int	Table 10	r3_results.tgz funnel/mc2022_track1_025/e2e_stream.txt
+competition	mc2022_track1_033	4611686018427387904	int	Table 10	r3_results.tgz funnel/mc2022_track1_033/e2e_stream.txt
+competition	mc2022_track1_035	1237940039285380274899124224	int	Table 10	r3_results.tgz funnel/mc2022_track1_035/e2e_stream.txt
+competition	mc2022_track1_037	261545906067383009253732022824600705687237029358521548800	int	Table 10	r3_results.tgz funnel/mc2022_track1_037/e2e_stream.txt
+competition	mc2022_track1_039	1208925819614629174706176	int	Table 10	r3_results.tgz funnel/mc2022_track1_039/e2e_stream.txt
+competition	mc2022_track1_043	60	int	Table 10	r3_results.tgz funnel/mc2022_track1_043/e2e_stream.txt
+competition	mc2022_track1_047	2268	int	Table 10	r3_results.tgz funnel/mc2022_track1_047/e2e_stream.txt
+competition	mc2022_track1_051	44499729951278627285692951953778103131041706213661979403475021211936535985030524365051002880000	int	Table 10	r3_results.tgz funnel/mc2022_track1_051/e2e_stream.txt
+competition	mc2022_track1_057	439334834526	int	Table 10	r3_results.tgz funnel/mc2022_track1_057/e2e_stream.txt
+competition	mc2022_track1_077	103228000	int	Table 10	r3_results.tgz funnel/mc2022_track1_077/e2e_stream.txt
+competition	mc2022_track1_079	4586997219164220772386231638857866352028015041291020614568415538003613758234015902621450039221458175000000	int	Table 10	r3_results.tgz funnel/mc2022_track1_079/e2e_stream.txt
+competition	mc2022_track1_081	325433210760	int	Table 10	r3_results.tgz funnel/mc2022_track1_081/e2e_stream.txt
+competition	mc2022_track1_087	248661618089101217592043121701899940370073055166828920881444525198718880000979763200000	int	Table 10	r3_results.tgz funnel/mc2022_track1_087/e2e_stream.txt
+competition	mc2022_track1_091	120	int	Table 10	r3_results.tgz funnel/mc2022_track1_091/e2e_stream.txt
+competition	mc2022_track1_101	1486848	int	Table 10	r3_results.tgz funnel/mc2022_track1_101/e2e_stream.txt
+competition	mc2022_track1_109	63609	int	Table 10	r3_results.tgz funnel/mc2022_track1_109/e2e_stream.txt
+competition	mc2022_track1_149	129963788961922925155527272223525248889759152822969598982478268206133349462694020378264180090220579654839599874514419612180976386106376210220493562042913301888845304620868264421256592545404502952102638854528736634485892059852443757377956753998390984615301580132853155973707156964107367668616014712194416056056482606725913079978679270679940813296657164467735060648899374183734198732590185050003596812827829203933098159373681170060471662299062694163616092617576358807330801595092227509791074524423197905810031515196793951480239357952	int	Table 10	r3_results.tgz funnel/mc2022_track1_149/e2e_stream.txt
+competition	mc2022_track2_007	24739011624960	int	Table 10	r3_results.tgz funnel/mc2022_track2_007/e2e_stream.txt
+competition	mc2022_track2_009	38277218304	int	Table 10	r3_results.tgz funnel/mc2022_track2_009/e2e_stream.txt
+competition	mc2022_track2_013	455266533376	int	Table 10	r3_results.tgz funnel/mc2022_track2_013/e2e_stream.txt
+competition	mc2022_track2_015	140737488355328	int	Table 10	r3_results.tgz funnel/mc2022_track2_015/e2e_stream.txt
+competition	mc2022_track2_017	19342813113834066795298816	int	Table 10	r3_results.tgz funnel/mc2022_track2_017/e2e_stream.txt
+competition	mc2022_track2_019	1740830441712	int	Table 10	r3_results.tgz funnel/mc2022_track2_019/e2e_stream.txt
+competition	mc2022_track2_021	17592186044416	int	Table 10	r3_results.tgz funnel/mc2022_track2_021/e2e_stream.txt
+competition	mc2022_track2_023	3033948336883639596514630249946967133767496335206774097597084247456044946211657761398865461812673687466553772810246113263711224159351843367862443734954846576287477203931012761099225365987218680391459568289143973147902959601557943260082822216868711732532686070937861134990933285535262678527638845388185170910286800537192186317170623502021227814068664558225994237561530281510193872488593020130713218500516519731425336004995148034223050618584580507477278121169480046314590375299668777080460774786447533594136726919609969713281313412797327480571810353741971348831372050432	int	Table 10	r3_results.tgz funnel/mc2022_track2_023/e2e_stream.txt
+competition	mc2022_track2_029	63884454600217751193206766137044710715406494851950527374745734055335032267567463806049821170151899288399696151556013800	int	Table 10	r3_results.tgz funnel/mc2022_track2_029/e2e_stream.txt
+competition	mc2022_track2_031	341444450139482308224179966046949096300663321302082456116934544166619653538477175319459880097322122924043805535912417102376877800	int	Table 10	r3_results.tgz funnel/mc2022_track2_031/e2e_stream.txt
+competition	mc2022_track2_039	1480701849511443905393013346560496787744154844493671369171989969767261352361321379280763528297094267046368320710923692624199400	int	Table 10	r3_results.tgz funnel/mc2022_track2_039/e2e_stream.txt
+competition	mc2022_track2_045	4503599627370496	int	Table 10	r3_results.tgz funnel/mc2022_track2_045/e2e_stream.txt
+competition	mc2022_track2_047	1125899906842624	int	Table 10	r3_results.tgz funnel/mc2022_track2_047/e2e_stream.txt
+competition	mc2022_track2_051	745889456677218468	int	Table 10	r3_results.tgz funnel/mc2022_track2_051/e2e_stream.txt
+competition	mc2022_track2_067	78398662313265594368	int	Table 10	r3_results.tgz funnel/mc2022_track2_067/e2e_stream.txt
+competition	mc2022_track2_081	100536	int	Table 10	r3_results.tgz funnel/mc2022_track2_081/e2e_stream.txt
+competition	mc2022_track2_089	595304902896	int	Table 10	r3_results.tgz funnel/mc2022_track2_089/e2e_stream.txt
+competition	mc2022_track2_149	129963788961922925155527272223525248889759152822969598982478268206133349462694020378264180090220579654839599874514419612180976386106376210220493562042913301888845304620868264421256592545404502952102638854528736634485892059852443757377956753998390984615301580132853155973707156964107367668616014712194416056056482606725913079978679270679940813296657164467735060648899374183734198732590185050003596812827829203933098159373681170060471662299062694163616092617576358807330801595092227509791074524423197905810031515196793951480239357952	int	Table 10	r3_results.tgz funnel/mc2022_track2_149/e2e_stream.txt
+streamed	cub100	8281581627129350099	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	cub100 E/S1	0.917	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	cub100 E/S2	2.105	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	dom08	12988816	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	dom08 E/S1	0.816	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	dom08 E/S2	1.409	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	dom10	258584046368	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	dom10 E/S1	0.879	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	dom10 E/S2	1.478	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	homer	4990279720487638784402415134793666363321484439419783396315037955127460372623831147937096773412337132142531994684416327680000	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	homer E/S1	0.925	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	homer E/S2	1.762	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	hq6	19768832143	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	hq6 E/S1	0.929	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	hq6 E/S2	2.123	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	ind10	2030049051145980050	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	ind10 E/S1	0.886	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	ind10 E/S2	1.871	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	ind12	162481813349792588536582997	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	ind12 E/S1	0.927	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	ind12 E/S2	1.880	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	mc2022_track1_011	2399034408960	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	mc2022_track1_011 E/S1	0.899	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	mc2022_track1_011 E/S2	1.657	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	mc2022_track2_007	24739011624960	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	mc2022_track2_007 E/S1	0.894	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	mc2022_track2_007 E/S2	1.546	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	q10	724	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	q10 E/S1	0.897	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	q10 E/S2	1.865	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	q11	2680	int	Table 14 (instance)	research/eval-2026-10-04/embedded_streamed.tsv
+streamed	q11 E/S1	0.887	info	Table 14, check time embedded over streamed, same proof	embedded_streamed.tsv E/S1_check
+streamed	q11 E/S2	1.863	info	Table 14, check time embedded over streamed, with mask	embedded_streamed.tsv E/S2_check
+streamed	median E/S1	0.90	range 0.63 1.17	Table 14, \ablEmbedSameMed (0.90, range 0.82-0.93); tolerance 30%	PAPER/numbers.tex
+streamed	median E/S2	1.9	range 1.33 2.47	Table 14, \ablEmbedDefMed (1.9, range 1.4-2.1); tolerance 30%	PAPER/numbers.tex
+difftest	records	98893	int	Section 4.5, sample of Table 11's generated column	research/eval-2026-10-07/difftest_sample_summary.txt
+difftest	controls	16 of 16 CONTROL-OK	exact	positive controls flagged	research/eval-2026-10-07/difftest_sample_summary.txt
+difftest	flagged	0	int	no accepted certificate with a wrong count	research/eval-2026-10-07/difftest_sample_summary.txt
+difftest	accepted	12734	int	accepted records, each with the brute-force count	research/eval-2026-10-07/difftest_sample_summary.txt
+difftest	kinds table	identical	exact	per-kind verdicts	research/eval-2026-10-07/difftest_sample_kinds.tsv
+extras	cub100 cpog-check count	8281581627129036755	int	Section A.5, count printed by cpog-check	PAPER/tables/app_miscount.tex
+extras	cub100 cpog-check success	yes	exact	Section A.5 (cpog-check reports success)	Section 6 and Table 10
+extras	cub100 D4 count	8281581627129350099	int	Section A.5 (the theorem's count)	r1_r2_results.tgz families/cub100/e2e_stream.txt
+extras	dom4 refutation size	148 clauses, 99 additions	exact	Section 6, \kerFourClauses, \kerFourAdds	research/eval-2026-10-04/kernel_only.tsv
+extras	dom4 kernel	propext,Classical.choice,Quot.sound	exact	Section 6: the kernel alone proves the 4x4 refutation	research/eval-2026-10-04/embedded_streamed.md, measurement 1
+extras	dom4 kernel command ms	24100	info	\kerFourKernelS (24 s, 6.6 GB)	research/eval-2026-10-04/kernel_only.tsv
+extras	dom4 native	propext,Classical.choice,Quot.sound,dom4_fwd_ki._native.native_decide.ax_1_1	exact	Section 6 (native evaluation: one native axiom)	measurement 1 of research/eval-2026-10-04/embedded_streamed.md (cluster log result_ki.txt)
+extras	dom4 native command ms	16	info	\kerFourNativeMs	research/eval-2026-10-04/kernel_only.tsv
+extras	paper_numbers.py	exit 0	exact	every number and table of the paper	scripts/paper_numbers.py
+extras	numbers.tex	510 of 540 macros identical, 30 hybrid-generation macros not cited by the paper differ	exact	PAPER/numbers.tex	the hybrid macros come from research/eval-2026-10-02/overnight.md, not in the public tree
+extras	ablation.tex	identical	exact	PAPER/tables/ablation.tex	PAPER/tables/ablation.tex
+extras	app_adversarial.tex	identical	exact	PAPER/tables/app_adversarial.tex	PAPER/tables/app_adversarial.tex
+extras	app_code.tex	identical	exact	PAPER/tables/app_code.tex	PAPER/tables/app_code.tex
+extras	app_competition.tex	identical	exact	PAPER/tables/app_competition.tex	PAPER/tables/app_competition.tex
+extras	app_failed.tex	identical	exact	PAPER/tables/app_failed.tex	PAPER/tables/app_failed.tex
+extras	app_families.tex	identical	exact	PAPER/tables/app_families.tex	PAPER/tables/app_families.tex
+extras	app_miscount.tex	identical	exact	PAPER/tables/app_miscount.tex	PAPER/tables/app_miscount.tex
+extras	app_showcases.tex	identical	exact	PAPER/tables/app_showcases.tex	PAPER/tables/app_showcases.tex
+extras	app_stream.tex	identical	exact	PAPER/tables/app_stream.tex	PAPER/tables/app_stream.tex
+extras	bands.tex	identical	exact	PAPER/tables/bands.tex	PAPER/tables/bands.tex
+extras	fig3_data.csv	identical	exact	PAPER/tables/fig3_data.csv	PAPER/tables/fig3_data.csv
+extras	funnel.tex	identical	exact	PAPER/tables/funnel.tex	PAPER/tables/funnel.tex
+extras	medians.tex	identical	exact	PAPER/tables/medians.tex	PAPER/tables/medians.tex
+extras	showcases.tex	identical	exact	PAPER/tables/showcases.tex	PAPER/tables/showcases.tex
+extras	lines new	9054	int	Table 12, new code	PAPER/tables/app_code.tex
+extras	lines reused	1816	int	Table 12, reused code	PAPER/tables/app_code.tex

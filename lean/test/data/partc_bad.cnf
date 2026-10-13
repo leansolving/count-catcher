@@ -1,0 +1,4 @@
+c x1 and x2; the POG claims x1 only (2 models instead of 1)
+p cnf 2 2
+1 0
+2 0

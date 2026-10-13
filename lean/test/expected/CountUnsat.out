@@ -1,0 +1,10 @@
+count_models queens3: 0 models (LRAT refutation, embedded, N ms)
+count_models k7: 0 models (LRAT refutation, embedded, N ms)
+count_models k7_stream: 0 models (LRAT refutation, streamed, N ms)
+count_models queens3_models: 0 models over Fin 9 (LRAT refutation, embedded, N ms)
+count_models queens3_dimacs: 0 models over Fin 9 (LRAT refutation, embedded, N ms)
+'queens3' depends on axioms: [propext, Classical.choice, Quot.sound, queens3._native.native_decide.ax_1]
+'k7' depends on axioms: [propext, Classical.choice, Quot.sound, k7._native.native_decide.ax_1]
+'k7_stream' depends on axioms: [propext, Classical.choice, Quot.sound, k7_stream.unsat._native.native_decide.ax_1]
+'queens3_models' depends on axioms: [propext, Classical.choice, Quot.sound, queens3_models._native.native_decide.ax_1]
+'queens3_dimacs' depends on axioms: [propext, Classical.choice, Quot.sound, queens3_dimacs._native.native_decide.ax_1]

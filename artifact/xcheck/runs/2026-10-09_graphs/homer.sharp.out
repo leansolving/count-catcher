@@ -1,0 +1,45 @@
+c o This output describes a result of a run from
+c o a model counter.
+c o 
+c o Parsed 561 vars, 1628 clauses, and 0 weights.
+c o Init PP 556 1628 0.000103973
+c o PP: F 556 1628 0 0.001012078
+c o PP: P 556 1628 0 0.002438945
+c o SAT
+c o PP: V 556 1628 0 0.023229915
+c o PP: S 556 1628 0 0.078049467
+c o PP: E 556 1628 0 0.08756997
+c o PP: G 556 1628 0 0.144402166
+c o SAT
+c o PP: V 556 1628 0 0.164942042
+c o Preprocessed. 0.165866489s Vars: 556 Clauses: 1628 Free vars: 5
+c o Primal edges 1628
+c o CMD: timeout 1.000000s ./flow_cutter_pace17 </tmp/instance1791545252017083_557_1628_1.tmp >/tmp/instance1791545252017084_557_1628_2.tmp 2>/dev/null
+c o tw finish ok
+c o width 32
+c o Now solving. 1.177715171
+c o SharpSAT loaded
+c o variables (all/used/free): 	556/556/0
+c o clauses (all/long/binary/unit): 1628/0/1628/0
+c o COEF: 6321087.927510852 Width: 32
+c o WARNING: Maximum cache size larger than free RAM available
+c o Free RAM 1094MB
+c o Maximum cache size:	2000 MB
+c o decisions 				19278
+c o conflicts 				0
+c o conflict clauses (all/bin/unit) 	0/0/0
+c o bytes cache size     	21855424	
+c o bytes cache (overall) 	21855424
+c o bytes cache (infra / comps) 20234400/1621024	
+c o bytes pure comp data (curr)    0
+c o bytes pure comp data (overall) 0
+c o bytes cache with sysoverh (curr)    2546416
+c o bytes cache with sysoverh (overall) 2546416
+c o cache (stores / hits) 			19279/80133
+c o cache miss rate 19.3922201768416%
+c o avg. variable count (stores / hits) 	99.0814876290264/20.87207517502153
+c o Solved in 1.303495171 seconds.
+s SATISFIABLE
+c s type mc
+c s log10-estimate 123.6981248898437
+c s exact arb int 4990279720487638784402415134793666363321484439419783396315037955127460372623831147937096773412337132142531994684416327680000

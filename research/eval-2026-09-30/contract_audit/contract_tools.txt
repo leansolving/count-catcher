@@ -1,0 +1,37 @@
+c01_neg_input_literal count=2 d4=exit0:s=2 cpog-gen=exit0 translator=native=exit0 py=exit0 hand=0
+c02_neg_internal_edge count=3 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+c03_neg_root count=3 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+c04_empty_cnf count=8 d4=exit0:s=8 cpog-gen=exit0 translator=native=exit1 py=exit1 [no root unit clause among the additions] hand=1
+c05_taut_only count=4 d4=exit0:s=4 cpog-gen=exit0 translator=native=exit1 py=exit1 [no root unit clause among the additions] hand=2
+c06_zero_vars count=1 d4=exit0:s=1 cpog-gen=exit0 translator=native=exit1 py=exit1 [no root unit clause among the additions] hand=1
+c07_zero_vars_empty_clause count=0 d4=exit0:s=0 cpog-gen=exit1 translator=native=exit1 py=exit1 [no root declaration (r line)] hand=1
+c08_unsat count=0 d4=exit0:s=0 cpog-gen=exit1 translator=native=exit1 py=exit1 [no root declaration (r line)] hand=2
+c09_literal_root_neg count=2 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+c10_literal_root_pos count=4 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+c11_unused_header_vars count=4 d4=exit0:s=4 cpog-gen=exit0 translator=native=exit0 py=exit0 hand=0
+c12_taut_plus_clause count=6 d4=exit0:s=6 cpog-gen=exit0 translator=native=exit0 py=exit0 hand=0
+c13_duplicate_clause count=3 d4=exit0:s=3 cpog-gen=exit0 translator=native=exit0 py=exit0 hand=0
+c14_duplicate_literal count=3 d4=exit0:s=3 cpog-gen=exit0 translator=native=exit0 py=exit0 hand=0
+c15_empty_clause_plus count=0 d4=exit0:s=0 cpog-gen=exit1 translator=native=exit1 py=exit1 [no root declaration (r line)] hand=0
+c16_var_outside_header count=0 d4=- cpog-gen=- translator=- hand=1
+c17_sum_x_or_notx count=2 d4=- cpog-gen=- translator=- hand=2
+c18_true_child count=1 d4=- cpog-gen=- translator=- hand=1
+c19_sum_true_or_x count=2 d4=- cpog-gen=- translator=- hand=1
+c20_root_undeclared count=2 d4=- cpog-gen=- translator=- hand=1
+c21_pog_V_mismatch count=2 d4=- cpog-gen=- translator=- hand=1
+c23_empty_hint_addition count=4 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=1
+c24_empty_hint_r50 count=196 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+c25_empty_clause_in_F count=0 d4=- cpog-gen=- translator=- hand=1
+c22_true_root_derived_unit count=4 d4=- cpog-gen=- translator=native=exit0 py=exit0 hand=0
+adv_h1_unused count=2 translator=native=exit0 py=exit0
+adv_h2_or count=3 translator=native=exit0 py=exit0
+adv_h3_nand count=6 translator=native=exit0 py=exit0
+adv_a4_prod_overlap count=0 translator=native=exit0 py=exit0
+adv_a14_prod_self count=1 translator=native=exit0 py=exit0
+adv_a5_sum_input_hint count=1 translator=native=exit1 py=exit1 [C4: exclusion hint 1 of node 2 is not a defining clause]
+adv_a5b_sum_derived_hint count=1 translator=native=exit1 py=exit1 [C4: exclusion hint 2 of node 2 is not a defining clause]
+adv_a6_self_delete count=1 translator=native=exit0 py=exit0
+adv_a7_delete_def count=1 translator=native=exit0 py=exit0
+adv_a8_leftover_derived count=1 translator=native=exit0 py=exit0
+adv_a9_ext_collision count=2 translator=native=exit1 py=exit1 [C2: extension variable 2 is not V+1+0]
+adv_a10_reused_id count=1 translator=native=exit0 py=exit0

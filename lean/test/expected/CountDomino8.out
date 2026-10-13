@@ -1,0 +1,3 @@
+count_models domino8x8: 12988816 models over Fin 112, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+'domino8x8' depends on axioms: [propext, Classical.choice, Quot.sound, domino8x8._native.native_decide.ax_1]
+'domino8x8_factored' depends on axioms: [propext, Classical.choice, Quot.sound, domino8x8._native.native_decide.ax_1]

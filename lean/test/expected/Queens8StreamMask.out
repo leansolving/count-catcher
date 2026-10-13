@@ -1,0 +1,5 @@
+'queens8_stream_mask' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_fwd_sel._native.native_decide.ax_1,
+ queens8_stream_mask._native.native_decide.ax_1_1]

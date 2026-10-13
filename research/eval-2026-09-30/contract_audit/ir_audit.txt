@@ -1,0 +1,701 @@
+ROOTS [McCert.checkAll]: 541 IR functions, 93 externs
+PANIC-CALLERS [List.foldl._at_.McCert.clearClauseOcc.«spec_0  <- calls [Array.set!]»,
+ List.foldl._at_.McCert.nodeKill.«spec_0  <- calls [Array.get!InternalBorrowed]»,
+ List.get!Internal.«_redArg  <- calls [outOfBounds._redArg._closed_0, panic._redArg]»,
+ McCert.«batchRefutedWith  <- calls [Array.get!Internal, Array.get!InternalBorrowed]»,
+ McCert.«litCount  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«litSize  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«litSupp  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«nodeKill  <- calls [Array.get!InternalBorrowed]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce_fold_fn.«_redArg  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.deleteOne.«_redArg  <- calls [Array.set!, Array.get!InternalBorrowed]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertUnit.«_redArg  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.«confirmRupHint  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.«performRatCheck  <- calls [Array.get!InternalBorrowed]»,
+ _private.Init.Data.Array.Basic.0.Array.foldlMUnsafe.fold._at_.Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices.«spec_1  <- calls [Array.get!InternalBorrowed]»,
+ _private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.«spec_0  <- calls [panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2]»,
+ _private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.«getPivot  <- calls [Array.get!InternalBorrowed]»,
+ panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.«spec_2  <- calls [panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_0, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_1, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_2, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_3, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_4, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_5, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_6, panicCore]»,
+ panic.«_redArg  <- calls [panicCore]»]
+NON-EXTERN-FLAGGED
+_private.Init.Data.Array.Basic.0.Array.anyMUnsafe.any :: unsafe
+_private.Init.Data.Format.Basic.0.Std.Format.spaceUptoLine' :: opaque
+_private.Std.Internal.Parsec.ByteArray.0.Std.Internal.Parsec.ByteArray.digitsCore.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseLit.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions.go :: opaque
+EXTERNS [Array.emptyWithCapacity,
+ Array.get!Internal,
+ Array.get!InternalBorrowed,
+ Array.getInternal,
+ Array.getInternalBorrowed,
+ Array.mk,
+ Array.mkEmpty,
+ Array.pop,
+ Array.push,
+ Array.replicate,
+ Array.set,
+ Array.set!,
+ Array.size,
+ Array.toList,
+ Array.uget,
+ Array.ugetBorrowed,
+ Array.uset,
+ Array.usize,
+ ByteArray.get,
+ ByteArray.size,
+ ByteArray.uget,
+ ByteArray.usize,
+ Int.add,
+ Int.decEq,
+ Int.decLt,
+ Int.natAbs,
+ Int.neg,
+ Int.negSucc,
+ Int.ofNat,
+ Int.sub,
+ Nat.add,
+ Nat.decEq,
+ Nat.decLe,
+ Nat.decLt,
+ Nat.div,
+ Nat.land,
+ Nat.lor,
+ Nat.mod,
+ Nat.mul,
+ Nat.pow,
+ Nat.shiftLeft,
+ Nat.shiftRight,
+ Nat.sub,
+ String.Internal.append,
+ String.Internal.extract,
+ String.Internal.length,
+ String.Internal.next,
+ String.Internal.offsetOfPos,
+ String.Internal.posOf,
+ String.Internal.pushn,
+ String.Pos.Raw.atEnd,
+ String.Pos.Raw.extract,
+ String.Pos.Raw.get,
+ String.Pos.Raw.next,
+ String.Pos.next,
+ String.append,
+ String.decEq,
+ String.decodeChar,
+ String.ofList,
+ String.toUTF8,
+ String.utf8ByteSize,
+ System.Platform.getNumBits,
+ UInt32.decEq,
+ UInt32.decLe,
+ UInt32.toNat,
+ UInt32.toUInt8,
+ UInt64.add,
+ UInt64.decEq,
+ UInt64.land,
+ UInt64.lor,
+ UInt64.ofNat,
+ UInt64.shiftLeft,
+ UInt64.shiftRight,
+ UInt64.toNat,
+ UInt64.toUSize,
+ UInt64.xor,
+ UInt8.complement,
+ UInt8.decEq,
+ UInt8.decLe,
+ UInt8.land,
+ UInt8.sub,
+ UInt8.toNat,
+ UInt8.toUInt32,
+ UInt8.toUInt64,
+ USize.add,
+ USize.decEq,
+ USize.decLt,
+ USize.land,
+ USize.ofNat,
+ USize.ofNatLT,
+ USize.repr,
+ USize.sub,
+ panicCore]
+OWN (187)
+LRATCatcher.checkLratCnf 
+McCert.Pog.Node.args 
+McCert.Pog.defClauses 
+McCert.Pog.defs 
+McCert.Pog.defs._closed_0 
+McCert.addBatchOcc 
+McCert.batchRefutedWith 
+McCert.batchesRefuted 
+McCert.checkAC 
+McCert.checkAC._closed_0 
+McCert.checkAC._closed_1 
+McCert.checkAll 
+McCert.checkNode 
+McCert.checkNode._lam_0 
+McCert.checkNode._lam_0._boxed 
+McCert.checkRevKillFast 
+McCert.chunks._redArg 
+McCert.chunks._redArg._closed_0 
+McCert.clauseRefuted._lam_0 
+McCert.clauseRefuted._lam_0._boxed 
+McCert.cnfWFb 
+McCert.fwdCnf 
+McCert.hintClause 
+McCert.isTaut 
+McCert.killMasks 
+McCert.killMasks._closed_0 
+McCert.litCount 
+McCert.litSize 
+McCert.litSupp 
+McCert.negationFree 
+McCert.nodeKill 
+McCert.ofDimacs 
+McCert.ofDimacs._closed_0 
+McCert.parsePogCert 
+McCert.parsePogCert._closed_0 
+McCert.parsePogCert._closed_1 
+McCert.parsePogCert._closed_2 
+McCert.parsePogCert._closed_3 
+McCert.parsePogCert._closed_4 
+McCert.parsePogCert._closed_5 
+McCert.popcount 
+McCert.prodFold 
+McCert.reqMask 
+McCert.rupStrict 
+McCert.rupStrict._lam_0 
+McCert.rupStrict._lam_0._boxed 
+McCert.rupStrict._lam_2 
+McCert.rupStrict._lam_2._boxed 
+Std.Sat.CNF.Clause.maxLiteral 
+Std.Sat.CNF.Clause.relabel._redArg 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_0 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_1 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_2 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_3 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_4 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_5 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_6 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_7 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_8 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_9 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._lam_0 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._lam_0._boxed 
+Std.Sat.CNF.maxLiteral 
+Std.Sat.CNF.numLiterals 
+Std.Sat.CNF.relabel._redArg 
+Std.Sat.CNF.relabelFin 
+Std.Sat.CNF.relabelFin._lam_0 
+Std.Sat.CNF.relabelFin._lam_0._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.addAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.ctorIdx 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.hasAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.removeAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.Clause.convertLRAT' 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT' 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._lam_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._lam_0._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray.folder 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce_fold_fn._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearRatUnits._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearRupUnits 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearUnit._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.confirmRupHint 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.delete 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.deleteOne._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insert._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertRatUnits._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertRupUnits 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertUnit._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray_fold_fn._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRatAdd 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRatCheck 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupAdd 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck._closed_1 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ratHintsExhaustive 
+Std.Tactic.BVDecide.LRAT.Internal.Result.ctorIdx 
+Std.Tactic.BVDecide.LRAT.Internal.compactLratChecker 
+Std.Tactic.BVDecide.LRAT.Internal.compactLratChecker.go 
+Std.Tactic.BVDecide.LRAT.Internal.compactLratChecker.go._lam_0 
+Std.Tactic.BVDecide.LRAT.Internal.compactLratChecker.go._lam_0._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.instBEqAssignment.beq 
+Std.Tactic.BVDecide.LRAT.Internal.instDecidableEqPosFin 
+Std.Tactic.BVDecide.LRAT.Internal.instDecidableEqPosFin._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.instDecidableEqResult 
+Std.Tactic.BVDecide.LRAT.Internal.intActionToDefaultClauseAction 
+Std.Tactic.BVDecide.LRAT.Internal.intToLiteral._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillNegOrZero._at_.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseRes.spec_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillZero._at_._private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction.parseAdd.spec_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillZero._at_._private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction.parseAdd.spec_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseLit 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseNeg._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseNeg._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parsePos._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parsePos._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseRes 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseAction 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseClause 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseClause._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseIdList 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseIdList._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRes 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_6 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_7 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_8 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_9 
+Std.Tactic.BVDecide.LRAT.Parser.parseActions 
+Std.Tactic.BVDecide.LRAT.check 
+Std.Tactic.BVDecide.LRAT.parseLRATProof 
+ROOTS [McCert.checkAllAC, McCert.fwdCnfOf]: 198 IR functions, 52 externs
+PANIC-CALLERS [List.foldl._at_.McCert.clearClauseOcc.«spec_0  <- calls [Array.set!]»,
+ List.foldl._at_.McCert.nodeKill.«spec_0  <- calls [Array.get!InternalBorrowed]»,
+ List.get!Internal.«_redArg  <- calls [outOfBounds._redArg._closed_0, panic._redArg]»,
+ McCert.«batchRefutedWith  <- calls [Array.get!Internal, Array.get!InternalBorrowed]»,
+ McCert.«litCount  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«litSize  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«litSupp  <- calls [Array.get!InternalBorrowed]»,
+ McCert.«nodeKill  <- calls [Array.get!InternalBorrowed]»,
+ panic.«_redArg  <- calls [panicCore]»]
+NON-EXTERN-FLAGGED
+
+EXTERNS [Array.get!Internal,
+ Array.get!InternalBorrowed,
+ Array.getInternal,
+ Array.getInternalBorrowed,
+ Array.mk,
+ Array.mkEmpty,
+ Array.pop,
+ Array.push,
+ Array.replicate,
+ Array.set,
+ Array.set!,
+ Array.size,
+ Array.toList,
+ Array.ugetBorrowed,
+ Int.decEq,
+ Int.decLt,
+ Int.natAbs,
+ Int.negSucc,
+ Int.ofNat,
+ Nat.add,
+ Nat.decEq,
+ Nat.decLe,
+ Nat.decLt,
+ Nat.div,
+ Nat.land,
+ Nat.lor,
+ Nat.mod,
+ Nat.mul,
+ Nat.pow,
+ Nat.shiftLeft,
+ Nat.shiftRight,
+ Nat.sub,
+ String.Internal.append,
+ String.Pos.Raw.atEnd,
+ String.Pos.Raw.extract,
+ String.Pos.Raw.get,
+ String.Pos.Raw.next,
+ String.Pos.next,
+ String.decEq,
+ String.decodeChar,
+ String.ofList,
+ String.utf8ByteSize,
+ System.Platform.getNumBits,
+ UInt32.decEq,
+ UInt32.decLe,
+ UInt32.toNat,
+ USize.add,
+ USize.decEq,
+ USize.ofNat,
+ USize.ofNatLT,
+ USize.repr,
+ panicCore]
+OWN (49)
+McCert.Pog.Node.args 
+McCert.Pog.defClauses 
+McCert.Pog.defs 
+McCert.Pog.defs._closed_0 
+McCert.addBatchOcc 
+McCert.batchRefutedWith 
+McCert.batchesRefuted 
+McCert.checkAC 
+McCert.checkAC._closed_0 
+McCert.checkAC._closed_1 
+McCert.checkAllAC 
+McCert.checkNode 
+McCert.checkNode._lam_0 
+McCert.checkNode._lam_0._boxed 
+McCert.checkRevKillFast 
+McCert.chunks._redArg 
+McCert.chunks._redArg._closed_0 
+McCert.clauseRefuted._lam_0 
+McCert.clauseRefuted._lam_0._boxed 
+McCert.cnfWFb 
+McCert.fwdCnf 
+McCert.fwdCnfOf 
+McCert.fwdCnfOf._closed_0 
+McCert.hintClause 
+McCert.isTaut 
+McCert.killMasks 
+McCert.killMasks._closed_0 
+McCert.litCount 
+McCert.litSize 
+McCert.litSupp 
+McCert.negationFree 
+McCert.nodeKill 
+McCert.ofDimacs 
+McCert.ofDimacs._closed_0 
+McCert.parsePogCert 
+McCert.parsePogCert._closed_0 
+McCert.parsePogCert._closed_1 
+McCert.parsePogCert._closed_2 
+McCert.parsePogCert._closed_3 
+McCert.parsePogCert._closed_4 
+McCert.parsePogCert._closed_5 
+McCert.popcount 
+McCert.prodFold 
+McCert.reqMask 
+McCert.rupStrict 
+McCert.rupStrict._lam_0 
+McCert.rupStrict._lam_0._boxed 
+McCert.rupStrict._lam_2 
+McCert.rupStrict._lam_2._boxed 
+ROOTS [LRATCatcher.checkStreamCnf, LRATCatcher.certFeedImpl, LRATCatcher.streamReset]: 475 IR functions, 93 externs
+PANIC-CALLERS [LRATCatcher.certFeedImpl.«_lam_0  <- calls [panic._at_._private.Lean.Compiler.LCNF.EmitC.0.Lean.Compiler.LCNF.ImpureType.Lean.Expr.toCType.spec_0, outOfBounds._redArg]»,
+ LRATCatcher.«normalizeAction  <- calls [Array.get!InternalBorrowed]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce_fold_fn.«_redArg  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.deleteOne.«_redArg  <- calls [Array.set!, Array.get!InternalBorrowed]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertUnit.«_redArg  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.«confirmRupHint  <- calls [Array.get!Internal]»,
+ Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.«performRatCheck  <- calls [Array.get!InternalBorrowed]»,
+ _private.Init.Data.Array.Basic.0.Array.foldlMUnsafe.fold._at_.Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices.«spec_1  <- calls [Array.get!InternalBorrowed]»,
+ _private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.«spec_0  <- calls [panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2]»,
+ _private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.«getPivot  <- calls [Array.get!InternalBorrowed]»,
+ outOfBounds.«_redArg  <- calls [outOfBounds._redArg._closed_0, outOfBounds._redArg._closed_1, outOfBounds._redArg._closed_2, panic._redArg]»,
+ panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.«spec_2  <- calls [panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_0, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_1, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_2, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_3, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_4, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_5, panic._at_._private.Init.Data.Format.Basic.0.Std.Format.be._at_.Std.Format.prettyM._at_.Std.Format.pretty.spec_0.spec_0.spec_2._closed_6, panicCore]»,
+ panic._at_._private.Lean.Compiler.LCNF.EmitC.0.Lean.Compiler.LCNF.ImpureType.Lean.Expr.toCType.«spec_0  <- calls [panic._at_._private.Lean.Compiler.LCNF.EmitC.0.Lean.Compiler.LCNF.ImpureType.Lean.Expr.toCType.spec_0._closed_0, panicCore]»,
+ panic.«_redArg  <- calls [panicCore]»]
+NON-EXTERN-FLAGGED
+LRATCatcher.certFeedImpl :: unsafe
+_private.Init.Data.Array.Basic.0.Array.anyMUnsafe.any :: unsafe
+_private.Init.Data.Format.Basic.0.Std.Format.spaceUptoLine' :: opaque
+_private.LRATCatcher.StreamOracle.0.LRATCatcher.streamBlockIdx :: opaque
+_private.LRATCatcher.StreamOracle.0.LRATCatcher.streamHandle :: opaque
+_private.LRATCatcher.StreamOracle.0.LRATCatcher.streamIsBinary :: opaque
+_private.LRATCatcher.StreamOracle.0.LRATCatcher.streamLeftover :: opaque
+_private.LRATCatcher.StreamOracle.0.LRATCatcher.streamPathOverride :: opaque
+_private.Std.Internal.Parsec.ByteArray.0.Std.Internal.Parsec.ByteArray.digitsCore.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseLit.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions.go :: opaque
+EXTERNS [Array.emptyWithCapacity,
+ Array.get!Internal,
+ Array.get!InternalBorrowed,
+ Array.getInternal,
+ Array.getInternalBorrowed,
+ Array.mk,
+ Array.mkEmpty,
+ Array.push,
+ Array.replicate,
+ Array.set,
+ Array.set!,
+ Array.size,
+ Array.uget,
+ Array.ugetBorrowed,
+ Array.uset,
+ Array.usize,
+ ByteArray.copySlice,
+ ByteArray.emptyWithCapacity,
+ ByteArray.get,
+ ByteArray.size,
+ ByteArray.uget,
+ ByteArray.usize,
+ ByteArray.validateUTF8,
+ IO.FS.Handle.getLine,
+ IO.FS.Handle.mk,
+ IO.FS.Handle.read,
+ IO.getEnv,
+ Int.add,
+ Int.decEq,
+ Int.decLt,
+ Int.natAbs,
+ Int.neg,
+ Int.ofNat,
+ Int.sub,
+ Nat.add,
+ Nat.decEq,
+ Nat.decLe,
+ Nat.decLt,
+ Nat.div,
+ Nat.mod,
+ Nat.mul,
+ Nat.pow,
+ Nat.sub,
+ ST.Prim.Ref.get,
+ ST.Prim.Ref.set,
+ ST.Prim.mkRef,
+ String.Internal.append,
+ String.Internal.extract,
+ String.Internal.length,
+ String.Internal.next,
+ String.Internal.offsetOfPos,
+ String.Internal.posOf,
+ String.Internal.pushn,
+ String.Pos.next,
+ String.append,
+ String.decodeChar,
+ String.ofByteArray,
+ String.ofList,
+ String.toUTF8,
+ String.utf8ByteSize,
+ System.Platform.getNumBits,
+ UInt32.decEq,
+ UInt32.decLe,
+ UInt32.toNat,
+ UInt32.toUInt8,
+ UInt64.add,
+ UInt64.decEq,
+ UInt64.land,
+ UInt64.lor,
+ UInt64.ofNat,
+ UInt64.shiftLeft,
+ UInt64.shiftRight,
+ UInt64.toNat,
+ UInt64.toUSize,
+ UInt64.xor,
+ UInt8.complement,
+ UInt8.decEq,
+ UInt8.decLe,
+ UInt8.land,
+ UInt8.ofNatLT,
+ UInt8.sub,
+ UInt8.toNat,
+ UInt8.toUInt32,
+ UInt8.toUInt64,
+ USize.add,
+ USize.decEq,
+ USize.decLt,
+ USize.land,
+ USize.ofNat,
+ USize.ofNatLT,
+ USize.repr,
+ USize.sub,
+ panicCore]
+OWN (160)
+LRATCatcher.certFeedImpl unsafe
+LRATCatcher.certFeedImpl._lam_0 
+LRATCatcher.certFeedImpl._lam_0._boxed 
+LRATCatcher.certFeedImpl._lam_0._closed_0 
+LRATCatcher.certFeedImpl._lam_0._closed_1 
+LRATCatcher.certFeedImpl._lam_0._closed_10 
+LRATCatcher.certFeedImpl._lam_0._closed_11 
+LRATCatcher.certFeedImpl._lam_0._closed_12 
+LRATCatcher.certFeedImpl._lam_0._closed_13 
+LRATCatcher.certFeedImpl._lam_0._closed_14 
+LRATCatcher.certFeedImpl._lam_0._closed_2 
+LRATCatcher.certFeedImpl._lam_0._closed_3 
+LRATCatcher.certFeedImpl._lam_0._closed_4 
+LRATCatcher.certFeedImpl._lam_0._closed_5 
+LRATCatcher.certFeedImpl._lam_0._closed_6 
+LRATCatcher.certFeedImpl._lam_0._closed_7 
+LRATCatcher.certFeedImpl._lam_0._closed_8 
+LRATCatcher.certFeedImpl._lam_0._closed_9 
+LRATCatcher.checkStream 
+LRATCatcher.checkStreamCnf 
+LRATCatcher.normalizeAction 
+LRATCatcher.normalizeAction._closed_0 
+LRATCatcher.normalizeAction._closed_1 
+LRATCatcher.runChunk 
+LRATCatcher.runChunk._closed_0 
+LRATCatcher.runChunk._lam_0 
+LRATCatcher.runChunk._lam_0._boxed 
+LRATCatcher.streamReset 
+Std.Sat.CNF.Clause.maxLiteral 
+Std.Sat.CNF.Clause.relabel._redArg 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_0 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_1 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_2 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_3 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_4 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_5 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_6 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_7 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_8 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._closed_9 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._lam_0 
+Std.Sat.CNF.instDecidableExistsVarMemOfDecidableEq._redArg._lam_0._boxed 
+Std.Sat.CNF.maxLiteral 
+Std.Sat.CNF.numLiterals 
+Std.Sat.CNF.relabel._redArg 
+Std.Sat.CNF.relabelFin 
+Std.Sat.CNF.relabelFin._lam_0 
+Std.Sat.CNF.relabelFin._lam_0._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.addAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.ctorIdx 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.hasAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.Assignment.removeAssignment 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.Clause.convertLRAT' 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT' 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.convertLRAT._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._lam_0 
+Std.Tactic.BVDecide.LRAT.Internal.CNF.lift._lam_0._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.ofArray.folder 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultClause.reduce_fold_fn._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearRatUnits._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearRupUnits 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.clearUnit._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.confirmRupHint 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.delete 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.deleteOne._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.getRatClauseIndices._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insert._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertRatUnits._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertRupUnits 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.insertUnit._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ofArray_fold_fn._redArg 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRatAdd 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRatCheck 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupAdd 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck._closed_0 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.performRupCheck._closed_1 
+Std.Tactic.BVDecide.LRAT.Internal.DefaultFormula.ratHintsExhaustive 
+Std.Tactic.BVDecide.LRAT.Internal.instBEqAssignment.beq 
+Std.Tactic.BVDecide.LRAT.Internal.instDecidableEqPosFin 
+Std.Tactic.BVDecide.LRAT.Internal.instDecidableEqPosFin._boxed 
+Std.Tactic.BVDecide.LRAT.Internal.intActionToDefaultClauseAction 
+Std.Tactic.BVDecide.LRAT.Internal.intToLiteral._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillNegOrZero._at_.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseRes.spec_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillZero._at_._private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction.parseAdd.spec_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillZero._at_._private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction.parseAdd.spec_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseAction._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseActions._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseLit 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseNeg._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseNeg._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parsePos._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parsePos._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseRes 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Binary.parseZero._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseAction 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseClause 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseClause._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseDelete._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseIdList 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseIdList._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseNeg._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parsePos._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRat._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseRes 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.parseZero._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_0 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_1 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_2 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_3 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_4 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_5 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_6 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_7 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_8 
+Std.Tactic.BVDecide.LRAT.Parser.Text.skipNewline._closed_9 
+Std.Tactic.BVDecide.LRAT.Parser.parseActions 
+Std.Tactic.BVDecide.LRAT.parseLRATProof 

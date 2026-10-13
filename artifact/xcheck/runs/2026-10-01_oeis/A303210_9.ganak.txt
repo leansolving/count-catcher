@@ -1,0 +1,8 @@
+inst=A303210_9
+counter=ganak
+start=2026-10-01T08:27:50+02:00
+exit=0
+wall_s=7.5
+count=72691237364024529045028
+end=2026-10-01T08:27:58+02:00
+status=done

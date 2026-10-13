@@ -1,0 +1,8 @@
+count_models sperner5: 5001 models over Fin 32, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models sperner5_stream: 5001 models over Fin 32, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+'sperner5' depends on axioms: [propext, Classical.choice, Quot.sound, sperner5._native.native_decide.ax_1]
+'sperner5_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ sperner5_stream._native.native_decide.ax_4,
+ sperner5_stream.fwd._native.native_decide.ax_1]

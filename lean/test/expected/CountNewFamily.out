@@ -1,0 +1,9 @@
+count_models k8: 105 models over Fin 28, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models cycle10: 123 models over Fin 10, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models ladder6: 13 models over Fin 16, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+'k8' depends on axioms: [propext, Classical.choice, Quot.sound, k8._native.native_decide.ax_1]
+'cycle10' depends on axioms: [propext, Classical.choice, Quot.sound, cycle10._native.native_decide.ax_1]
+'ladder6' depends on axioms: [propext, Classical.choice, Quot.sound, ladder6._native.native_decide.ax_1]
+'k8_doubleFactorial' depends on axioms: [propext, Classical.choice, Quot.sound, k8._native.native_decide.ax_1]
+'cycle10_lucas' depends on axioms: [propext, Classical.choice, Quot.sound, cycle10._native.native_decide.ax_1]
+'ladder6_fib' depends on axioms: [propext, Classical.choice, Quot.sound, ladder6._native.native_decide.ax_1]

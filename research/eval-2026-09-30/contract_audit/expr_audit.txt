@@ -1,0 +1,131 @@
+roots [McCert.checkAll]: 1553 constants reached, 1029 definitions
+Acc.rec :: csimp→Acc.recC
+Array.anyM :: implemented_by Array.anyMUnsafe
+Array.anyMUnsafe :: unsafe
+Array.emptyWithCapacity :: extern lean_mk_empty_array_with_capacity
+Array.foldlM :: implemented_by Array.foldlMUnsafe
+Array.foldlMUnsafe :: unsafe
+Array.foldrM :: implemented_by Array.foldrMUnsafe
+Array.foldrMUnsafe :: unsafe
+Array.get!Internal :: extern lean_array_get
+Array.getInternal :: extern lean_array_fget
+Array.instDecidableEq :: csimp→Array.instDecidableEqImpl
+Array.instDecidableEqEmp :: csimp→Array.instDecidableEqEmpImpl
+Array.mapM :: implemented_by Array.mapMUnsafe
+Array.mapMUnsafe :: unsafe
+Array.mk :: extern lean_array_mk
+Array.modifyM :: implemented_by Array.modifyMUnsafe
+Array.modifyMUnsafe :: unsafe
+Array.pop :: extern lean_array_pop
+Array.push :: extern lean_array_push
+Array.replicate :: extern lean_mk_array
+Array.set :: extern lean_array_fset
+Array.set! :: extern lean_array_set
+Array.size :: extern lean_array_get_size
+Array.toList :: extern lean_array_to_list
+Array.uget :: extern lean_array_uget
+Array.uset :: extern lean_array_uset
+Array.usize :: extern lean_array_size
+ByteArray.get :: extern lean_byte_array_fget
+ByteArray.size :: extern lean_byte_array_size
+Char.ofNatAux :: extern lean_uint32_of_nat
+Classical.choice :: AXIOM
+Int.add :: extern lean_int_add
+Int.decEq :: extern lean_int_dec_eq
+Int.decLt :: extern lean_int_dec_lt
+Int.natAbs :: extern lean_nat_abs
+Int.negSucc :: extern lean_int_neg_succ_of_nat
+Int.ofNat :: extern lean_nat_to_int
+Int.sub :: extern lean_int_sub
+List.append :: csimp→List.appendTR
+List.dropLast :: csimp→List.dropLastTR
+List.erase :: csimp→List.eraseTR
+List.filter :: csimp→List.filterTR
+List.filterMap :: csimp→List.filterMapTR
+List.flatMap :: csimp→List.flatMapTR
+List.flatten :: csimp→List.flattenTR
+List.length :: csimp→List.lengthTR
+List.map :: csimp→List.mapTR
+List.take :: csimp→List.takeTR
+Nat.add :: extern lean_nat_add
+Nat.beq :: extern lean_nat_dec_eq
+Nat.decEq :: extern lean_nat_dec_eq
+Nat.decLe :: extern lean_nat_dec_le
+Nat.decLt :: extern lean_nat_dec_lt
+Nat.div :: extern lean_nat_div
+Nat.land :: extern lean_nat_land
+Nat.lor :: extern lean_nat_lor
+Nat.mod :: extern lean_nat_mod
+Nat.mul :: extern lean_nat_mul
+Nat.pow :: extern lean_nat_pow
+Nat.rec :: csimp→Nat.recCompiled
+Nat.repr :: implemented_by Nat.reprFast
+Nat.shiftLeft :: extern lean_nat_shiftl
+Nat.shiftRight :: extern lean_nat_shiftr
+Nat.sub :: extern lean_nat_sub
+Std.Internal.Parsec.manyCore :: opaque
+String.Internal.append :: extern lean_string_append, opaque
+String.Internal.length :: extern lean_string_length, opaque
+String.Internal.pushn :: extern lean_string_pushn, opaque
+String.Pos.Raw.atEnd :: extern lean_string_utf8_at_end
+String.Pos.Raw.extract :: extern lean_string_utf8_extract
+String.Pos.Raw.get :: extern lean_string_utf8_get
+String.Pos.Raw.next :: extern lean_string_utf8_next
+String.Pos.next :: extern lean_string_utf8_next_fast
+String.Slice.Pos.next :: csimp→String.Slice.Pos.nextFast
+String.append :: extern lean_string_append
+String.decEq :: extern lean_string_dec_eq
+String.decodeChar :: extern lean_string_utf8_get_fast
+String.getUTF8Byte :: extern lean_string_get_byte_fast
+String.ofList :: extern lean_string_mk
+String.toUTF8 :: extern lean_string_to_utf8
+String.utf8ByteSize :: extern lean_string_utf8_byte_size
+System.Platform.getNumBits :: extern lean_system_platform_nbits, opaque
+UInt32.decEq :: extern lean_uint32_dec_eq
+UInt32.decLe :: extern lean_uint32_dec_le
+UInt32.ofBitVec :: extern lean_uint32_of_nat_mk
+UInt32.toBitVec :: extern lean_uint32_to_nat
+UInt32.toNat :: extern lean_uint32_to_nat
+UInt32.toUInt8 :: extern lean_uint32_to_uint8
+UInt64.ofNat :: extern lean_uint64_of_nat
+UInt64.shiftRight :: extern lean_uint64_shift_right
+UInt64.toUSize :: extern lean_uint64_to_usize
+UInt64.xor :: extern lean_uint64_xor
+UInt8.decEq :: extern lean_uint8_dec_eq
+UInt8.land :: extern lean_uint8_land
+UInt8.ofNat :: extern lean_uint8_of_nat
+UInt8.ofNatLT :: extern lean_uint8_of_nat
+UInt8.toNat :: extern lean_uint8_to_nat
+USize.add :: extern lean_usize_add
+USize.decEq :: extern lean_usize_dec_eq
+USize.decLt :: extern lean_usize_dec_lt
+USize.land :: extern lean_usize_land
+USize.ofNat :: extern lean_usize_of_nat
+USize.ofNatLT :: extern lean_usize_of_nat
+USize.repr :: extern lean_string_of_usize
+USize.sub :: extern lean_usize_sub
+USize.toBitVec :: extern lean_usize_to_nat
+USize.toNat :: extern lean_usize_to_nat
+WellFounded.extrinsicFix :: implemented_by _private.Init.WFExtrinsicFix.0.WellFounded.opaqueFix
+WellFounded.extrinsicFix₃ :: implemented_by WellFounded.opaqueFix₃
+WellFounded.fix :: csimp→WellFounded.fixC
+WellFounded.fixF :: csimp→WellFounded.fixFC
+WellFounded.opaqueFix₃ :: opaque
+_private.Init.Data.Array.Basic.0.Array.anyMUnsafe.any :: unsafe
+_private.Init.Data.Array.Basic.0.Array.foldlMUnsafe.fold :: unsafe
+_private.Init.Data.Array.Basic.0.Array.foldrMUnsafe.fold :: unsafe
+_private.Init.Data.Array.Basic.0.Array.mapMUnsafe.map :: unsafe
+_private.Init.Data.Array.Basic.0.Array.modifyMUnsafe._proof_1 :: unsafe
+_private.Init.Data.Format.Basic.0.Std.Format.be :: opaque
+_private.Init.Data.Iterators.Basic.0.Std.Internal.idOpaque :: opaque
+_private.Init.WFExtrinsicFix.0.WellFounded.opaqueFix :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillNegOrZero.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.manyTillZero.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Binary.parseLit.go :: opaque
+_private.Std.Tactic.BVDecide.LRAT.Parser.0.Std.Tactic.BVDecide.LRAT.Parser.Text.parseActions.go :: opaque
+lcProof :: unsafe, AXIOM
+panic :: panic
+panicCore :: extern lean_panic_fn_borrowed, panic
+panicWithPosWithDecl :: panic
+unsafeCast :: unsafe, FLAG
+unsafeCast._proof_1 :: unsafe

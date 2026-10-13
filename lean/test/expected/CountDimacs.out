@@ -1,0 +1,8 @@
+count_models dom08_models: 12988816 models over Fin 112, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models dom08_models_stream: 12988816 models over Fin 112, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+'dom08_models' depends on axioms: [propext, Classical.choice, Quot.sound, dom08_models._native.native_decide.ax_1]
+'dom08_models_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ dom08_models_stream._native.native_decide.ax_4,
+ dom08_models_stream.fwd._native.native_decide.ax_1]

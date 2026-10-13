@@ -1,0 +1,211 @@
+# result dirs: 48, Lean records (without controls): 12143324, controls: 474
+
+## Toolchain outcomes of the base formulas (sat/unsat by brute force)
+
+E0: 3 formulas
+         2  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+         1  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E1: 210 formulas
+       161  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+        49  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E2: 12376 formulas
+      7472  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+      4904  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E3: 163185 formulas
+    145096  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+     18089  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+E3u: 20399 formulas
+     18131  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+      2268  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+R: 40000 formulas
+     30009  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+      9991  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+RB: 3000 formulas
+      2916  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+        84  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+D4 count disagreements with brute force: 0
+
+Translations that differ (one route fails, POG differs, or binary round trip fails): 0
+
+## Translator outcomes of CPOG-level mutants
+  mc_add_change_hint: c2l=0 206687
+  mc_add_drop_hint: c2l=0 226104
+  mc_add_flip_lit: c2l=0 143582, c2l=1:no_root_unit 82522
+  mc_decl_change: c2l=0 220435
+  mc_decl_drop: c2l=0 225559, c2l=1:cite_no_earlier 545
+  mc_decl_flip: c2l=0 226104
+  mc_root_change: c2l=1:no_root_unit 218729, c2l=0 5783
+  kc_add_change_hint: c2l=0 206687
+  kc_add_drop_hint: c2l=0 226104
+  kc_add_flip_lit: c2l=0 143582, c2l=1:no_root_unit 82522
+  kc_decl_change: c2l=0 220435
+  kc_decl_drop: c2l=0 225559, c2l=1:cite_no_earlier 545
+  kc_decl_flip: c2l=0 226104
+  kc_root_change: c2l=1:no_root_unit 218729, c2l=0 5783
+
+## Lean verdicts per record kind (all sets), contract_audit.md 3.3 format
+
+| Kind | Mutation | Records | Accepted | Rejected by stage |
+|---|---|---:|---:|---|
+| base | text route, unmutated (`--delete --trim`) | 201,106 | 201,106 |  |
+| plain | text route, unmutated, translator without flags (5% sample) | 10,235 | 10,235 |  |
+| default | default route, unmutated (`--delete --keep --inline --binary`) | 201,106 | 201,106 |  |
+| mp_add_arg | POG: add a product argument | 233,601 | 0 | A-prod-overlap 171,132, B 50,298, A-sum-rup 12,094, C-negation 76, A-arg 1 |
+| mp_change_arg | POG: random earlier literal as argument | 189,365 | 0 | A-prod-overlap 69,258, A-sum-rup 62,394, C-clause 48,354, C-negation 6,268, B 3,091 |
+| mp_drop_arg | POG: drop a product argument | 221,603 | 0 | C-clause 160,678, A-sum-rup 60,187, B 738 |
+| mp_dup_node | POG: duplicate a node line | 222,233 | 6,164 | B 139,996, A-sum-rup 50,710, C-clause 24,571, A-prod-overlap 792 |
+| mp_flip_arg | POG: negate one node argument | 222,552 | 0 | C-clause 111,486, A-sum-rup 96,388, C-negation 14,129, B 549 |
+| mp_kind_swap | POG: sum ↔ binary product | 157,266 | 0 | A-sum-rup 97,937, A-prod-overlap 59,329 |
+| mp_root_change | POG: random root | 193,669 | 0 | C-clause 133,331, B 31,393, C-negation 28,945 |
+| mp_root_neg | POG: negate the root | 201,106 | 0 | C-negation 201,106 |
+| mp_sum_hint | POG: drop, replace or add a sum hint | 146,581 | 31,189 | A-sum-rup 99,769, A-sum-hint-ref 15,623 |
+| ml_add_lit | LRAT: add a literal to an addition | 233,316 | 36,132 | B 197,184 |
+| ml_change_hint | LRAT: replace a hint | 211,575 | 42,163 | B 169,412 |
+| ml_drop_hint | LRAT: drop a hint | 231,593 | 92,794 | B 138,799 |
+| ml_drop_line | LRAT: drop an addition | 222,441 | 0 | B 222,441 |
+| ml_drop_lit | LRAT: drop a literal of an addition | 169,588 | 57,833 | B 111,755 |
+| ml_flip_lit | LRAT: negate a literal of an addition | 169,954 | 0 | B 169,954 |
+| ml_swap_lines | LRAT: swap two additions | 224,226 | 14 | B 224,212 |
+| mf_add_clause | formula: add a random clause | 234,030 | 0 | C-clause 165,237, B 68,793 |
+| mf_drop_clause | formula: drop a clause | 230,650 | 64,588 | B 166,062 |
+| mf_drop_lit | formula: drop a literal | 230,039 | 76,035 | C-clause 141,741, B 12,263 |
+| mf_flip_lit | formula: negate a literal | 230,650 | 42,941 | C-clause 156,990, B 30,719 |
+| mc_add_change_hint | CPOG: replace a hint of an addition | 206,687 | 17,781 | B 188,906 |
+| mc_add_drop_hint | CPOG: drop a hint of an addition | 226,104 | 32,197 | B 193,907 |
+| mc_add_flip_lit | CPOG: negate a literal of an addition | 143,582 | 1,383 | B 142,199 |
+| mc_decl_change | CPOG: replace a declaration argument | 220,435 | 21,187 | A-prod-overlap 69,072, A-sum-rup 63,986, C-clause 56,616, C-negation 6,451, B 3,123 |
+| mc_decl_drop | CPOG: drop a product argument or sum hint | 225,559 | 0 | C-clause 128,415, A-sum-rup 97,144 |
+| mc_decl_flip | CPOG: negate a declaration argument | 226,104 | 0 | C-clause 113,832, A-sum-rup 97,276, C-negation 14,471, B 525 |
+| mc_root_change | CPOG: negate or replace the root | 5,783 | 214 | C-clause 5,569 |
+| kp_add_arg | POG: add a product argument (default route) | 233,601 | 0 | A-prod-overlap 171,132, B 50,298, A-sum-rup 12,094, C-negation 76, A-arg 1 |
+| kp_change_arg | POG: random earlier literal as argument (default route) | 189,365 | 0 | A-prod-overlap 69,258, A-sum-rup 62,394, C-clause 48,354, C-negation 6,268, B 3,091 |
+| kp_drop_arg | POG: drop a product argument (default route) | 221,603 | 0 | C-clause 160,678, A-sum-rup 60,187, B 738 |
+| kp_dup_node | POG: duplicate a node line (default route) | 222,233 | 6,164 | B 139,996, A-sum-rup 50,710, C-clause 24,571, A-prod-overlap 792 |
+| kp_flip_arg | POG: negate one node argument (default route) | 222,552 | 0 | C-clause 111,486, A-sum-rup 96,388, C-negation 14,129, B 549 |
+| kp_kind_swap | POG: sum ↔ binary product (default route) | 157,266 | 0 | A-sum-rup 97,937, A-prod-overlap 59,329 |
+| kp_root_change | POG: random root (default route) | 193,669 | 0 | C-clause 133,331, B 31,393, C-negation 28,945 |
+| kp_root_neg | POG: negate the root (default route) | 201,106 | 0 | C-negation 201,106 |
+| kp_sum_hint | POG: drop, replace or add a sum hint (default route) | 146,581 | 31,189 | A-sum-rup 99,769, A-sum-hint-ref 15,623 |
+| kl_add_lit | LRAT: add a literal to an addition (default route) | 231,444 | 24,757 | B 206,687 |
+| kl_change_hint | LRAT: replace a hint (default route) | 197,062 | 52,877 | B 144,185 |
+| kl_drop_hint | LRAT: drop a hint (default route) | 226,930 | 101,115 | B 125,815 |
+| kl_drop_line | LRAT: drop an addition (default route) | 220,443 | 0 | B 220,443 |
+| kl_drop_lit | LRAT: drop a literal of an addition (default route) | 151,652 | 77,990 | B 73,662 |
+| kl_flip_lit | LRAT: negate a literal of an addition (default route) | 150,968 | 0 | B 150,968 |
+| kl_swap_lines | LRAT: swap two additions (default route) | 221,744 | 5 | B 221,739 |
+| kb_flip | binary LRAT: flip one bit | 234,031 | 62,004 | B-parse 89,684, B 82,343 |
+| kb_trunc | binary LRAT: truncate at a random byte | 234,031 | 0 | B-parse 206,704, B 27,327 |
+| kk_add | keep mask: keep one dropped clause | 230,650 | 66,642 | B 164,008 |
+| kk_drop | keep mask: drop one kept (cited) clause | 234,031 | 0 | B 234,031 |
+| kf_add_clause | formula: add a random clause (default route) | 234,030 | 0 | C-clause 165,237, B 68,793 |
+| kf_drop_clause | formula: drop a clause (default route) | 230,650 | 0 | B 230,650 |
+| kf_drop_lit | formula: drop a literal (default route) | 230,039 | 88,298 | C-clause 141,741 |
+| kf_flip_lit | formula: negate a literal (default route) | 230,650 | 52,585 | C-clause 156,990, B 21,075 |
+| kc_add_change_hint | CPOG: replace a hint of an addition (default route) | 206,687 | 11,277 | B 195,410 |
+| kc_add_drop_hint | CPOG: drop a hint of an addition (default route) | 226,104 | 21,101 | B 205,003 |
+| kc_add_flip_lit | CPOG: negate a literal of an addition (default route) | 143,582 | 1,388 | B 142,194 |
+| kc_decl_change | CPOG: replace a declaration argument (default route) | 220,435 | 21,187 | A-prod-overlap 69,072, A-sum-rup 63,986, C-clause 56,616, C-negation 6,451, B 3,123 |
+| kc_decl_drop | CPOG: drop a product argument or sum hint (default route) | 225,559 | 0 | C-clause 128,415, A-sum-rup 97,144 |
+| kc_decl_flip | CPOG: negate a declaration argument (default route) | 226,104 | 0 | C-clause 113,832, A-sum-rup 97,276, C-negation 14,471, B 525 |
+| kc_root_change | CPOG: negate or replace the root (default route) | 5,783 | 214 | C-clause 5,569 |
+
+## Totals per route and in the order of the checker's conditions
+  text: 5,641,633 records, 733,956 accepted (211,341 unmutated, 522,615 mutants); rejected: A-arg 1, A-prod-overlap 369,583, A-sum-hint-ref 15,623, A-sum-rup 737,885, C-negation 271,446, C-clause 1,246,820, B 2,266,319
+  default: 6,501,691 records, 819,899 accepted (201,106 unmutated, 618,793 mutants); rejected: A-arg 1, A-prod-overlap 369,583, A-sum-hint-ref 15,623, A-sum-rup 737,885, C-negation 271,446, C-clause 1,246,820, B-parse 296,388, B 2,744,046
+  all: 12,143,324 records, 1,553,855 accepted (412,447 unmutated, 1,141,408 mutants); rejected: A-arg 2, A-prod-overlap 739,166, A-sum-hint-ref 31,246, A-sum-rup 1,475,770, C-negation 542,892, C-clause 2,493,640, B-parse 296,388, B 5,010,365
+
+Totals line (AUDIT_TOTALS format): 12,143,324 Lean records, 1,553,855 accepted (402,212 base, 10,235 delete, 1,141,408 mutants)
+
+## Lean verdicts per set, unmutated records
+  E0 base: ACCEPT/none 1
+  E0 default: ACCEPT/none 1
+  E1 base: ACCEPT/none 49
+  E1 default: ACCEPT/none 49
+  E1 plain: ACCEPT/none 5
+  E2 base: ACCEPT/none 4904
+  E2 default: ACCEPT/none 4904
+  E2 plain: ACCEPT/none 261
+  E3 base: ACCEPT/none 145096
+  E3 default: ACCEPT/none 145096
+  E3 plain: ACCEPT/none 7385
+  E3u base: ACCEPT/none 18131
+  E3u default: ACCEPT/none 18131
+  E3u plain: ACCEPT/none 878
+  R base: ACCEPT/none 30009
+  R default: ACCEPT/none 30009
+  R plain: ACCEPT/none 1533
+  RB base: ACCEPT/none 2916
+  RB default: ACCEPT/none 2916
+  RB plain: ACCEPT/none 173
+
+## Flagged records (WRONG, WRONGSTREAM, BFDIFF, DIAGDIFF, CDIFF, ...): 0
+
+## Informational differences (streamed against embedded part B)
+  EMBDIFF kb_flip verdict=ACCEPT: 403; e.g. R E2:3320/kb_flip#0 ACCEPT stage=none count=1 exp=1 bf=1 stream=REJECT route=default flags=EMBDIFF
+  EMBDIFF kc_add_drop_hint verdict=REJECT: 1; e.g. R R:37472/kc_add_drop_hint#1 REJECT stage=B-check count=21 exp=21 bf=21 stream=ACCEPT route=default flags=EMBDIFF
+  STREAMDIFF mc_add_drop_hint verdict=ACCEPT: 36; e.g. R R:17710/mc_add_drop_hint#1 ACCEPT stage=none count=102 exp=102 bf=102 stream=REJECT route=text flags=STREAMDIFF
+  STREAMDIFF ml_drop_hint verdict=ACCEPT: 72; e.g. R R:7570/ml_drop_hint#0 ACCEPT stage=none count=41 exp=41 bf=41 stream=REJECT route=text flags=STREAMDIFF
+
+## Positive controls: 474: control_default CONTROL-OK 237, control_text CONTROL-OK 237
+
+## Unmutated certificates rejected by the Lean checker: 0
+
+## Times
+  tool runs (difftest.py) 121679 s = 33.80 CPU-h; Lean 4445 s = 74.1 min; wall 3354 s; index-out-of-bounds messages of lrat-catcher 39937
+
+## Task info
+  E0_0: host=gpu01 set=E0 shard=0/1 count=0 mut=1 sample=0 block=4096 start=1791404945 | difftest_exit=0 difftest_s=0 bundle_bytes=1471 | lean_exit=0 lean_s=0 lean_err_panics=0 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E0_0/bundle instances=17 accepted=8 controls=2 flagged=0 | difftest E0 shard 0/1: 3 formulas, 1 certified, 17 records, 0.2 s
+  E1_0: host=gpu01 set=E1 shard=0/1 count=0 mut=1 sample=0 block=3 start=1791404938 | difftest_exit=0 difftest_s=27 bundle_bytes=290517 | lean_exit=0 lean_s=0 lean_err_panics=4 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E1_0/bundle instances=2102 accepted=454 controls=2 flagged=0 | difftest E1 shard 0/1: 210 formulas, 49 certified, 2102 records, 25.9 s
+  E2_0: host=gpu01 set=E2 shard=0/2 count=0 mut=1 sample=0 block=1 start=1791403568 | difftest_exit=0 difftest_s=1357 bundle_bytes=21459171 | lean_exit=0 lean_s=12 lean_err_panics=408 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E2_0/bundle instances=123532 accepted=22097 controls=6 flagged=0 | difftest E2 shard 0/2: 6188 formulas, 2448 certified, 123532 records, 1357.5 s
+  E2_1: host=gpu01 set=E2 shard=1/2 count=0 mut=1 sample=0 block=2 start=1791403572 | difftest_exit=0 difftest_s=1361 bundle_bytes=21481635 | lean_exit=0 lean_s=12 lean_err_panics=460 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E2_1/bundle instances=123725 accepted=22256 controls=6 flagged=0 | difftest E2 shard 1/2: 6188 formulas, 2456 certified, 123725 records, 1360.6 s
+  E3_0: host=gpu01 set=E3 shard=0/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3265 bundle_bytes=73810518 | lean_exit=0 lean_s=65 lean_err_panics=1078 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_0/bundle instances=317970 accepted=43904 controls=14 flagged=0 | difftest E3 shard 0/24: 6800 formulas, 6043 certified, 317970 records, 3263.8 s
+  E3_1: host=gpu01 set=E3 shard=1/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3256 bundle_bytes=73578906 | lean_exit=0 lean_s=52 lean_err_panics=1054 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_1/bundle instances=317941 accepted=43851 controls=14 flagged=0 | difftest E3 shard 1/24: 6800 formulas, 6041 certified, 317941 records, 3255.5 s
+  E3_10: host=gpu01 set=E3 shard=10/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3268 bundle_bytes=73468967 | lean_exit=0 lean_s=69 lean_err_panics=1080 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_10/bundle instances=317970 accepted=44129 controls=14 flagged=0 | difftest E3 shard 10/24: 6799 formulas, 6044 certified, 317970 records, 3266.7 s
+  E3_11: host=gpu01 set=E3 shard=11/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3279 bundle_bytes=73553992 | lean_exit=0 lean_s=71 lean_err_panics=1076 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_11/bundle instances=318032 accepted=43748 controls=14 flagged=0 | difftest E3 shard 11/24: 6799 formulas, 6042 certified, 318032 records, 3278.4 s
+  E3_12: host=gpu01 set=E3 shard=12/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3276 bundle_bytes=73795134 | lean_exit=0 lean_s=72 lean_err_panics=1052 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_12/bundle instances=318312 accepted=43823 controls=14 flagged=0 | difftest E3 shard 12/24: 6799 formulas, 6047 certified, 318312 records, 3274.7 s
+  E3_13: host=gpu01 set=E3 shard=13/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3272 bundle_bytes=73576242 | lean_exit=0 lean_s=73 lean_err_panics=1140 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_13/bundle instances=318025 accepted=43952 controls=14 flagged=0 | difftest E3 shard 13/24: 6799 formulas, 6048 certified, 318025 records, 3271.2 s
+  E3_14: host=gpu01 set=E3 shard=14/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3279 bundle_bytes=73503350 | lean_exit=0 lean_s=71 lean_err_panics=1110 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_14/bundle instances=318355 accepted=44209 controls=14 flagged=0 | difftest E3 shard 14/24: 6799 formulas, 6046 certified, 318355 records, 3277.9 s
+  E3_15: host=gpu01 set=E3 shard=15/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3273 bundle_bytes=73698974 | lean_exit=0 lean_s=72 lean_err_panics=1032 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_15/bundle instances=318227 accepted=43518 controls=14 flagged=0 | difftest E3 shard 15/24: 6799 formulas, 6037 certified, 318227 records, 3271.7 s
+  E3_16: host=gpu01 set=E3 shard=16/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3275 bundle_bytes=73854837 | lean_exit=0 lean_s=73 lean_err_panics=1082 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_16/bundle instances=318455 accepted=43929 controls=14 flagged=0 | difftest E3 shard 16/24: 6799 formulas, 6050 certified, 318455 records, 3274.6 s
+  E3_17: host=gpu01 set=E3 shard=17/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3280 bundle_bytes=73717363 | lean_exit=0 lean_s=70 lean_err_panics=1108 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_17/bundle instances=318657 accepted=43802 controls=14 flagged=0 | difftest E3 shard 17/24: 6799 formulas, 6051 certified, 318657 records, 3279.0 s
+  E3_18: host=gpu01 set=E3 shard=18/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3277 bundle_bytes=73688616 | lean_exit=0 lean_s=71 lean_err_panics=1090 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_18/bundle instances=318024 accepted=43719 controls=14 flagged=0 | difftest E3 shard 18/24: 6799 formulas, 6044 certified, 318024 records, 3275.8 s
+  E3_19: host=gpu01 set=E3 shard=19/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3274 bundle_bytes=73600360 | lean_exit=0 lean_s=72 lean_err_panics=1106 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_19/bundle instances=318155 accepted=44190 controls=14 flagged=0 | difftest E3 shard 19/24: 6799 formulas, 6055 certified, 318155 records, 3272.9 s
+  E3_2: host=gpu01 set=E3 shard=2/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3261 bundle_bytes=73351985 | lean_exit=0 lean_s=59 lean_err_panics=1052 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_2/bundle instances=317887 accepted=43988 controls=14 flagged=0 | difftest E3 shard 2/24: 6800 formulas, 6043 certified, 317887 records, 3260.2 s
+  E3_20: host=gpu01 set=E3 shard=20/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3278 bundle_bytes=73843392 | lean_exit=0 lean_s=72 lean_err_panics=1060 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_20/bundle instances=318461 accepted=43502 controls=14 flagged=0 | difftest E3 shard 20/24: 6799 formulas, 6045 certified, 318461 records, 3277.4 s
+  E3_21: host=gpu01 set=E3 shard=21/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3271 bundle_bytes=73946388 | lean_exit=0 lean_s=72 lean_err_panics=1022 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_21/bundle instances=317926 accepted=43501 controls=14 flagged=0 | difftest E3 shard 21/24: 6799 formulas, 6035 certified, 317926 records, 3269.7 s
+  E3_22: host=gpu01 set=E3 shard=22/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3279 bundle_bytes=74167311 | lean_exit=0 lean_s=71 lean_err_panics=1114 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_22/bundle instances=318945 accepted=43930 controls=14 flagged=0 | difftest E3 shard 22/24: 6799 formulas, 6055 certified, 318945 records, 3277.6 s
+  E3_23: host=gpu01 set=E3 shard=23/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3276 bundle_bytes=73654053 | lean_exit=0 lean_s=72 lean_err_panics=1172 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_23/bundle instances=318150 accepted=43820 controls=14 flagged=0 | difftest E3 shard 23/24: 6799 formulas, 6048 certified, 318150 records, 3274.7 s
+  E3_3: host=gpu01 set=E3 shard=3/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3269 bundle_bytes=73721984 | lean_exit=0 lean_s=71 lean_err_panics=1050 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_3/bundle instances=318266 accepted=43995 controls=14 flagged=0 | difftest E3 shard 3/24: 6800 formulas, 6047 certified, 318266 records, 3268.1 s
+  E3_4: host=gpu01 set=E3 shard=4/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3266 bundle_bytes=73513473 | lean_exit=0 lean_s=68 lean_err_panics=1006 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_4/bundle instances=317997 accepted=43655 controls=14 flagged=0 | difftest E3 shard 4/24: 6800 formulas, 6042 certified, 317997 records, 3265.5 s
+  E3_5: host=gpu01 set=E3 shard=5/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3269 bundle_bytes=73794510 | lean_exit=0 lean_s=72 lean_err_panics=1138 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_5/bundle instances=318742 accepted=43656 controls=14 flagged=0 | difftest E3 shard 5/24: 6800 formulas, 6054 certified, 318742 records, 3268.4 s
+  E3_6: host=gpu01 set=E3 shard=6/24 count=0 mut=1 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=3270 bundle_bytes=73859084 | lean_exit=0 lean_s=71 lean_err_panics=1088 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_6/bundle instances=318695 accepted=43919 controls=14 flagged=0 | difftest E3 shard 6/24: 6800 formulas, 6044 certified, 318695 records, 3268.7 s
+  E3_7: host=gpu01 set=E3 shard=7/24 count=0 mut=1 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=3271 bundle_bytes=73752709 | lean_exit=0 lean_s=72 lean_err_panics=1118 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_7/bundle instances=318598 accepted=43716 controls=14 flagged=0 | difftest E3 shard 7/24: 6800 formulas, 6049 certified, 318598 records, 3269.7 s
+  E3_8: host=gpu01 set=E3 shard=8/24 count=0 mut=1 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=3261 bundle_bytes=73447162 | lean_exit=0 lean_s=59 lean_err_panics=1042 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_8/bundle instances=317784 accepted=43910 controls=14 flagged=0 | difftest E3 shard 8/24: 6800 formulas, 6038 certified, 317784 records, 3259.7 s
+  E3_9: host=gpu01 set=E3 shard=9/24 count=0 mut=1 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=3268 bundle_bytes=73819093 | lean_exit=0 lean_s=69 lean_err_panics=1054 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_9/bundle instances=318545 accepted=44037 controls=14 flagged=0 | difftest E3 shard 9/24: 6799 formulas, 6048 certified, 318545 records, 3266.9 s
+  E3u_0: host=gpu01 set=E3u shard=0/4 count=0 mut=1 sample=0 block=1 start=1791403556 | difftest_exit=0 difftest_s=2447 bundle_bytes=55598009 | lean_exit=0 lean_s=52 lean_err_panics=864 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3u_0/bundle instances=238996 accepted=32357 controls=10 flagged=0 | difftest E3u shard 0/4: 5100 formulas, 4527 certified, 238996 records, 2446.7 s
+  E3u_1: host=gpu01 set=E3u shard=1/4 count=0 mut=1 sample=0 block=2 start=1791403559 | difftest_exit=0 difftest_s=2449 bundle_bytes=55549440 | lean_exit=0 lean_s=48 lean_err_panics=726 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3u_1/bundle instances=239456 accepted=32341 controls=10 flagged=0 | difftest E3u shard 1/4: 5100 formulas, 4536 certified, 239456 records, 2448.4 s
+  E3u_2: host=gpu01 set=E3u shard=2/4 count=0 mut=1 sample=0 block=3 start=1791403561 | difftest_exit=0 difftest_s=2452 bundle_bytes=55474893 | lean_exit=0 lean_s=45 lean_err_panics=842 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3u_2/bundle instances=239692 accepted=32749 controls=10 flagged=0 | difftest E3u shard 2/4: 5100 formulas, 4540 certified, 239692 records, 2451.8 s
+  E3u_3: host=gpu01 set=E3u shard=3/4 count=0 mut=1 sample=0 block=4096 start=1791403564 | difftest_exit=0 difftest_s=2440 bundle_bytes=55634586 | lean_exit=0 lean_s=51 lean_err_panics=752 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3u_3/bundle instances=239031 accepted=32205 controls=10 flagged=0 | difftest E3u shard 3/4: 5099 formulas, 4528 certified, 239031 records, 2439.5 s
+  RB_0: host=gpu01 set=RB shard=0/6 count=3000 mut=2 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=524 bundle_bytes=538878805 | lean_exit=0 lean_s=326 lean_err_panics=122 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_0/bundle instances=53456 accepted=4479 controls=2 flagged=0 | difftest RB shard 0/6: 500 formulas, 488 certified, 53456 records, 522.9 s
+  RB_1: host=gpu01 set=RB shard=1/6 count=3000 mut=2 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=523 bundle_bytes=553910245 | lean_exit=0 lean_s=331 lean_err_panics=128 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_1/bundle instances=53168 accepted=4415 controls=2 flagged=0 | difftest RB shard 1/6: 500 formulas, 486 certified, 53168 records, 522.3 s
+  RB_2: host=gpu01 set=RB shard=2/6 count=3000 mut=2 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=524 bundle_bytes=556908297 | lean_exit=0 lean_s=339 lean_err_panics=128 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_2/bundle instances=53344 accepted=4583 controls=2 flagged=0 | difftest RB shard 2/6: 500 formulas, 487 certified, 53344 records, 522.9 s
+  RB_3: host=gpu01 set=RB shard=3/6 count=3000 mut=2 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=524 bundle_bytes=534438378 | lean_exit=0 lean_s=335 lean_err_panics=146 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_3/bundle instances=53264 accepted=4630 controls=2 flagged=0 | difftest RB shard 3/6: 500 formulas, 486 certified, 53264 records, 523.3 s
+  RB_4: host=gpu01 set=RB shard=4/6 count=3000 mut=2 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=526 bundle_bytes=559998827 | lean_exit=0 lean_s=341 lean_err_panics=140 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_4/bundle instances=53271 accepted=4379 controls=2 flagged=0 | difftest RB shard 4/6: 500 formulas, 486 certified, 53271 records, 525.1 s
+  RB_5: host=gpu01 set=RB shard=5/6 count=3000 mut=2 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=523 bundle_bytes=577076216 | lean_exit=0 lean_s=333 lean_err_panics=114 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_5/bundle instances=52922 accepted=4413 controls=2 flagged=0 | difftest RB shard 5/6: 500 formulas, 483 certified, 52922 records, 521.7 s
+  R_0: host=gpu01 set=R shard=0/10 count=40000 mut=2 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=2720 bundle_bytes=156131442 | lean_exit=1 lean_s=57 lean_err_panics=759 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_0/bundle instances=293833 accepted=29335 controls=6 flagged=8 | difftest R shard 0/10: 4000 formulas, 2963 certified, 293833 records, 2718.7 s
+  R_1: host=gpu01 set=R shard=1/10 count=40000 mut=2 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=2768 bundle_bytes=157299312 | lean_exit=1 lean_s=55 lean_err_panics=948 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_1/bundle instances=299268 accepted=29983 controls=8 flagged=13 | difftest R shard 1/10: 4000 formulas, 3019 certified, 299268 records, 2766.9 s
+  R_2: host=gpu01 set=R shard=2/10 count=40000 mut=2 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=2737 bundle_bytes=158006626 | lean_exit=1 lean_s=56 lean_err_panics=907 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_2/bundle instances=297774 accepted=30435 controls=8 flagged=6 | difftest R shard 2/10: 4000 formulas, 3006 certified, 297774 records, 2736.3 s
+  R_3: host=gpu01 set=R shard=3/10 count=40000 mut=2 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=2786 bundle_bytes=157853794 | lean_exit=1 lean_s=55 lean_err_panics=925 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_3/bundle instances=301928 accepted=30385 controls=8 flagged=13 | difftest R shard 3/10: 4000 formulas, 3034 certified, 301928 records, 2785.2 s
+  R_4: host=gpu01 set=R shard=4/10 count=40000 mut=2 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=2788 bundle_bytes=160176512 | lean_exit=1 lean_s=56 lean_err_panics=990 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_4/bundle instances=301966 accepted=30346 controls=8 flagged=11 | difftest R shard 4/10: 4000 formulas, 3040 certified, 301966 records, 2787.5 s
+  R_5: host=gpu01 set=R shard=5/10 count=40000 mut=2 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=2777 bundle_bytes=162739458 | lean_exit=1 lean_s=57 lean_err_panics=912 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_5/bundle instances=301609 accepted=30582 controls=8 flagged=8 | difftest R shard 5/10: 4000 formulas, 3019 certified, 301609 records, 2775.9 s
+  R_6: host=gpu01 set=R shard=6/10 count=40000 mut=2 sample=0 block=3 start=1791402705 | difftest_exit=0 difftest_s=2715 bundle_bytes=156713654 | lean_exit=1 lean_s=56 lean_err_panics=950 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_6/bundle instances=295504 accepted=30076 controls=6 flagged=10 | difftest R shard 6/10: 4000 formulas, 2989 certified, 295504 records, 2714.3 s
+  R_7: host=gpu01 set=R shard=7/10 count=40000 mut=2 sample=0 block=4096 start=1791402705 | difftest_exit=0 difftest_s=2745 bundle_bytes=160324899 | lean_exit=1 lean_s=55 lean_err_panics=895 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_7/bundle instances=297446 accepted=29631 controls=6 flagged=18 | difftest R shard 7/10: 4000 formulas, 2984 certified, 297446 records, 2743.6 s
+  R_8: host=gpu01 set=R shard=8/10 count=40000 mut=2 sample=0 block=1 start=1791402705 | difftest_exit=0 difftest_s=2717 bundle_bytes=155516998 | lean_exit=1 lean_s=57 lean_err_panics=911 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_8/bundle instances=294140 accepted=29913 controls=6 flagged=9 | difftest R shard 8/10: 4000 formulas, 2977 certified, 294140 records, 2716.3 s
+  R_9: host=gpu01 set=R shard=9/10 count=40000 mut=2 sample=0 block=2 start=1791402705 | difftest_exit=0 difftest_s=2736 bundle_bytes=160330981 | lean_exit=1 lean_s=57 lean_err_panics=982 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_9/bundle instances=296235 accepted=29874 controls=6 flagged=12 | difftest R shard 9/10: 4000 formulas, 2978 certified, 296235 records, 2735.0 s

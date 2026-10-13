@@ -1,0 +1,31 @@
+count_models Ded5C.dedekind3: 20 models over Fin 8, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00000_00: 20 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00000_01: 148 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00000_10: 148 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00000_11: 1692 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00001: 1692 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00002: 714 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00003: 361 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00004: 84 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00005: 206 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00006: 50 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00007: 14 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00008: 5 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models Ded5C.l_c00009: 1 models over Fin 32, embedded; count from the hint, verified check (parts A, B, C) N ms
+'dedekind5c' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Ded5C.dedekind3._native.native_decide.ax_1,
+ Ded5C.l_c00000_00._native.native_decide.ax_1,
+ Ded5C.l_c00000_01._native.native_decide.ax_1,
+ Ded5C.l_c00000_10._native.native_decide.ax_1,
+ Ded5C.l_c00000_11._native.native_decide.ax_1,
+ Ded5C.l_c00001._native.native_decide.ax_1,
+ Ded5C.l_c00002._native.native_decide.ax_1,
+ Ded5C.l_c00003._native.native_decide.ax_1,
+ Ded5C.l_c00004._native.native_decide.ax_1,
+ Ded5C.l_c00005._native.native_decide.ax_1,
+ Ded5C.l_c00006._native.native_decide.ax_1,
+ Ded5C.l_c00007._native.native_decide.ax_1,
+ Ded5C.l_c00008._native.native_decide.ax_1,
+ Ded5C.l_c00009._native.native_decide.ax_1]

@@ -1,0 +1,8 @@
+count_models kreweras5: 2342196 models over Fin 42, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models kreweras5_stream: 2342196 models over Fin 42, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+'kreweras5' depends on axioms: [propext, Classical.choice, Quot.sound, kreweras5._native.native_decide.ax_1]
+'kreweras5_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ kreweras5_stream._native.native_decide.ax_4,
+ kreweras5_stream.fwd._native.native_decide.ax_1]

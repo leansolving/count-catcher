@@ -1,0 +1,123 @@
+Lean (version 4.4.0-rc1, commit b0fe9d6cdca8, Release)
+=== setf_false.lean
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it
+'getElem?_setF'_inconsistent' depends on axioms: [sorryAx]
+lean_exit=0 elapsed=27s
+=== axioms_report.lean
+warning: manifest out of date: git url of dependency 'mathlib' changed; use `lake update mathlib` to update it
+'Array.getElem?_setF'' depends on axioms: [sorryAx]
+'Array.getElem?_setF' depends on axioms: [sorryAx]
+'Nat.add_comm' does not depend on any axioms
+'main' depends on axioms: [Classical.choice, Quot.sound, propext, sorryAx]
+'runCheckCmd' depends on axioms: [propext, Classical.choice, Quot.sound, sorryAx]
+'checkProof' depends on axioms: [propext, Quot.sound, Classical.choice, sorryAx]
+'checkFinalState' depends on axioms: [propext, Quot.sound, Classical.choice]
+'checkProofStep' depends on axioms: [propext, Quot.sound, Classical.choice, sorryAx]
+'initial' depends on axioms: [propext, Quot.sound, Classical.choice]
+'PreState.WF.equivalent_lits'' depends on axioms: [propext, Quot.sound, Classical.choice]
+'PreState.WF.partitioned'' depends on axioms: [propext, Quot.sound, Classical.choice]
+'LeanSAT.Model.PropForm.countModels_eq_card_models' depends on axioms: [propext, Quot.sound, Classical.choice]
+'LeanSAT.Model.PropForm.ringEval_eq_weightSum' depends on axioms: [propext, Quot.sound, Classical.choice]
+'Pog.count_eq_countModels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pog.count_eq'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pog.ringEval_eq_ringEval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pog.ringEval_eq'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PPA.varValue?_setVar' depends on axioms: [propext, Classical.choice, Quot.sound, sorryAx]
+'PPA.varValue?_setVar_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound, sorryAx]
+ROOT main: 7621 reachable constants; sorryAx reachable: true; constants whose own body mentions sorryAx: 2
+  SORRY Array.getElem?_setF'
+    path: [main,
+ checkCmd,
+ runCheckCmd,
+ checkProof,
+ checkProofStep,
+ addSum,
+ checkImpliedHinted,
+ checkAsymmTautoHinted,
+ ClauseDb.propagateUnitsHinted,
+ ClauseDb.propagateUnitsHinted.proof_1,
+ PPA.toPropFun_reset_setNegatedClause,
+ PPA.lt_toPropFun_setLit,
+ PPA.varValue?_setLit_of_ne,
+ PPA.varValue?_setVar_of_ne,
+ Array.getElem?_setF']
+  SORRY Array.getElem?_setF
+    path: [main,
+ checkCmd,
+ runCheckCmd,
+ checkProof,
+ checkProofStep,
+ addSum,
+ checkImpliedHinted,
+ checkAsymmTautoHinted,
+ ClauseDb.propagateUnitsHinted,
+ ClauseDb.propagateUnitsHinted.proof_1,
+ PPA.toPropFun_reset_setNegatedClause,
+ PPA.lt_toPropFun_setLit,
+ PPA.varValue?_setVar,
+ Array.getElem?_setF]
+  reaches Array.getElem?_setF: true
+  reaches Array.getElem?_setF': true
+  reaches PPA.varValue?_setVar_of_ne: true
+  reaches PPA.varValue?_setVar: true
+ROOT checkProof: 6810 reachable constants; sorryAx reachable: true; constants whose own body mentions sorryAx: 2
+  SORRY Array.getElem?_setF'
+    path: [checkProof,
+ checkProofStep,
+ addSum,
+ checkImpliedHinted,
+ checkAsymmTautoHinted,
+ ClauseDb.propagateUnitsHinted,
+ ClauseDb.propagateUnitsHinted.proof_1,
+ PPA.toPropFun_reset_setNegatedClause,
+ PPA.lt_toPropFun_setLit,
+ PPA.varValue?_setLit_of_ne,
+ PPA.varValue?_setVar_of_ne,
+ Array.getElem?_setF']
+  SORRY Array.getElem?_setF
+    path: [checkProof,
+ checkProofStep,
+ addSum,
+ checkImpliedHinted,
+ checkAsymmTautoHinted,
+ ClauseDb.propagateUnitsHinted,
+ ClauseDb.propagateUnitsHinted.proof_1,
+ PPA.toPropFun_reset_setNegatedClause,
+ PPA.lt_toPropFun_setLit,
+ PPA.varValue?_setVar,
+ Array.getElem?_setF]
+  reaches Array.getElem?_setF: true
+  reaches Array.getElem?_setF': true
+  reaches PPA.varValue?_setVar_of_ne: true
+  reaches PPA.varValue?_setVar: true
+ROOT checkFinalState: 5095 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+ROOT LeanSAT.Model.PropForm.countModels_eq_card_models: 3425 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+ROOT LeanSAT.Model.PropForm.ringEval_eq_weightSum: 3755 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+ROOT Pog.count_eq_countModels: 2501 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+ROOT Pog.ringEval_eq_ringEval: 2484 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+ROOT Nat.add_comm: 43 reachable constants; sorryAx reachable: false; constants whose own body mentions sorryAx: 0
+  reaches Array.getElem?_setF: false
+  reaches Array.getElem?_setF': false
+  reaches PPA.varValue?_setVar_of_ne: false
+  reaches PPA.varValue?_setVar: false
+lean_exit=0 elapsed=10s

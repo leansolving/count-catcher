@@ -1,0 +1,5 @@
+'queens8_inline' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_inline._native.native_decide.ax_1_1,
+ queens8_inline_sel._native.native_decide.ax_1]

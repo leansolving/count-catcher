@@ -1,0 +1,168 @@
+# result dirs: 8, Lean records (without controls): 98893, controls: 16
+
+## Toolchain outcomes of the base formulas (sat/unsat by brute force)
+
+E0: 3 formulas
+         2  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+         1  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E1: 210 formulas
+       161  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+        49  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E2: 100 formulas
+        65  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+        35  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+E3: 1329 formulas
+      1179  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+       150  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+E3u: 162 formulas
+       142  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+        20  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+R: 302 formulas
+       229  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+        73  unsat d4=ok gen=1:unsat c2l=- c2lk=-
+
+RB: 20 formulas
+        20  sat d4=ok gen=0 c2l=0 c2lk=0 pogsame=1 rt=1
+
+D4 count disagreements with brute force: 0
+
+Translations that differ (one route fails, POG differs, or binary round trip fails): 0
+
+## Translator outcomes of CPOG-level mutants
+  mc_add_change_hint: c2l=0 1665
+  mc_add_drop_hint: c2l=0 1834
+  mc_add_flip_lit: c2l=0 1155, c2l=1:no_root_unit 679
+  mc_decl_change: c2l=0 1790
+  mc_decl_drop: c2l=0 1830, c2l=1:cite_no_earlier 4
+  mc_decl_flip: c2l=0 1834
+  mc_root_change: c2l=1:no_root_unit 1794, c2l=0 34
+  kc_add_change_hint: c2l=0 1665
+  kc_add_drop_hint: c2l=0 1834
+  kc_add_flip_lit: c2l=0 1155, c2l=1:no_root_unit 679
+  kc_decl_change: c2l=0 1790
+  kc_decl_drop: c2l=0 1830, c2l=1:cite_no_earlier 4
+  kc_decl_flip: c2l=0 1834
+  kc_root_change: c2l=1:no_root_unit 1794, c2l=0 34
+
+## Lean verdicts per record kind (all sets), contract_audit.md 3.3 format
+
+| Kind | Mutation | Records | Accepted | Rejected by stage |
+|---|---|---:|---:|---|
+| base | text route, unmutated (`--delete --trim`) | 1,655 | 1,655 |  |
+| plain | text route, unmutated, translator without flags (5% sample) | 78 | 78 |  |
+| default | default route, unmutated (`--delete --keep --inline --binary`) | 1,655 | 1,655 |  |
+| mp_add_arg | POG: add a product argument | 1,902 | 0 | A-prod-overlap 1,417, B 381, A-sum-rup 103, A-arg 1 |
+| mp_change_arg | POG: random earlier literal as argument | 1,520 | 0 | A-prod-overlap 549, A-sum-rup 520, C-clause 377, C-negation 51, B 23 |
+| mp_drop_arg | POG: drop a product argument | 1,800 | 0 | C-clause 1,303, A-sum-rup 493, B 4 |
+| mp_dup_node | POG: duplicate a node line | 1,825 | 60 | B 1,129, A-sum-rup 446, C-clause 184, A-prod-overlap 6 |
+| mp_flip_arg | POG: negate one node argument | 1,812 | 0 | C-clause 885, A-sum-rup 801, C-negation 123, B 3 |
+| mp_kind_swap | POG: sum ↔ binary product | 1,274 | 0 | A-sum-rup 789, A-prod-overlap 485 |
+| mp_root_change | POG: random root | 1,580 | 0 | C-clause 1,081, C-negation 251, B 248 |
+| mp_root_neg | POG: negate the root | 1,655 | 0 | C-negation 1,655 |
+| mp_sum_hint | POG: drop, replace or add a sum hint | 1,238 | 294 | A-sum-rup 822, A-sum-hint-ref 122 |
+| ml_add_lit | LRAT: add a literal to an addition | 1,902 | 284 | B 1,618 |
+| ml_change_hint | LRAT: replace a hint | 1,712 | 333 | B 1,379 |
+| ml_drop_hint | LRAT: drop a hint | 1,893 | 758 | B 1,135 |
+| ml_drop_line | LRAT: drop an addition | 1,805 | 0 | B 1,805 |
+| ml_drop_lit | LRAT: drop a literal of an addition | 1,393 | 509 | B 884 |
+| ml_flip_lit | LRAT: negate a literal of an addition | 1,403 | 0 | B 1,403 |
+| ml_swap_lines | LRAT: swap two additions | 1,820 | 0 | B 1,820 |
+| mf_add_clause | formula: add a random clause | 1,903 | 0 | C-clause 1,371, B 532 |
+| mf_drop_clause | formula: drop a clause | 1,882 | 575 | B 1,307 |
+| mf_drop_lit | formula: drop a literal | 1,866 | 609 | C-clause 1,152, B 105 |
+| mf_flip_lit | formula: negate a literal | 1,882 | 334 | C-clause 1,295, B 253 |
+| mc_add_change_hint | CPOG: replace a hint of an addition | 1,665 | 136 | B 1,529 |
+| mc_add_drop_hint | CPOG: drop a hint of an addition | 1,834 | 234 | B 1,600 |
+| mc_add_flip_lit | CPOG: negate a literal of an addition | 1,155 | 14 | B 1,141 |
+| mc_decl_change | CPOG: replace a declaration argument | 1,790 | 194 | A-prod-overlap 552, A-sum-rup 530, C-clause 454, C-negation 41, B 19 |
+| mc_decl_drop | CPOG: drop a product argument or sum hint | 1,830 | 0 | C-clause 1,030, A-sum-rup 800 |
+| mc_decl_flip | CPOG: negate a declaration argument | 1,834 | 0 | C-clause 900, A-sum-rup 799, C-negation 131, B 4 |
+| mc_root_change | CPOG: negate or replace the root | 34 | 1 | C-clause 33 |
+| kp_add_arg | POG: add a product argument (default route) | 1,902 | 0 | A-prod-overlap 1,417, B 381, A-sum-rup 103, A-arg 1 |
+| kp_change_arg | POG: random earlier literal as argument (default route) | 1,520 | 0 | A-prod-overlap 549, A-sum-rup 520, C-clause 377, C-negation 51, B 23 |
+| kp_drop_arg | POG: drop a product argument (default route) | 1,800 | 0 | C-clause 1,303, A-sum-rup 493, B 4 |
+| kp_dup_node | POG: duplicate a node line (default route) | 1,825 | 60 | B 1,129, A-sum-rup 446, C-clause 184, A-prod-overlap 6 |
+| kp_flip_arg | POG: negate one node argument (default route) | 1,812 | 0 | C-clause 885, A-sum-rup 801, C-negation 123, B 3 |
+| kp_kind_swap | POG: sum ↔ binary product (default route) | 1,274 | 0 | A-sum-rup 789, A-prod-overlap 485 |
+| kp_root_change | POG: random root (default route) | 1,580 | 0 | C-clause 1,081, C-negation 251, B 248 |
+| kp_root_neg | POG: negate the root (default route) | 1,655 | 0 | C-negation 1,655 |
+| kp_sum_hint | POG: drop, replace or add a sum hint (default route) | 1,238 | 294 | A-sum-rup 822, A-sum-hint-ref 122 |
+| kl_add_lit | LRAT: add a literal to an addition (default route) | 1,884 | 197 | B 1,687 |
+| kl_change_hint | LRAT: replace a hint (default route) | 1,611 | 438 | B 1,173 |
+| kl_drop_hint | LRAT: drop a hint (default route) | 1,849 | 787 | B 1,062 |
+| kl_drop_line | LRAT: drop an addition (default route) | 1,786 | 0 | B 1,786 |
+| kl_drop_lit | LRAT: drop a literal of an addition (default route) | 1,240 | 631 | B 609 |
+| kl_flip_lit | LRAT: negate a literal of an addition (default route) | 1,243 | 0 | B 1,243 |
+| kl_swap_lines | LRAT: swap two additions (default route) | 1,808 | 0 | B 1,808 |
+| kb_flip | binary LRAT: flip one bit | 1,904 | 485 | B-parse 734, B 685 |
+| kb_trunc | binary LRAT: truncate at a random byte | 1,904 | 0 | B-parse 1,696, B 208 |
+| kk_add | keep mask: keep one dropped clause | 1,882 | 548 | B 1,334 |
+| kk_drop | keep mask: drop one kept (cited) clause | 1,904 | 0 | B 1,904 |
+| kf_add_clause | formula: add a random clause (default route) | 1,903 | 0 | C-clause 1,371, B 532 |
+| kf_drop_clause | formula: drop a clause (default route) | 1,882 | 0 | B 1,882 |
+| kf_drop_lit | formula: drop a literal (default route) | 1,866 | 714 | C-clause 1,152 |
+| kf_flip_lit | formula: negate a literal (default route) | 1,882 | 409 | C-clause 1,295, B 178 |
+| kc_add_change_hint | CPOG: replace a hint of an addition (default route) | 1,665 | 85 | B 1,580 |
+| kc_add_drop_hint | CPOG: drop a hint of an addition (default route) | 1,834 | 154 | B 1,680 |
+| kc_add_flip_lit | CPOG: negate a literal of an addition (default route) | 1,155 | 14 | B 1,141 |
+| kc_decl_change | CPOG: replace a declaration argument (default route) | 1,790 | 194 | A-prod-overlap 552, A-sum-rup 530, C-clause 454, C-negation 41, B 19 |
+| kc_decl_drop | CPOG: drop a product argument or sum hint (default route) | 1,830 | 0 | C-clause 1,030, A-sum-rup 800 |
+| kc_decl_flip | CPOG: negate a declaration argument (default route) | 1,834 | 0 | C-clause 900, A-sum-rup 799, C-negation 131, B 4 |
+| kc_root_change | CPOG: negate or replace the root (default route) | 34 | 1 | C-clause 33 |
+
+## Totals per route and in the order of the checker's conditions
+  text: 45,942 records, 6,068 accepted (1,733 unmutated, 4,335 mutants); rejected: A-arg 1, A-prod-overlap 3,009, A-sum-hint-ref 122, A-sum-rup 6,103, C-negation 2,252, C-clause 10,065, B 18,322
+  default: 52,951 records, 6,666 accepted (1,655 unmutated, 5,011 mutants); rejected: A-arg 1, A-prod-overlap 3,009, A-sum-hint-ref 122, A-sum-rup 6,103, C-negation 2,252, C-clause 10,065, B-parse 2,430, B 22,303
+  all: 98,893 records, 12,734 accepted (3,388 unmutated, 9,346 mutants); rejected: A-arg 2, A-prod-overlap 6,018, A-sum-hint-ref 244, A-sum-rup 12,206, C-negation 4,504, C-clause 20,130, B-parse 2,430, B 40,625
+
+Totals line (AUDIT_TOTALS format): 98,893 Lean records, 12,734 accepted (3,310 base, 78 delete, 9,346 mutants)
+
+## Lean verdicts per set, unmutated records
+  E0 base: ACCEPT/none 1
+  E0 default: ACCEPT/none 1
+  E1 base: ACCEPT/none 49
+  E1 default: ACCEPT/none 49
+  E1 plain: ACCEPT/none 5
+  E2 base: ACCEPT/none 35
+  E2 default: ACCEPT/none 35
+  E2 plain: ACCEPT/none 3
+  E3 base: ACCEPT/none 1179
+  E3 default: ACCEPT/none 1179
+  E3 plain: ACCEPT/none 54
+  E3u base: ACCEPT/none 142
+  E3u default: ACCEPT/none 142
+  E3u plain: ACCEPT/none 4
+  R base: ACCEPT/none 229
+  R default: ACCEPT/none 229
+  R plain: ACCEPT/none 12
+  RB base: ACCEPT/none 20
+  RB default: ACCEPT/none 20
+
+## Flagged records (WRONG, WRONGSTREAM, BFDIFF, DIAGDIFF, CDIFF, ...): 0
+
+## Informational differences (streamed against embedded part B)
+  EMBDIFF kb_flip verdict=ACCEPT: 5; e.g. R E2:3320/kb_flip#0 ACCEPT stage=none count=1 exp=1 bf=1 stream=REJECT route=default flags=EMBDIFF
+  STREAMDIFF mc_add_drop_hint verdict=ACCEPT: 2; e.g. R R:36793/mc_add_drop_hint#0 ACCEPT stage=none count=24 exp=24 bf=24 stream=REJECT route=text flags=STREAMDIFF
+  STREAMDIFF ml_drop_hint verdict=ACCEPT: 1; e.g. R R:15917/ml_drop_hint#0 ACCEPT stage=none count=36 exp=36 bf=36 stream=REJECT route=text flags=STREAMDIFF
+
+## Positive controls: 16: control_default CONTROL-OK 8, control_text CONTROL-OK 8
+
+## Unmutated certificates rejected by the Lean checker: 0
+
+## Times
+  tool runs (difftest.py) 671 s = 0.19 CPU-h; Lean 22 s = 0.4 min; wall 221 s; index-out-of-bounds messages of lrat-catcher 328
+
+## Task info
+  E0_0: host=gpu01 set=E0 shard=0/1 count=0 mut=1 sample=100000 block=1 start=1791406297 | difftest_exit=0 difftest_s=0 bundle_bytes=1471 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=0 lean_maxrss_kb=56212 lean_err_panics=0 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E0_0/bundle instances=17 accepted=8 controls=2 flagged=0 | difftest E0 shard 0/1: 3 formulas, 1 certified, 17 records, 0.1 s
+  E1_0: host=gpu01 set=E1 shard=0/1 count=0 mut=1 sample=100000 block=2 start=1791406297 | difftest_exit=0 difftest_s=17 bundle_bytes=290517 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=0 lean_maxrss_kb=61084 lean_err_panics=4 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E1_0/bundle instances=2102 accepted=454 controls=2 flagged=0 | difftest E1 shard 0/1: 210 formulas, 49 certified, 2102 records, 17.1 s
+  E2_0: host=gpu01 set=E2 shard=0/1 count=0 mut=1 sample=100000 block=3 start=1791406297 | difftest_exit=0 difftest_s=12 bundle_bytes=311023 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=0 lean_maxrss_kb=61080 lean_err_panics=4 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E2_0/bundle instances=1772 accepted=297 controls=2 flagged=0 | difftest E2 shard 0/1: 100 formulas, 35 certified, 1772 records, 11.6 s
+  E3_0: host=gpu01 set=E3 shard=0/2 count=0 mut=1 sample=100000 block=4096 start=1791406297 | difftest_exit=0 difftest_s=218 bundle_bytes=7244631 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=3 lean_maxrss_kb=113560 lean_err_panics=118 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_0/bundle instances=30866 accepted=4339 controls=2 flagged=0 | difftest E3 shard 0/2: 675 formulas, 587 certified, 30866 records, 218.1 s
+  E3_1: host=gpu01 set=E3 shard=1/2 count=0 mut=1 sample=100000 block=1 start=1791406297 | difftest_exit=0 difftest_s=218 bundle_bytes=7319836 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=3 lean_maxrss_kb=115560 lean_err_panics=100 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3_1/bundle instances=31164 accepted=4255 controls=2 flagged=0 | difftest E3 shard 1/2: 654 formulas, 592 certified, 31164 records, 218.0 s
+  E3u_0: host=gpu01 set=E3u shard=0/1 count=0 mut=1 sample=100000 block=2 start=1791406309 | difftest_exit=0 difftest_s=55 bundle_bytes=1755168 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=1 lean_maxrss_kb=72088 lean_err_panics=30 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_E3u_0/bundle instances=7574 accepted=974 controls=2 flagged=0 | difftest E3u shard 0/1: 162 formulas, 142 certified, 7574 records, 54.9 s
+  RB_0: host=gpu01 set=RB shard=0/1 count=3000 mut=2 sample=100000 block=4096 start=1791406365 | difftest_exit=0 difftest_s=16 bundle_bytes=15607475 difftest_maxrss_kb=42240 | lean_exit=0 lean_s=11 lean_maxrss_kb=140116 lean_err_panics=4 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_RB_0/bundle instances=2188 accepted=213 controls=2 flagged=0 | difftest RB shard 0/1: 20 formulas, 20 certified, 2188 records, 15.4 s
+  R_0: host=gpu01 set=R shard=0/1 count=40000 mut=2 sample=100000 block=3 start=1791406315 | difftest_exit=0 difftest_s=135 bundle_bytes=13456267 difftest_maxrss_kb=42240 | lean_exit=1 lean_s=4 lean_maxrss_kb=144280 lean_err_panics=68 | SUMMARY /home/scratch/szeider/mccert_audit2/audit_R_0/bundle instances=23226 accepted=2210 controls=2 flagged=3 | difftest R shard 0/1: 302 formulas, 229 certified, 23226 records, 135.5 s

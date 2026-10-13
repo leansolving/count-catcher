@@ -1,0 +1,59 @@
+count_models clique4_5_t1: 63 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t2: 63 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t3: 63 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t5: 41 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t9: 8 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t10: 8 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t12: 8 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_t14: 0 models (LRAT refutation, embedded, N ms)
+count_models clique4_5_fix_5: 3 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_fix_4: 6 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_fix_3_2: 6 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_fix_3: 10 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_fix_2_2: 58 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models clique4_5_fix_2: 108 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+'clique4_5_orbits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ clique4_5_fix_2._native.native_decide.ax_1,
+ clique4_5_fix_2_2._native.native_decide.ax_1,
+ clique4_5_fix_3._native.native_decide.ax_1,
+ clique4_5_fix_3_2._native.native_decide.ax_1,
+ clique4_5_fix_4._native.native_decide.ax_1,
+ clique4_5_fix_5._native.native_decide.ax_1,
+ clique4_5_t1._native.native_decide.ax_1,
+ clique4_5_t10._native.native_decide.ax_1,
+ clique4_5_t12._native.native_decide.ax_1,
+ clique4_5_t14._native.native_decide.ax_1,
+ clique4_5_t2._native.native_decide.ax_1,
+ clique4_5_t3._native.native_decide.ax_1,
+ clique4_5_t5._native.native_decide.ax_1,
+ clique4_5_t9._native.native_decide.ax_1]
+'clique4_5_isoClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ clique4_5_fix_2._native.native_decide.ax_1,
+ clique4_5_fix_2_2._native.native_decide.ax_1,
+ clique4_5_fix_3._native.native_decide.ax_1,
+ clique4_5_fix_3_2._native.native_decide.ax_1,
+ clique4_5_fix_4._native.native_decide.ax_1,
+ clique4_5_fix_5._native.native_decide.ax_1,
+ clique4_5_t1._native.native_decide.ax_1,
+ clique4_5_t10._native.native_decide.ax_1,
+ clique4_5_t12._native.native_decide.ax_1,
+ clique4_5_t14._native.native_decide.ax_1,
+ clique4_5_t2._native.native_decide.ax_1,
+ clique4_5_t3._native.native_decide.ax_1,
+ clique4_5_t5._native.native_decide.ax_1,
+ clique4_5_t9._native.native_decide.ax_1]
+'clique4_5' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ clique4_5_t1._native.native_decide.ax_1,
+ clique4_5_t10._native.native_decide.ax_1,
+ clique4_5_t12._native.native_decide.ax_1,
+ clique4_5_t14._native.native_decide.ax_1,
+ clique4_5_t2._native.native_decide.ax_1,
+ clique4_5_t3._native.native_decide.ax_1,
+ clique4_5_t5._native.native_decide.ax_1,
+ clique4_5_t9._native.native_decide.ax_1]

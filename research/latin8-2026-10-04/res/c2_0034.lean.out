@@ -1,0 +1,6 @@
+count_models latin8c_c2_0034: 1928448 models over Fin 512, streamed; count from the hint, verified check part B (keep file) 200852 ms, parts A and C 28624 ms
+'latin8c_c2_0034' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ latin8c_c2_0034._native.native_decide.ax_6,
+ latin8c_c2_0034.fwd._native.native_decide.ax_1]

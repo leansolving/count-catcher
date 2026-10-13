@@ -1,0 +1,10 @@
+name	count	paper	input
+A358391_6	206103695057137712	Section 6, Table 3	#export_cnf via (CountCatcher.Kreweras.card_of_check (n := 6))
+A396728_7	696132184469	Section 6, Table 3	#export_cnf via (CountCatcher.Sperner.card_of_check (n := 7))
+A303210_9	72691237364024529045028	Section 6, Table 3	#export_cnf via (CountCatcher.TotalDom.torus_card_of_check (m := 7))
+A303210_10	16751614615998096965673730489	Section 6, Table 3	#export_cnf via (CountCatcher.TotalDom.torus_card_of_check (m := 8))
+hq6	19768832143	Section A.3, Table 7	uv run --no-project scripts/gen_t5.py OUT hq6 hypercube 6
+cub100	8281581627129350099	Section A.3, Table 7	uv run --no-project scripts/gen_t5.py OUT cub100 cubic 100 1
+cub120	50037826758434291658793	Section A.3, Table 7	uv run --no-project scripts/gen_t5.py OUT cub120 cubic 120 1
+games120	30467298966717	Section A.3, Table 7	uv run --no-project scripts/gen_t5.py OUT games120 col artifact/inputs/graphs/games120.col
+homer	4990279720487638784402415134793666363321484439419783396315037955127460372623831147937096773412337132142531994684416327680000	Section A.3, Table 7	uv run --no-project scripts/gen_t5.py OUT homer col artifact/inputs/graphs/homer.col

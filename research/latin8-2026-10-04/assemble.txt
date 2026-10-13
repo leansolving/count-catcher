@@ -1,0 +1,15 @@
+count=535281401856
+class_0=type=2,2,2,2 size=15 fibre=258392064
+class_1=type=4,2,2 size=180 fibre=254582784
+class_2=type=3,3,2 size=160 fibre=252518400
+class_3=type=6,2 size=480 fibre=252952576
+class_4=type=5,3 size=384 fibre=251894784
+class_5=type=4,4 size=180 fibre=252850176
+class_6=type=8 size=720 fibre=252110848
+asm_s=80.9
+asm_exit=0
+asm_rss_mb=11457
+axioms_total=1477
+axioms_native=1474
+axioms_sorry=0
+status=proved

@@ -1,0 +1,4 @@
+board	form	clauses	additions	kernel_cmd_s	kernel_gb	native_ms	outcome	limit_gb
+4x4	ki	148	99	24.1	6.59	16	proved	64
+4x6	ki	336	296	155.0	33.18	18	proved	64
+6x6	ki	1022	1623			26	killed at the memory limit after about 280 s	64

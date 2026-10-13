@@ -1,0 +1,4 @@
+'hypercube5_indepSets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ hypercube5_indepSets._native.native_decide.ax_1_1]

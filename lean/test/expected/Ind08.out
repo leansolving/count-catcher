@@ -1,0 +1,4 @@
+'grid8_indepSets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ grid8_indepSets._native.native_decide.ax_1_1]

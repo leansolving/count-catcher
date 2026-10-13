@@ -1,0 +1,19 @@
+count_models queens8: 92 models over Fin 64, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models queens8_stream: 92 models over Fin 64, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+count_models queens8_auto: 92 models over Fin 64, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+count_models queens8_models: 92 models over Fin 64, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models queens8_equiv: 92 models over Fin 64, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models queens8_heartbeats: 92 models over Fin 64, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+'queens8' depends on axioms: [propext, Classical.choice, Quot.sound, queens8._native.native_decide.ax_1]
+'queens8_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_stream._native.native_decide.ax_4,
+ queens8_stream.fwd._native.native_decide.ax_1]
+'queens8_auto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ queens8_auto._native.native_decide.ax_4,
+ queens8_auto.fwd._native.native_decide.ax_1]
+'queens8_models' depends on axioms: [propext, Classical.choice, Quot.sound, queens8_models._native.native_decide.ax_1]
+'queens8_equiv' depends on axioms: [propext, Classical.choice, Quot.sound, queens8_equiv._native.native_decide.ax_1]

@@ -1,0 +1,10 @@
+count_models k8_hint: 105 models over Fin 28, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models k8_hint_stream: 105 models over Fin 28, streamed; count from the hint, verified check part B N ms, parts A and C N ms
+count_models dom08_hint: 12988816 models over Fin 112, embedded; count from the hint, verified check (parts A, B, C) N ms
+'k8_hint' depends on axioms: [propext, Classical.choice, Quot.sound, k8_hint._native.native_decide.ax_1]
+'k8_hint_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ k8_hint_stream._native.native_decide.ax_4,
+ k8_hint_stream.fwd._native.native_decide.ax_1]
+'dom08_hint' depends on axioms: [propext, Classical.choice, Quot.sound, dom08_hint._native.native_decide.ax_1]

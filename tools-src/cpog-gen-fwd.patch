@@ -1,0 +1,675 @@
+diff --git a/src/clausal.cpp b/src/clausal.cpp
+index d7c1583..1a11d08 100644
+--- a/src/clausal.cpp
++++ b/src/clausal.cpp
+@@ -712,6 +712,62 @@ bool Cnf_reduced::run_hinting_solver() {
+ }
+ 
+ 
++bool Cnf_reduced::run_solver_trim(int lemma_limit, bool *hinted) {
++    *hinted = false;
++    // Same solver call as without -T, so calls with short proofs cost nothing extra
++    if (!run_solver())
++	return false;
++    if ((int) proof_clauses.size() < lemma_limit)
++	return true;
++    // Long proof: drat-trim trims it and supplies the hints, instead of rup_validate
++    char pname[100];
++    char lname[100];
++    char cmd[350];
++    const char *cnfname = file_names[0];
++    snprintf(pname, 100, "%s.drat", cnfname);
++    const char *dratname = archive_string(pname);
++    file_names.push_back(dratname);
++    snprintf(lname, 100, "%s.lrat", cnfname);
++    const char *lratname = archive_string(lname);
++    file_names.push_back(lratname);
++    double start = tod();
++    FILE *pfile = fopen(dratname, "w");
++    if (pfile == NULL) {
++	err(false, "Couldn't open temporary proof file %s\n", dratname);
++	return false;
++    }
++    for (Clause *np : proof_clauses) {
++	np->show(pfile);
++	delete np;
++    }
++    proof_clauses.clear();
++    fclose(pfile);
++    snprintf(cmd, 350, "drat-trim %s %s -L %s > /dev/null", cnfname, dratname, lratname);
++    int rc = system(cmd);
++    incr_timer(TIME_SAT, tod()-start);
++    if (rc != 0)
++	err(false, "Executing command '%s' yielded return code %d\n", cmd, rc);
++    FILE *lfile = fopen(lratname, "r");
++    if (!lfile) {
++	err(false, "Couldn't open generated LRAT file %s\n", lratname);
++	return false;
++    }
++    if (!load_hinted_proof(lfile)) {
++	err(false, "Failed to read generated LRAT file %s\n", lratname);
++	fclose(lfile);
++	return false;
++    }
++    fclose(lfile);
++    if (proof_clauses.size() == 0 || proof_clauses.back()->length() != 0) {
++	err(false, "Execution of command '%s' did not generate empty clause\n", cmd);
++	return false;
++    }
++    report(3, "Drat-trim.  %s %d problem clauses.  %d proof clauses\n", cnfname, clause_count(), proof_clauses.size());
++    *hinted = true;
++    incr_count(COUNT_SAT_TRIMMED);
++    return true;
++}
++
+ // Read proof clauses + hints in LRAT format.
+ // Ignore deletions
+ // Return true if successful
+@@ -812,6 +868,11 @@ Cnf_reasoner::Cnf_reasoner(FILE *infile) : Cnf(infile) {
+     delete_files = true;
+     forward_only = false;
+     drat_threshold = 1000;
++    trim_lemmas = 0;
++    free_dead = false;
++    gc_next = 0;
++    hybrid_limit = 0;
++    hybrid_warmup = 0;
+     clause_limit = INT_MAX;
+     bcp_limit = 1;
+     xvar_count = max_variable();
+@@ -826,8 +887,12 @@ Clause * Cnf_reasoner::get_clause(int cid) {
+ 	Clause *np = get_aux_clause(cid);
+ 	if (np != NULL)
+ 	    return np;
+-	else if (cid <= input_count + proof_count)
+-	    return proof_clauses[cid - input_count - 1];
++	else if (cid <= input_count + proof_count) {
++	    np = proof_clauses[cid - input_count - 1];
++	    if (np == NULL && free_dead)
++		err(true, "Fatal.  Clause #%d is accessed, but it was freed\n", cid);
++	    return np;
++	}
+ 	else {
+ 	    err(true, "Fatal.  Trying to access clause #%d.  Have %d input and %d proof clauses\n", cid, input_count, proof_count);
+ 	    exit(1);
+@@ -859,6 +924,8 @@ int Cnf_reasoner::add_proof_clause(Clause *clp) {
+     }
+     int cid = pcid + 1;
+     proof_clauses.push_back(clp);
++    if (free_dead)
++	gc_candidates.push_back(cid);
+     if (clp->length() == 0)
+ 	unsatisfiable = true;
+     else if (clp->length() == 1) {
+@@ -1647,8 +1714,16 @@ int Cnf_reasoner::reduce_run(int lit) {
+     int ncid = 0;
+     Cnf_reduced *rcp = extract_cnf();
+     std::unordered_set<int> real_units;
+-    if (rcp->clause_count() >= drat_threshold) {
+-	if (rcp->run_hinting_solver()) {
++    bool hinted = rcp->clause_count() >= drat_threshold;
++    bool solved;
++    if (hinted)
++	solved = rcp->run_hinting_solver();
++    else if (trim_lemmas > 0)
++	solved = rcp->run_solver_trim(trim_lemmas, &hinted);
++    else
++	solved = rcp->run_solver();
++    if (hinted) {
++	if (solved) {
+ 	    const char *fname = rcp->get_file_name();
+ 	    pwriter->comment("Adding proof clauses from SAT solver running on file %s to validate literal %d", fname, lit);
+ 	    int pcount = 0;
+@@ -1680,7 +1755,7 @@ int Cnf_reasoner::reduce_run(int lit) {
+     } else {
+ 	// Want to keep track of range of clauses
+ 	int first_ncid = 0;
+-	if (rcp->run_solver()) {
++	if (solved) {
+ 	    const char *fname = rcp->get_file_name();
+ 	    pwriter->comment("Adding proof clauses from SAT solver running on file %s to validate literal %d", fname, lit);
+ 	    int pcount = 0;
+@@ -1989,6 +2064,8 @@ Lemma_instance *Cnf_reasoner::extract_lemma(int xvar, bool parent_or) {
+ 
+ // Set up context for lemma proof
+ void Cnf_reasoner::setup_proof(Lemma_instance *lemma) {
++    if (free_dead)
++	lemma_stack.push_back(lemma);
+     new_context();
+     clear_assigned_literals();
+ 
+@@ -2041,6 +2118,8 @@ void Cnf_reasoner::setup_proof(Lemma_instance *lemma) {
+ 
+     // Restore context from lemma proof
+ void Cnf_reasoner::restore_from_proof(Lemma_instance *lemma) {
++    if (free_dead)
++	lemma_stack.pop_back();
+     for (auto fid : lemma->inverse_cid) {
+ 	int ncid = fid.first;
+ 	int ocid = fid.second;
+@@ -2149,6 +2228,7 @@ int Cnf_reasoner::apply_lemma(Lemma_instance *lemma, Lemma_instance *instance) {
+ 	    finish_command(true);
+ 	    incr_count(COUNT_LEMMA_APPLICATION_CLAUSE);
+ 	    delete nnp;
++	    forget_clause(ccid);
+ 	}
+     }
+     // Finally, assert the root
+@@ -2164,9 +2244,94 @@ int Cnf_reasoner::apply_lemma(Lemma_instance *lemma, Lemma_instance *instance) {
+     finish_command(true);
+     incr_count(COUNT_LEMMA_APPLICATION_CLAUSE);
+     delete lnp;
++    forget_clause(jid);
+     return jid;
+ }
+ 
++// As validate_literal for a literal: assume -xvar, add the defining clauses of the node's
++// subgraph to the active clauses, and let reduce_run refute the reduced problem; the final
++// proof clause, lifted into the context, is xvar | -context.
++int Cnf_reasoner::validate_node(int xvar, std::vector<int> &defs) {
++    if (unit_literals.find(xvar) != unit_literals.end() || unit_literals.find(-xvar) != unit_literals.end())
++	return 0;
++    new_context();
++    push_assigned_literal(-xvar);
++    for (int cid : defs)
++	activate_clause(cid);
++    int ncid = reduce_run(xvar);
++    for (int cid : defs)
++	deactivate_clause(cid);
++    pop_context();
++    return ncid;
++}
++
++bool Cnf_reasoner::clause_freed(int cid) {
++    return free_dead && proof_clauses[cid - clause_count() - 1] == NULL;
++}
++
++void Cnf_reasoner::restore_clause(int cid, Clause *np) {
++    proof_clauses[cid - clause_count() - 1] = np;
++    gc_candidates.push_back(cid);
++}
++
++void Cnf_reasoner::forget_clause(int cid) {
++    if (free_dead)
++	proof_clauses[cid - clause_count() - 1] = NULL;
++}
++
++bool Cnf_reasoner::garbage_due() {
++    return proof_clauses.size() >= gc_next;
++}
++
++// Free the proof clauses that no later step can access.  get_clause reaches a proof clause
++// only while it is active, waits on the context clause stack to become active again,
++// justifies a unit literal, is in a saved active-clause set (protected_sets), or is an
++// argument of a lemma under proof (lemma_stack); every other proof clause is only cited
++// by its ID.  Call only where no clause pointer is held.
++void Cnf_reasoner::collect_garbage() {
++    int base = clause_count();
++    size_t n = proof_clauses.size();
++    std::vector<bool> live(n+1, false);
++    auto mark = [&](int cid) {
++	if (cid > base && (size_t) (cid - base) <= n)
++	    live[cid - base] = true;
++    };
++    for (int cid : *curr_active_clauses)
++	mark(cid);
++    for (int cid : *next_active_clauses)
++	mark(cid);
++    for (int cid : context_clause_stack)
++	mark(cid);
++    for (auto fid : justifying_ids)
++	mark(fid.second);
++    for (std::set<int> *sp : protected_sets)
++	for (int cid : *sp)
++	    mark(cid);
++    for (Lemma_instance *lp : lemma_stack) {
++	for (auto fid : lp->inverse_cid) {
++	    mark(fid.first);
++	    mark(fid.second);
++	}
++	for (int cid : lp->duplicate_cid)
++	    mark(cid);
++    }
++    std::vector<int> keep;
++    for (int cid : gc_candidates) {
++	Clause *np = proof_clauses[cid - base - 1];
++	if (np == NULL)
++	    continue;
++	if (live[cid - base])
++	    keep.push_back(cid);
++	else {
++	    delete np;
++	    proof_clauses[cid - base - 1] = NULL;
++	    incr_count(COUNT_FREED_CLAUSE);
++	}
++    }
++    gc_candidates.swap(keep);
++    gc_next = n + std::max((size_t) 1 << 16, gc_candidates.size());
++}
++
+ // Debugging support
+ bool Cnf_reasoner::check_active() {
+     bool ok = true;
+diff --git a/src/clausal.hh b/src/clausal.hh
+index 5dcbb7d..de7097c 100644
+--- a/src/clausal.hh
++++ b/src/clausal.hh
+@@ -237,6 +237,12 @@ public:
+     // Return true if successful
+     bool run_hinting_solver();
+ 
++    // Run SAT solver as run_solver.  A proof of at least lemma_limit lemmas is then written
++    // to a file and trimmed and hinted by drat-trim (as run_hinting_solver, *hinted = true);
++    // a shorter one stays as it is (*hinted = false).
++    // Return true if successful
++    bool run_solver_trim(int lemma_limit, bool *hinted);
++
+     // Retrieve next clause in proof.
+     // Remap hint clause Ids to ones that match those in the larger proof
+     // 
+@@ -322,6 +328,11 @@ private:
+     // Each entry contains clause ID + hints
+     std::vector<std::vector<int>*> deletion_stack;
+ 
++    // With free_dead: proof clauses not yet freed, and the proof size that triggers the next
++    // collection
++    std::vector<int> gc_candidates;
++    size_t gc_next;
++
+ public:
+ 
+     // Direct access to writer (Use with caution)
+@@ -344,6 +355,20 @@ public:
+     bool forward_only;
+     // Use drat-trim when SAT problem has at least specified number of clauses
+     int drat_threshold;
++    // Use drat-trim on a smaller SAT problem whose proof has at least this many lemmas
++    // (0: never).  Default 0.
++    int trim_lemmas;
++    // Forward-only mode: free proof clauses that no later step can access.  Default false.
++    // Roots besides the reasoner's own state: saved active-clause sets (partitioning)
++    // and lemmas under proof.
++    bool free_dead;
++    std::vector<std::set<int>*> protected_sets;
++    std::vector<Lemma_instance*> lemma_stack;
++    // Hybrid mode: justify a POG node whose subgraph has tree size at most hybrid_limit nodes
++    // by one SAT call (0: never).  Default 0.  hybrid_warmup: adaptive gate (0: none), see
++    // Pog::hybrid_allowed.  Default 0.
++    int hybrid_limit;
++    int hybrid_warmup;
+     // Limit on number of clauses before aborting (not implemented)
+     int clause_limit;
+     //  Limt of depth of BCP when looking for conflict.
+@@ -443,6 +468,20 @@ public:
+     // Monolithic validation: generate proof that input formula --> root literal
+     int monolithic_validate_root(int root_literal);
+ 
++    // With free_dead: is a collection due, and collect (only where no clause pointer is held)
++    bool garbage_due();
++    void collect_garbage();
++    // With free_dead: a proof clause whose object the caller has deleted
++    void forget_clause(int cid);
++    // With free_dead: has proof clause cid been freed, and put a rebuilt copy back
++    bool clause_freed(int cid);
++    void restore_clause(int cid, Clause *np);
++
++    // Hybrid mode: justify node variable xvar in the current context by one SAT call on the
++    // active clauses plus the defining clauses defs (by ID).  Return the ID of the clause
++    // xvar | -context (0 if failed)
++    int validate_node(int xvar, std::vector<int> &defs);
++
+ 
+ private:
+ 
+diff --git a/src/counters.h b/src/counters.h
+index 9e2af1e..1e40f4f 100644
+--- a/src/counters.h
++++ b/src/counters.h
+@@ -38,6 +38,8 @@ typedef enum {
+     COUNT_OR_JUSTIFICATION_CLAUSE, COUNT_AND_JUSTIFICATION_CLAUSE, COUNT_LITERAL_JUSTIFICATION_CLAUSE,
+     COUNT_MONOLITHIC_CLAUSE,
+     COUNT_LEMMA_APPLICATION_CLAUSE,
++    COUNT_SAT_TRIMMED, COUNT_FREED_CLAUSE, COUNT_HYBRID_NODE, COUNT_HYBRID_FALLBACK,
++    COUNT_HYBRID_GATE_AT,
+     COUNT_NUM
+ } counter_t;
+ 
+diff --git a/src/cpog-gen.cpp b/src/cpog-gen.cpp
+index e7256ed..432bc8f 100644
+--- a/src/cpog-gen.cpp
++++ b/src/cpog-gen.cpp
+@@ -41,12 +41,16 @@ static bool one_sided = false;
+ static bool monolithic = false;
+ static bool forward_only = false;
+ static int drat_threshold = 1000;
++static int trim_lemmas = 0;
++static bool free_dead = false;
++static int hybrid_limit = 0;
++static int hybrid_warmup = 0;
+ static int bcp_limit = 1;
+ static int clause_limit = INT_MAX;
+ 
+ 
+ void usage(const char *name) {
+-    lprintf("Usage: %s [-h] [-v VLEVEL] [-L LOG] [-p] [-1] [-m] [-F] [-C CLIM] [-b BLIM] [-t] [-s] [-e] [-k] FORMULA.cnf GRAPH.d4nnf [POG.cpog]\n", name);
++    lprintf("Usage: %s [-h] [-v VLEVEL] [-L LOG] [-p] [-1] [-m] [-F] [-C CLIM] [-b BLIM] [-t] [-T LEMS] [-G] [-M NODES] [-W K] [-s] [-e] [-k] FORMULA.cnf GRAPH.d4nnf [POG.cpog]\n", name);
+     lprintf("  -h        Print this information\n");
+     lprintf("  -v VLEVEL Set verbosity level\n");
+     lprintf("  -L LOG    Record all results to file LOG\n");
+@@ -57,6 +61,10 @@ void usage(const char *name) {
+     lprintf("  -C CLIM   Limit total number of clauses in input + proof (default = %d)\n", clause_limit);
+     lprintf("  -b BLIM   Limit depth of Boolean constraint propagation for contradiction proofs (default = %d)\n", bcp_limit);
+     lprintf("  -t THRESH Use drat-trim on proofs when SAT problems are above THRESH clauses (default = %d)\n", drat_threshold);
++    lprintf("  -T LEMS   Also use drat-trim on a smaller SAT problem whose proof has at least LEMS lemmas (default = 0: never)\n");
++    lprintf("  -G        With -F: free proof clauses that no later step can access (less memory)\n");
++    lprintf("  -M NODES  Hybrid: justify a node whose subgraph has tree size at most NODES with one SAT call (default = 0: never)\n");
++    lprintf("  -W K      With -M: hybrid only after K structural justifications, once SAT calls reach 1 per 1000 of them (default = 0: always)\n");
+     lprintf("  -s        Prove each literal separately, rather than combining into single proof\n");
+     lprintf("  -e        Expand each node, rather than using lemmas\n");
+     lprintf("  -k        Keep intermediate solver files\n");
+@@ -170,6 +178,20 @@ static void stat_report() {
+     lprintf("%s    lemma application    : %d\n", prefix, cla);
+     lprintf("%s    monolithic proof     : %d\n", prefix, clm);
+     lprintf("%s    clause TOTAL         : %d\n", prefix, cdp+cda+coj+caj+clj+cla+clm);
++    if (trim_lemmas > 0)
++	lprintf("%s SAT calls trimmed by drat-trim (-T): %d\n", prefix, get_count(COUNT_SAT_TRIMMED));
++    if (free_dead)
++	lprintf("%s Proof clauses freed (-G): %d\n", prefix, get_count(COUNT_FREED_CLAUSE));
++    if (hybrid_limit > 0)
++	lprintf("%s Nodes justified by one SAT call (-M): %d (fallbacks %d)\n", prefix,
++		get_count(COUNT_HYBRID_NODE), get_count(COUNT_HYBRID_FALLBACK));
++    if (hybrid_limit > 0 && hybrid_warmup > 0) {
++	if (get_count(COUNT_HYBRID_GATE_AT) == 0)
++	    lprintf("%s Hybrid gate (-W): never opened\n", prefix);
++	else
++	    lprintf("%s Hybrid gate (-W): open after %d justifications\n", prefix,
++		    get_count(COUNT_HYBRID_GATE_AT));
++    }
+     double sat_time = get_timer(TIME_SAT);
+     lprintf("%s Time\n", prefix);
+     lprintf("%s   SAT execution  : %.2f\n", prefix, sat_time);
+@@ -216,6 +238,10 @@ static int run(FILE *cnf_file, FILE *nnf_file, Pog_writer *pwriter) {
+     cnf.delete_files = delete_files;
+     cnf.forward_only = forward_only;
+     cnf.drat_threshold = drat_threshold;
++    cnf.trim_lemmas = trim_lemmas;
++    cnf.free_dead = free_dead;
++    cnf.hybrid_limit = hybrid_limit;
++    cnf.hybrid_warmup = hybrid_warmup;
+     cnf.clause_limit = clause_limit;
+     cnf.bcp_limit = bcp_limit;
+     Pog pog(&cnf);
+@@ -285,7 +311,7 @@ int main(int argc, char *const argv[]) {
+     verblevel = 1;
+     int c;
+     set_panic(panic);
+-    while ((c = getopt(argc, argv, "hp1mFv:L:C:b:t:sek")) != -1) {
++    while ((c = getopt(argc, argv, "hp1mFv:L:C:b:t:T:GM:W:sek")) != -1) {
+ 	switch (c) {
+ 	case 'h':
+ 	    usage(argv[0]);
+@@ -317,6 +343,18 @@ int main(int argc, char *const argv[]) {
+ 	case 't':
+ 	    drat_threshold = atoi(optarg);
+ 	    break;
++	case 'T':
++	    trim_lemmas = atoi(optarg);
++	    break;
++	case 'G':
++	    free_dead = true;
++	    break;
++	case 'M':
++	    hybrid_limit = atoi(optarg);
++	    break;
++	case 'W':
++	    hybrid_warmup = atoi(optarg);
++	    break;
+ 	case 's':
+ 	    multi_literal = false;
+ 	    break;
+@@ -332,6 +370,10 @@ int main(int argc, char *const argv[]) {
+ 	    usage(argv[0]);
+ 	}
+     }
++    if (free_dead && !forward_only) {
++	lprintf("Option -G requires -F\n");
++	exit(1);
++    }
+     int argi = optind;
+     if (argi >= argc) {
+ 	lprintf("Name of input CNF file required\n");
+@@ -372,6 +414,14 @@ int main(int argc, char *const argv[]) {
+ 	lprintf("%s   Monolithic mode: %s\n", prefix, monolithic ? "yes" : "no");
+ 	lprintf("%s   Forward only:    %s\n", prefix, forward_only ? "yes" : "no");
+ 	lprintf("%s   DRAT threshold:  %d\n", prefix, drat_threshold);
++	if (trim_lemmas > 0)
++	    lprintf("%s   Trim lemmas:     %d\n", prefix, trim_lemmas);
++	if (free_dead)
++	    lprintf("%s   Free dead:       yes\n", prefix);
++	if (hybrid_limit > 0)
++	    lprintf("%s   Hybrid limit:    %d\n", prefix, hybrid_limit);
++	if (hybrid_warmup > 0)
++	    lprintf("%s   Hybrid warmup:   %d\n", prefix, hybrid_warmup);
+ 	lprintf("%s   Clause limit:    %d\n", prefix, clause_limit);
+ 	lprintf("%s   BCP limit:       %d\n", prefix, bcp_limit);
+     }
+diff --git a/src/pog.cpp b/src/pog.cpp
+index 3163e55..10a0441 100644
+--- a/src/pog.cpp
++++ b/src/pog.cpp
+@@ -712,12 +712,18 @@ int Pog::apply_lemma(Pog_node *rp, bool parent_or) {
+ 			      rp->name(), lemma->signature, lemma->jid);
+ #endif
+     }
+-    if (lemma->jid == 0)
++    if (lemma->jid == 0) {
++	if (instance != lemma)
++	    delete instance;
+ 	return 0;
++    }
+     incr_count(COUNT_LEMMA_APPLICATION);
+     report(3, "Applying lemma for node %s.  Signature = %u\n", rp->name(), lemma->signature);
+     cnf->pwriter->comment("Applying lemma at node %s.  Signature = %u", rp->name(), lemma->signature);
+     int jid = cnf->apply_lemma(lemma, instance);
++    // An instance that matched an existing lemma is not kept anywhere
++    if (instance != lemma)
++	delete instance;
+     if (jid == 0)
+ 	cnf->pwriter->diagnose("Application of lemma at node %s, signature %u, failed",
+ 			       rp->name(), lemma->signature);
+@@ -735,8 +741,122 @@ int Pog::apply_lemma(Pog_node *rp, bool parent_or) {
+ 
+ // Justify each position in POG within current context
+ // Return ID of justifying clause
++// Number of defining clauses of a node
++static int def_count(Pog_node *np) {
++    return np->get_type() == POG_OR ? 3 : np->get_degree() + 1;
++}
++
++void Pog::hybrid_setup() {
++    tree_size.resize(nodes.size());
++    visit_mark.assign(nodes.size(), 0);
++    visit_epoch = 0;
++    hybrid_state = 0;
++    // Nodes are declared after their children
++    for (int i = 0; i < nodes.size(); i++) {
++	Pog_node *np = nodes[i];
++	double t = 1;
++	for (int j = 0; j < np->get_degree(); j++) {
++	    int clit = (*np)[j];
++	    if (is_node(clit))
++		t += tree_size[IABS(clit) - max_input_var - 1];
++	}
++	tree_size[i] = t;
++    }
++}
++
++// Adaptive gate (-W K): the hybrid pays where the structural justification needs SAT calls
++// (queens, dominoes, MC2022 instances with solver calls) and only adds calls where BCP alone
++// justifies the POG (grids, sharing-rich circuits).  So justifications are structural until
++// at least K of them are done and the SAT calls so far reach one per 1000 justifications;
++// from then on the hybrid is used.  The root of a POG that is within the size limit as a
++// whole is justified by one call at once.  (The gate does not catch every loss: MC2022
++// track2_019 makes SAT calls but reuses its 2,365 lemmas 21,174 times, which separate SAT
++// calls cannot; there the hybrid is 6.5x slower.  Race it against the structural mode.)
++bool Pog::hybrid_allowed(int rvar) {
++    if (cnf->hybrid_warmup == 0 || rvar == IABS(root_literal))
++	return true;
++    if (hybrid_state == 0 && vcount >= cnf->hybrid_warmup
++	&& (long) get_count(COUNT_SAT_CALL) * 1000 >= vcount) {
++	hybrid_state = 1;
++	incr_count_by(COUNT_HYBRID_GATE_AT, vcount);
++	report(1, "Hybrid mode on after %d justifications with %d SAT calls\n", vcount,
++	       get_count(COUNT_SAT_CALL));
++    }
++    return hybrid_state > 0;
++}
++
++// Defining clause k of a node, as concretize declares it (Cnf_reasoner::start_and, start_or)
++Clause *Pog::def_clause(Pog_node *np, int k) {
++    Clause *clp = new Clause();
++    int xvar = np->get_xvar();
++    if (np->get_type() == POG_OR) {
++	if (k == 0) {
++	    clp->add(-xvar); clp->add((*np)[0]); clp->add((*np)[1]);
++	} else {
++	    clp->add(xvar); clp->add(-(*np)[k-1]);
++	}
++    } else if (k == 0) {
++	clp->add(xvar);
++	for (int j = 0; j < np->get_degree(); j++)
++	    clp->add(-(*np)[j]);
++    } else {
++	clp->add(-xvar); clp->add((*np)[k-1]);
++    }
++    return clp;
++}
++
++void Pog::subgraph_defs(Pog_node *rnp, std::vector<int> &defs) {
++    visit_epoch++;
++    std::vector<Pog_node *> stack;
++    stack.push_back(rnp);
++    visit_mark[rnp->get_xvar() - max_input_var - 1] = visit_epoch;
++    while (stack.size() > 0) {
++	Pog_node *np = stack.back();
++	stack.pop_back();
++	int cid = np->get_defining_cid();
++	for (int c = cid; c < cid + def_count(np); c++) {
++	    // -G may have freed it: rebuild
++	    if (cnf->clause_freed(c))
++		cnf->restore_clause(c, def_clause(np, c - cid));
++	    defs.push_back(c);
++	}
++	for (int j = 0; j < np->get_degree(); j++) {
++	    int clit = (*np)[j];
++	    if (!is_node(clit))
++		continue;
++	    int idx = IABS(clit) - max_input_var - 1;
++	    if (visit_mark[idx] != visit_epoch) {
++		visit_mark[idx] = visit_epoch;
++		stack.push_back(nodes[idx]);
++	    }
++	}
++    }
++}
++
++// Hybrid mode: justify the node in the current context (with its splitting literal if it is
++// a product below an OR node, as the structural justification) by one SAT call on the active
++// clauses and the defining clauses of its subgraph.  The result is the clause
++// xvar | -context that the structural justification would assert.
++int Pog::justify_hybrid(Pog_node *rnp, bool parent_or) {
++    std::vector<int> defs;
++    subgraph_defs(rnp, defs);
++    cnf->new_context();
++    pog_type_t type = rnp->get_type();
++    if (parent_or && (type == POG_AND || type == POG_TRUE) && rnp->get_degree() > 0)
++	cnf->push_assigned_literal((*rnp)[0]);
++    cnf->pwriter->comment("Justify node %s by one SAT call (%d defining clauses)", rnp->name(), (int) defs.size());
++    int jcid = cnf->validate_node(rnp->get_xvar(), defs);
++    cnf->pop_context();
++    return jcid;
++}
++
+ int Pog::justify(int rlit, bool parent_or, bool use_lemma) {
+     int jcid = 0;
++    if (cnf->hybrid_limit > 0 && tree_size.size() != nodes.size())
++	hybrid_setup();
++    // Forward-only mode with free_dead: no reasoner call is in progress here
++    if (cnf->free_dead && cnf->garbage_due())
++	cnf->collect_garbage();
+     counter_t jtype = COUNT_LITERAL_JUSTIFICATION_CLAUSE;
+     if (is_node(rlit)) {
+ 	int rvar = IABS(rlit);
+@@ -747,6 +867,17 @@ int Pog::justify(int rlit, bool parent_or, bool use_lemma) {
+ 		cnf->pwriter->diagnose("Failed lemma.  Giving up on validation of node %s", rnp->name());
+ 	    return jid;
+ 	}
++	if (cnf->hybrid_limit > 0 && tree_size[rvar - max_input_var - 1] <= cnf->hybrid_limit
++	    && hybrid_allowed(rvar)) {
++	    int hid = justify_hybrid(rnp, parent_or);
++	    if (hid != 0) {
++		incr_count(COUNT_HYBRID_NODE);
++		vcount++;
++		return hid;
++	    }
++	    // Fall back to the structural justification
++	    incr_count(COUNT_HYBRID_FALLBACK);
++	}
+ 	int xvar = rnp->get_xvar();
+ 	Clause *jclause = new Clause();
+ 	jclause->add(xvar);
+@@ -870,6 +1001,8 @@ int Pog::justify(int rlit, bool parent_or, bool use_lemma) {
+ 			partition = true;
+ 			save_clauses = new std::set<int>;
+ 			cnf->extract_active_clauses(save_clauses);
++			if (cnf->free_dead)
++			    cnf->protected_sets.push_back(save_clauses);
+ 			report(4, "Justifying node %s.  Partitioned clauses into %d sets\n", rnp->name(), rvar2cset.size());
+ 		    }
+ 		    if (partition) {
+@@ -899,8 +1032,12 @@ int Pog::justify(int rlit, bool parent_or, bool use_lemma) {
+ 			delete pset;
+ 		}
+ 		hints.push_back(rnp->get_defining_cid());
+-		if (save_clauses != NULL)
++		if (save_clauses != NULL) {
+ 		    cnf->set_active_clauses(save_clauses);
++		    if (cnf->free_dead)
++			cnf->protected_sets.pop_back();
++		    delete save_clauses;
++		}
+ 		jtype = COUNT_AND_JUSTIFICATION_CLAUSE;
+ 	    }
+ 	    break;
+diff --git a/src/pog.hh b/src/pog.hh
+index a21ff30..d4f6901 100644
+--- a/src/pog.hh
++++ b/src/pog.hh
+@@ -100,6 +100,13 @@ private:
+     std::vector<Pog_node *> nodes;
+     // Root literal can refer to either an input variable or the last node
+     int root_literal;
++    // Hybrid mode (cnf->hybrid_limit > 0): tree size of each node's subgraph (with
++    // multiplicity), and marks for the subgraph traversal
++    std::vector<double> tree_size;
++    std::vector<int> visit_mark;
++    int visit_epoch;
++    // Adaptive gate (-W): 0 closed, 1 open
++    int hybrid_state;
+ 
+ public:
+     Pog();
+@@ -150,6 +157,13 @@ private:
+     int first_literal(int rlit);
+     // Create/Apply lemma at node.  Return ID of justifying clause (0 if failed)
+     int apply_lemma(Pog_node *rp, bool parent_or);
++    // Hybrid mode: tree sizes and kept defining clauses; defining clause IDs of a subgraph;
++    // justification of a node by one SAT call (0 if failed)
++    void hybrid_setup();
++    bool hybrid_allowed(int rvar);
++    Clause *def_clause(Pog_node *np, int k);
++    void subgraph_defs(Pog_node *rnp, std::vector<int> &defs);
++    int justify_hybrid(Pog_node *rnp, bool parent_or);
+     // For generating counterexample when input deletion fails
+     bool get_deletion_counterexample(int cid, std::vector<bool> &implies_clause, std::vector<int> &literals);
+ };

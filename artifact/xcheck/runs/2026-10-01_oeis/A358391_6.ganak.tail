@@ -1,0 +1,5 @@
+s SATISFIABLE
+c s type mc
+c s log10-estimate 1.73140858e+01
+c s exact arb int 206103695057137712
+c s pac guarantees epsilon: 0 delta: 0

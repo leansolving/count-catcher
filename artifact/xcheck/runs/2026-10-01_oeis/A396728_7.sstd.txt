@@ -1,0 +1,8 @@
+inst=A396728_7
+counter=sstd
+start=2026-10-01T08:15:04+02:00
+exit=0
+wall_s=129.8
+count=696132184469
+end=2026-10-01T08:17:14+02:00
+status=done

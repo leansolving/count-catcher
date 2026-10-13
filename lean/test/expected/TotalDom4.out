@@ -1,0 +1,5 @@
+count_models A303210_4: 33489 models over Fin 16, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models A303210_4_stream: 33489 models over Fin 16, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+count_models A303210_3: 334 models over Fin 9, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+'A303210_4' depends on axioms: [propext, Classical.choice, Quot.sound, A303210_4._native.native_decide.ax_1]
+'A303210_3' depends on axioms: [propext, Classical.choice, Quot.sound, A303210_3._native.native_decide.ax_1]

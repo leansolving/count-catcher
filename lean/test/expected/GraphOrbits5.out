@@ -1,0 +1,40 @@
+count_models tri5_fix_5: 3 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_fix_4: 4 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_fix_3_2: 3 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_fix_3: 7 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_fix_2_2: 28 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_fix_2: 48 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5: 388 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_nbr_0: 41 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_nbr_1: 41 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_nbr_2: 25 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_nbr_3: 8 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models tri5_nbr_4: 1 models over Fin 10, embedded; count from the hint, verified check (parts A, B, C) N ms
+'tri5_orbits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ tri5._native.native_decide.ax_1,
+ tri5_fix_2._native.native_decide.ax_1,
+ tri5_fix_2_2._native.native_decide.ax_1,
+ tri5_fix_3._native.native_decide.ax_1,
+ tri5_fix_3_2._native.native_decide.ax_1,
+ tri5_fix_4._native.native_decide.ax_1,
+ tri5_fix_5._native.native_decide.ax_1]
+'tri5_isoClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ tri5._native.native_decide.ax_1,
+ tri5_fix_2._native.native_decide.ax_1,
+ tri5_fix_2_2._native.native_decide.ax_1,
+ tri5_fix_3._native.native_decide.ax_1,
+ tri5_fix_3_2._native.native_decide.ax_1,
+ tri5_fix_4._native.native_decide.ax_1,
+ tri5_fix_5._native.native_decide.ax_1]
+'tri5_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ tri5_nbr_0._native.native_decide.ax_1,
+ tri5_nbr_1._native.native_decide.ax_1,
+ tri5_nbr_2._native.native_decide.ax_1,
+ tri5_nbr_3._native.native_decide.ax_1,
+ tri5_nbr_4._native.native_decide.ax_1]

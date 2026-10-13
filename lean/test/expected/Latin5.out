@@ -1,0 +1,42 @@
+count_models latin5: 56 models over Fin 125, embedded; count by part A N ms, verified check (parts A, B, C) N ms
+count_models latin5_r000: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r001: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r002: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r003: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r004: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r005: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r006: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r007: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r008: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r009: 6 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r010: 4 models over Fin 125, embedded; count from the hint, verified check (parts A, B, C) N ms
+count_models latin5_r000s: 4 models over Fin 125, streamed; count by part A N ms, verified check part B N ms, parts A and C N ms
+'latin5_reduced' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ latin5_r000._native.native_decide.ax_1,
+ latin5_r001._native.native_decide.ax_1,
+ latin5_r002._native.native_decide.ax_1,
+ latin5_r003._native.native_decide.ax_1,
+ latin5_r004._native.native_decide.ax_1,
+ latin5_r005._native.native_decide.ax_1,
+ latin5_r006._native.native_decide.ax_1,
+ latin5_r007._native.native_decide.ax_1,
+ latin5_r008._native.native_decide.ax_1,
+ latin5_r009._native.native_decide.ax_1,
+ latin5_r010._native.native_decide.ax_1]
+'latin5_all' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ latin5_r000._native.native_decide.ax_1,
+ latin5_r001._native.native_decide.ax_1,
+ latin5_r002._native.native_decide.ax_1,
+ latin5_r003._native.native_decide.ax_1,
+ latin5_r004._native.native_decide.ax_1,
+ latin5_r005._native.native_decide.ax_1,
+ latin5_r006._native.native_decide.ax_1,
+ latin5_r007._native.native_decide.ax_1,
+ latin5_r008._native.native_decide.ax_1,
+ latin5_r009._native.native_decide.ax_1,
+ latin5_r010._native.native_decide.ax_1]
+'latin5' depends on axioms: [propext, Classical.choice, Quot.sound, latin5._native.native_decide.ax_1]

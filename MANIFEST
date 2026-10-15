@@ -5,8 +5,8 @@ a3f4504592c10848da54b67d69e66d185f0323cd148ed7d98d04b68e0c92c6c2  .gitignore  <-
 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  LICENSE  <-  LICENSE
 90895c6f75f926b0e519e3e4c21c1febd813774acbcb1d8a5dd7d1c4a1a2d4aa  NOTICE  <-  scripts/release/public/NOTICE
 785eb4eaaef16a29267cc0f3e117551737b5e340822cb706484502a8957f36ed  PAPER/fig/compare.pdf  <-  PAPER/fig/compare.pdf
-1c81c7a9e2f3befc7ebe8995524d5be48bcdc3186ecd078dac0c2e766c2a5ce5  PAPER/numbers.tex  <-  PAPER/numbers.tex
-2a2edd89a03dae14564d6319ea76aded9e4874552e7c2ceb4cb745064e164a63  PAPER/tables/ablation.tex  <-  PAPER/tables/ablation.tex
+dc0e93538060d4cbcff135f92822dbebdd05f0b8d4407c1316fc172187c28238  PAPER/numbers.tex  <-  PAPER/numbers.tex
+6924b5486fb77d40509b6d4beecb033ba5a96f957c332e420c5266d7c538f45c  PAPER/tables/ablation.tex  <-  PAPER/tables/ablation.tex
 c656b74766288f8da3e67ec4be3f0d21aeda2d557004919f9195e3cc604cb72d  PAPER/tables/app_adversarial.tex  <-  PAPER/tables/app_adversarial.tex
 f2f84fc2fdc5875a63e701013cb084617f832465c7cad3521f45d4797a6bb625  PAPER/tables/app_code.tex  <-  PAPER/tables/app_code.tex
 72e3e69b9fc3e88b35e7c5ff6a0344012c0447f05e9b9fff33c0d71fd06bb9d9  PAPER/tables/app_competition.tex  <-  PAPER/tables/app_competition.tex
@@ -15,11 +15,11 @@ a91aeadfda20643fdbc245f314ec25067de57f5eecd77bcb4a6139b030738d46  PAPER/tables/a
 9310deeb947c8237c24d1d4f95bbc57fd7d9179463ef616e23cb76e43e8b6e14  PAPER/tables/app_miscount.tex  <-  PAPER/tables/app_miscount.tex
 70f80c6b76bc17112c013ab09d56bee97a27c700063022d5fafe58f2ed02aaa1  PAPER/tables/app_showcases.tex  <-  PAPER/tables/app_showcases.tex
 08327000558cfff97f00faebb6fbf3cd410481a398a336001972a8708f56a09f  PAPER/tables/app_stream.tex  <-  PAPER/tables/app_stream.tex
-23bb7be2877f6ec9496e1ed2d1d4021117657c7626095af0d5d8e21861e29358  PAPER/tables/bands.tex  <-  PAPER/tables/bands.tex
+3ce0c42e34e132d1fc37179f6de7b4e181e319654caea97632e031970aba787e  PAPER/tables/bands.tex  <-  PAPER/tables/bands.tex
 f3851cd25e82c9b7ce11fe959e8ebd058bb0f548e7f0d4a7166201fbdd328ec4  PAPER/tables/fig3_data.csv  <-  PAPER/tables/fig3_data.csv
 dba0293d43d0804e477721860549318150bcce8c2c1659b607305ff3498ebed3  PAPER/tables/funnel.tex  <-  PAPER/tables/funnel.tex
 a465219f3c563b3ed4b36c6332c7b0602c9318cfbf7d1edf761920e16950e2a5  PAPER/tables/medians.tex  <-  PAPER/tables/medians.tex
-9e5bff15aa5c400ca0dabf0df8c6a7d8567c144ad6570c37b491797fd85eab31  PAPER/tables/showcases.tex  <-  PAPER/tables/showcases.tex
+f14bc8797b06df42d46f2decc2fb2b8e6c3b6fcba74c8b34985bc864140463c0  PAPER/tables/showcases.tex  <-  PAPER/tables/showcases.tex
 e10279c7957a069d88d274a6e2389b91f8bd23e2780cb2b1186359931eaac718  README.md  <-  scripts/release/public/README.md
 08137526b2add3fbcc11db54c557151639d123a397afe41b0030dd4f2df36d3c  artifact/Axioms.lean  <-  artifact/Axioms.lean
 14588c532db3f29d63f0611bd9f4d7dd85cc5bc7da15dc6bd9b27ba2c5df3cc3  artifact/apt-packages.txt  <-  artifact/apt-packages.txt
@@ -2071,7 +2071,7 @@ d2747ae10d1f4a113ea9370a9b43a4c4dfe5e98fecf94abd3224652ecbe97586  scripts/graph_
 a9dd08662a7ece5c6e91ab1ea0d0ee00f11bc755415a39e43c4038c306947d5c  scripts/lrat_inline.py  <-  scripts/lrat_inline.py
 a53f551c6ddb44cd6d6358719d0b8ae4cf55799c07c346572277773585626e6b  scripts/lrat_trim.py  <-  scripts/lrat_trim.py
 08286a287282561208b6e1681eb76dbcfd55b3a9bfe1caf7fc1c6d24633dcef2  scripts/paper_fig3.py  <-  scripts/paper_fig3.py
-3c74204e73738162334328b43402e5d492ac8305147fae230b839bd1ceeeceab  scripts/paper_numbers.py  <-  scripts/paper_numbers.py
+cccc1eff5852790ace7603dc660bb30d1a739c4118fc015306353c1c4843d64b  scripts/paper_numbers.py  <-  scripts/paper_numbers.py
 018ec036549ee8b9fda09c58fb881b61353c223580f0c4e4025b4fda12663185  scripts/pog_count.py  <-  scripts/pog_count.py
 fe42fa420cf311b1da325b1a1714e696bd06f9bdc35f6a22f5bd6a5a7a4b53f3  scripts/showcase/a303210.py  <-  scripts/showcase/a303210.py
 98887557bbbf5539c3a22e53c4fc7b2cdb89c063eeac3385f9a0293bbf8e0d9e  scripts/showcase/dedekind.py  <-  scripts/showcase/dedekind.py

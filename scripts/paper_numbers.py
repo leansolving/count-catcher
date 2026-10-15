@@ -1039,7 +1039,7 @@ def showcases(em: Emitter) -> list[dict]:
             warn(f"showcase {key}: not proved")
         em.add(f"sc{tag}Count", fmt_count(row["count"]))
         em.add(f"sc{tag}CountDigits", str(len(str(row["count"]))))
-        if row["count"] >= 10:  # the showcase table gives every count above 9 as a.bc * 10^k
+        if len(str(row["count"])) > TABLE_COUNT_MAX_DIGITS:
             em.add(f"sc{tag}CountSci", fmt_sci(row["count"]))
         em.add(f"sc{tag}Composed", str(row["terms"]))
         em.add(f"sc{tag}Lean", fmt_time(row["lean"]))
@@ -1157,18 +1157,10 @@ def write_tables(em: Emitter, sc_rows: list[dict]) -> None:
     lines = [gen + "% columns: full certificate size & jointly completed runs & median of the "
              "per-instance ratios (count-catcher over cpog-lean-check) for the whole Lean "
              "process & for the check alone & for peak memory"]
-    def on_point(name: str, decimals: int = 2) -> str:
-        # right-aligned column: an integer gets ".0", and the missing decimals are padded
-        # invisibly so that the points align
-        s = em.values[name]
-        cell, frac = (v(name), len(s.split(".")[1])) if "." in s else (v(name) + ".0", 1)
-        pad = "0" * (decimals - frac)
-        return cell + (f"\\phantom{{{pad}}}" if pad else "")
-
     for b in ("One", "Two", "Three", "Four"):
         lines.append(" & ".join([v(f"cmpBand{b}Label"), v(f"cmpBand{b}N"),
-                                 on_point(f"cmpBand{b}LeanRatio"), v(f"cmpBand{b}CheckRatio"),
-                                 on_point(f"cmpBand{b}MemRatio")]) + " \\\\")
+                                 v(f"cmpBand{b}LeanRatio"), v(f"cmpBand{b}CheckRatio"),
+                                 v(f"cmpBand{b}MemRatio")]) + " \\\\")
     (TABLES / "bands.tex").write_text("\n".join(lines) + "\n")
     # Table 5: ablation. Columns: design choice & metric & n & median factor & range
     lines = [gen + "% columns: design choice & metric & instances & median factor & range; "
@@ -1187,7 +1179,7 @@ def write_tables(em: Emitter, sc_rows: list[dict]) -> None:
     row("", "generation time", "ablRevGen")
     row("Bit-parallel reverse check", "vs.\\ top-down evaluation", "ablPartcTd")
     row("", "vs.\\ sweep per clause", "ablPartcPc")
-    row("Trimmed binary proof", "forward check time", "ablTrimBinPartB")
+    row("Trimmed binary refutation", "forward check time", "ablTrimBinPartB")
     row("Keep mask", "Lean time", "ablKeepLean")
     row("", "Lean memory", "ablKeepMem")
     row("", "clauses of $\\Phi$ loaded", "ablKeepShare", pct=True)

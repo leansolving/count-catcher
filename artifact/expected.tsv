@@ -173,7 +173,7 @@ extras	dom4 kernel command ms	24100	info	\kerFourKernelS (24 s, 6.6 GB)	research
 extras	dom4 native	propext,Classical.choice,Quot.sound,dom4_fwd_ki._native.native_decide.ax_1_1	exact	Section 6 (native evaluation: one native axiom)	measurement 1 of research/eval-2026-10-04/embedded_streamed.md (cluster log result_ki.txt)
 extras	dom4 native command ms	16	info	\kerFourNativeMs	research/eval-2026-10-04/kernel_only.tsv
 extras	paper_numbers.py	exit 0	exact	every number and table of the paper	scripts/paper_numbers.py
-extras	numbers.tex	510 of 540 macros identical, 30 hybrid-generation macros not cited by the paper differ	exact	PAPER/numbers.tex	the hybrid macros come from research/eval-2026-10-02/overnight.md, not in the public tree
+extras	numbers.tex	512 of 542 macros identical, 30 hybrid-generation macros not cited by the paper differ	exact	PAPER/numbers.tex	the hybrid macros come from research/eval-2026-10-02/overnight.md, not in the public tree
 extras	ablation.tex	identical	exact	PAPER/tables/ablation.tex	PAPER/tables/ablation.tex
 extras	app_adversarial.tex	identical	exact	PAPER/tables/app_adversarial.tex	PAPER/tables/app_adversarial.tex
 extras	app_code.tex	identical	exact	PAPER/tables/app_code.tex	PAPER/tables/app_code.tex

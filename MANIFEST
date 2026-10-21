@@ -20,12 +20,12 @@ f3851cd25e82c9b7ce11fe959e8ebd058bb0f548e7f0d4a7166201fbdd328ec4  PAPER/tables/f
 dba0293d43d0804e477721860549318150bcce8c2c1659b607305ff3498ebed3  PAPER/tables/funnel.tex  <-  PAPER/tables/funnel.tex
 a465219f3c563b3ed4b36c6332c7b0602c9318cfbf7d1edf761920e16950e2a5  PAPER/tables/medians.tex  <-  PAPER/tables/medians.tex
 f14bc8797b06df42d46f2decc2fb2b8e6c3b6fcba74c8b34985bc864140463c0  PAPER/tables/showcases.tex  <-  PAPER/tables/showcases.tex
-e10279c7957a069d88d274a6e2389b91f8bd23e2780cb2b1186359931eaac718  README.md  <-  scripts/release/public/README.md
+2cbcd3fe2f71a9c55d2743cb7486abd288d0bab72c217f38d350b45b241b8154  README.md  <-  scripts/release/public/README.md
 08137526b2add3fbcc11db54c557151639d123a397afe41b0030dd4f2df36d3c  artifact/Axioms.lean  <-  artifact/Axioms.lean
 14588c532db3f29d63f0611bd9f4d7dd85cc5bc7da15dc6bd9b27ba2c5df3cc3  artifact/apt-packages.txt  <-  artifact/apt-packages.txt
 6cd45f214636a0c493dbbde19ecb7dd0c082b4eb6de32f51f16e1ba84b8f2cad  artifact/check.py  <-  artifact/check.py
 37b03b43d4d600907601e843aabdac74a77d9b07d5912d03184e75794e75f6aa  artifact/env.sh  <-  artifact/env.sh
-f8edc7dcaddda242cd073cb1abb70fde5f97934717179d0439085a125da52020  artifact/expected.tsv  <-  artifact/expected.tsv
+1c33d6b15fbbd91f469616f358fb2c085bca457892e6a991cd877955dad4412e  artifact/expected.tsv  <-  artifact/expected.tsv
 30bcc1004a11b6cbed6e96727d48e1927e74a36383d966ec04eead8b68cb38f9  artifact/inputs/graphs/games120.col  <-  artifact/inputs/graphs/games120.col
 38573989c4a1f1b2177f6f45fe86c87e75ea501ab6ef2035ac717e515aa0e22d  artifact/inputs/graphs/homer.col  <-  artifact/inputs/graphs/homer.col
 8a67532ad07bb035d1aec5a0852ccaf9e57b33ecb064ae1c157771210bc1233e  artifact/install.sh  <-  artifact/install.sh

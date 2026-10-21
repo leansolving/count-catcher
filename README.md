@@ -48,9 +48,10 @@ Zenodo: https://doi.org/10.5281/zenodo.23304375.
 
 ## Getting started in the TACAS artifact evaluation VM
 
-The artifact was tested in the TACAS 2026 artifact evaluation VM (Zenodo record 17171929,
-Ubuntu 25.04, amd64; no TACAS 2027 VM was published as of 2026-10-11), whose disk image we
-ran under QEMU/KVM with 4 vCPUs and 16 GB. Both installation routes below passed there.
+The artifact was tested in the TACAS 2027 artifact evaluation VM (Zenodo record 23472158,
+Ubuntu 26.04.1, amd64) and in the TACAS 2026 VM (Zenodo record 17171929, Ubuntu 25.04, amd64),
+whose disk images we ran under QEMU/KVM with 4 vCPUs and 16 GB. Both installation routes below
+passed in both VMs.
 
 1. Machine. The VM ships with 2 vCPUs and 8 GB of memory. Before `reproduce.sh --all`, raise
    it to 4 CPUs and at least 14 GB (16 GB if the host allows; the desktop of the VM uses
@@ -65,8 +66,8 @@ ran under QEMU/KVM with 4 vCPUs and 16 GB. Both installation routes below passed
 3. Files. The Zenodo record contains the source tree of this release
    (`count-catcher-src.tar.gz`), the prebuilt tarball `count-catcher-prebuilt-x86_64.tar.zst`,
    `inputs.tar.gz` and `logs.tar.gz`, each with its `.sha256` file.
-   With network, download them inside the VM (browser or `curl -LO` with the file links of
-   the record). Without network in the VM, download them on the host and attach them to the
+   With network, download them inside the VM (browser, or per file
+   `curl -L -o NAME https://zenodo.org/records/23304375/files/NAME?download=1`). Without network in the VM, download them on the host and attach them to the
    VM, for example through a VirtualBox shared folder (the VM has the guest additions) or on a
    second virtual disk. Check the tarball with
    `sha256sum -c count-catcher-prebuilt-x86_64.tar.zst.sha256`.
@@ -80,8 +81,9 @@ ran under QEMU/KVM with 4 vCPUs and 16 GB. Both installation routes below passed
 
 Requirements: x86_64 Linux (d4 links a prebuilt x86_64 PaToH library), so the host must be an
 x86_64 (Intel or AMD) machine; on an ARM host such as an Apple Silicon Mac the amd64 VM runs
-only under emulation, which is too slow for the reproduction. Tested on Ubuntu 25.04
-(the AE VM, and a container with the VM's package set) and Ubuntu 26.04.1 LTS. Beyond the VM's
+only under emulation, which is too slow for the reproduction. Tested in the TACAS 2027 VM
+(Ubuntu 26.04.1 LTS), in the TACAS 2026 VM (Ubuntu 25.04) and in a container with the 2026 VM's
+package set. Beyond the VM's
 packages, the online route installs `m4` and `libboost-dev` with apt.
 
 ### Offline route (prebuilt tarball, no network)
@@ -120,9 +122,9 @@ cpog-gen-fwd (cpog-gen with our two patches), CaDiCaL and drat-trim into `tools/
 `cpog2lrat` with cargo (it installs Rust with rustup only if `cargo` is missing; the VM has
 cargo 1.89.0 in `~/.cargo`, on the PATH of a terminal), installs uv 0.12.23 if no uv is
 present and the Lean toolchain (elan), fetches Mathlib's prebuilt files, compiles the Lean
-libraries and writes `bin/count-catcher`. It needs network access to GitHub, gnu.org,
-Mathlib's cache server, astral.sh and, without cargo, rust-lang.org (about 1.5 GB of
-downloads). `--no-apt` skips the apt step, `--jobs N` sets the parallelism. The script is
+libraries and writes `bin/count-catcher`. It needs network access to GitHub (raw.githubusercontent.com serves
+the elan installer), gnu.org, releases.lean-lang.org, Mathlib's cache server, astral.sh and,
+without cargo, rust-lang.org (about 1.5 GB of downloads). `--no-apt` skips the apt step, `--jobs N` sets the parallelism. The script is
 idempotent; a second run takes about 20 s. Each step's log and its time and peak memory go
 to `artifact/logs/`.
 
@@ -130,7 +132,8 @@ Measured in the VM (4 vCPUs, 16 GB): 356 s in all, apt 12 s, tools 80 s, cpog2lr
 uv 1 s, elan and toolchain 25 s, Mathlib 171 s, Lean build 63 s with a peak of 5.3 GiB
 (5,397 MiB PSS, of which 1.1 GiB anonymous memory); `smoke.sh` 10 s;
 `artifact/reproduce.sh --stage tests axioms handsuite difftest` 427 s (tests 129 s, axioms 3 s,
-handsuite 8 s, difftest 281 s and 1.9 GiB), all PASS. In a container with the VM's packages on
+handsuite 8 s, difftest 281 s and 1.9 GiB), all PASS. In the TACAS 2027 VM (2026-10-21): 309 s in
+all (tools 83 s, Mathlib 90 s, Lean build 52 s), with the VM's own cargo 1.93.1 and GCC 15. In a container with the VM's packages on
 a 2016 Xeon (E5-2640 v4), the installation took 385 s with 4 CPUs and 14 GB and 579 s with 2
 CPUs and 4 GB.
 
@@ -193,6 +196,9 @@ Totals: on the Xeon, `--all` took 2 h 44 min with a peak of 13.0 GiB and `--all 
 have the two order-8 items; they add about 3.5 minutes there). In the VM (2026-10-12), `--all`
 took 1 h 51 min with a peak of 13.0 GiB, and all 191 checks passed (167 PASS, 24 INFO); the
 later changes to the reporting scripts (NOTRUN with `--item`) were checked in shorter VM runs.
+In the TACAS 2027 VM (2026-10-21, version 1.0 of the record), `--all` took 1 h 33 min with a peak
+of 12.3 GiB; 166 checks passed, and the one failing row, the macro count of `numbers.tex`, had a
+stale expected value in `artifact/expected.tsv`, corrected in version 1.1 of the record.
 The item keys of a stage are the first words of its rows in `artifact/expected.tsv`;
 `reproduce.sh` rejects an unknown key and lists the valid ones.
 The run needs up to 10 GB of disk beyond the installation (5 GB with `--skip-large`). With
